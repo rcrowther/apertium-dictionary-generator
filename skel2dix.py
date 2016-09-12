@@ -153,6 +153,7 @@
 """
 # ? not covereed
 # or <b/>
+# cut down stanza info
 import sys, getopt, re
 from collections import namedtuple
 
