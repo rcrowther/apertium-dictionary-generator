@@ -14,6 +14,7 @@ src/test
 # ignore tests
 en-lanc1
 out
+en-lanc_1-bi.parDix
 
 # ignore all files ending with ~
 *~

@@ -174,10 +174,6 @@ generates::
 # ? not covered
 # check stemming
 # clean notifications
-# spaces again
-# put all strip into lemma producers?
-# output file implied
-# dest index out of range
 import sys, getopt, re
 from collections import namedtuple
 
@@ -215,25 +211,24 @@ def lemmaStem(lemmaMark):
     creates a lemma and stem matcher.
     remove slash, on stem insert blank-tags.
     """
-    idx = lemmaMark.find('/')
+    lm = lemmaMark.strip()
+    idx = lm.find('/')
     if idx == -1:
-        return  lemmaMark, lemmaMark.replace(" ", "<b/>")
+        return  lm, lm.replace(" ", "<b/>")
     else:
-        return lemmaMark.replace("/", ""),  lemmaMark[:idx].replace(" ", "<b/>")
-    
-def lemma(lemmaMark):
-    return lemmaMark.replace("/", "")
-    
+        return lm.replace("/", ""),  lm[:idx].replace(" ", "<b/>")
+
+
 def matcher(lemmaMark):
     """
     creates a string matcher.
     remove slash, insert blank-tags.
     used for late matches in bi-lingual dictionaries.
     """
-    return lemmaMark.replace("/", "").replace(" ", "<b/>")
+    return lemmaMark.strip().replace("/", "").replace(" ", "<b/>")
     
 def lemmaMatcher(lemmaMark):
-    l = lemmaMark.replace("/", "")
+    l = lemmaMark.strip().replace("/", "")
     return l, l.replace(" ", "<b/>")
     
     
@@ -244,7 +239,6 @@ def monodixTemplate(fOut, lemmas, dixParadigm):
         fOut.write('<e lm="')
         fOut.write(lemma)
         fOut.write('"><i>')
-        # fill out multi-words
         fOut.write(stem)
         fOut.write('</i><par n="')
         fOut.write(dixParadigm)
@@ -321,9 +315,7 @@ def stanzaAnnotateTemplate(fOut, stanzaName):
     fOut.write('\n<!-- ')
     fOut.write(stanzaName)
     fOut.write(' -->\n')
-    
-def timeTemplate(fOut, dixLemma, dixStem, dixParadigm):
-    pass
+
 
 
 Stanza = namedtuple('Stanza', [
@@ -357,12 +349,10 @@ def processLine(fOut, target, stanza,  srcLemmaMarks, dstLemmaMarks, paradigms):
     baseParadigm = stanza.baseParadigm
     paradigm = 'error'
 
-
-        
     # which target?
     if target == 's':
         p = paradigms[0]
-        if p: paradigm = p + '__' + baseParadigm
+        if p: paradigm = p.strip() + '__' + baseParadigm
         else: paradigm = baseParadigm
         monodixTemplate(fOut, 
                         lemmas = srcLemmaMarks, 
@@ -370,7 +360,7 @@ def processLine(fOut, target, stanza,  srcLemmaMarks, dstLemmaMarks, paradigms):
                         )
     elif target == 'd':
         p = paradigms[1]
-        if p: paradigm = p + '__' + baseParadigm
+        if p: paradigm = p.strip() + '__' + baseParadigm
         else: paradigm = baseParadigm
         monodixTemplate(fOut, 
                         lemmas = dstLemmaMarks,
@@ -406,11 +396,10 @@ def parseSet(line):
     """
     Parses a string for an initial 'xxx', or '{xxx, yyy, zzz},'.
     Returns are whitespace-stripped (tail is left-stripped).
-    @return: tuple of the parsed element and line tail. The element
-    will be in a list, however parsed. If the parse fails, either
-    element or tail can return None.
+    @return: the parsed element, a list, and tail, a string. The element
+    will be a list with at least one element, maybe empty.
     """
-    head = ''
+    head = ['']
     tail = ''
     if line[0] != '{':
         splitLine = line.split(',', 1)
@@ -419,21 +408,23 @@ def parseSet(line):
         elif len(splitLine) < 2:
             head = [splitLine[0]]
         else:
-            head, tail = splitLine
-            head = [head]
-            tail = tail.lstrip()
+            head = [splitLine[0]]
+            tail = splitLine[1].lstrip()
     else:
+        # drop the bracket
         splitLine = line[1:].split('}', 1)
         if len(splitLine) < 1:
             printWarning("bracket not matched: '" + line + "'")
         elif len(splitLine) < 2:
             head = [splitLine[0]]
         else:
-            head, tail = splitLine
-            # split bracketted contents
-            head = map(lambda e: e.strip(), head.split(','))
-            # trailing commas still present: '{},'
-            tail = suffix(tail, ',').lstrip()
+            # split bracketed contents
+            #head = map(lambda e: e.strip(), splitLine[0].split(','))
+            head = splitLine[0].split(',')
+            # trailing commas maybe still present e.g. '{},'
+            tail = splitLine[1].lstrip()
+            if len(tail) > 0 and tail[0] == ',':
+                tail = tail[1:].lstrip()
     return head, tail
                 
 
@@ -472,22 +463,31 @@ def process(inPath, outPath, target, annotate):
             # slice off tail comments with 'prefix'
             cleanLine = prefix(line, '#')
             srcLemmas, tail = parseSet(cleanLine)
-            # print(' ,'.join(srcLemma) + ':' + tail)
-            if (tail == False):
+            #print('srcLemmas:' + ' ,'.join(srcLemmas))
+            if not tail:
                 printError("data line has one element: '" + cleanLine + "'")
                 pass
             else:
                 dstLemmas, tail = parseSet(tail)
-                if (tail == False): paradigms = ['', '']
-                else: paradigms = tail.split(',')
+                #print('dstLemmas:' + ' ,'.join(dstLemmas))
+                #print('tail: "' + tail + '"')
+
                 if len(srcLemmas) > 1 and len(dstLemmas) > 1:
                     printError("source and destination are both sets: '" + cleanLine + "'")
                 else:
+                    paradigms = ['', ''] if not tail else tail.split(',')
+                    #print('paradigms:' + ', '.join(paradigms))
+
+                    if len(paradigms) < 2:
+                        printWarning("data line has one paradigm?: '" + cleanLine + "'")
+                        paradigms.append('')
+
                     if len(paradigms) > 2:
                         printWarning("data line has more than two paradigms?: '" + cleanLine + "'")
-                    #print('srcLemma:' + ', '.join(srcLemma))
-                    #print('dstLemma:' + ', '.join(dstLemma))
-                    #print('paradigms:' + ', '.join(paradigms))
+                    #print('srcLemmas:' + ', '.join(srcLemmas))
+                    #print('dstLemmas:' + ', '.join(dstLemmas))
+                    #print('paradigms len:{0}'.format(len(paradigms)))
+
                     processLine(fOut, target, stanza, srcLemmas, dstLemmas, paradigms)
 
     fIn.close()
@@ -534,12 +534,12 @@ def main(argv):
         else:
             outPath = inPath + '-' + target + '.parDix'
             
-    print 'Input file: ', inPath
-    print 'Output file: ', outPath
+    print 'Input file:', inPath
+    print 'Output file:', outPath
 
-    print 'Target: ', target
-    print 'Annotate: ', annotate
-    print 'Target: ', dictionaryNames[target]
+    print 'Target:', target
+    print 'Annotate:', annotate
+    print 'Target:', dictionaryNames[target]
 
     try:
         process(inPath, outPath, target, annotate)
