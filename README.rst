@@ -18,7 +18,8 @@ single lines, one per translation::
     ...
 
 
-
+Note
+~~~~
 What it can not do
 ------------------
 The script is an automated input helper. There are many Apertium 
@@ -121,14 +122,22 @@ Comments can follow data lines::
 
 Stemming-paradigm notation
 --------------------------
-If optional dialogue notation includes the slash, 
+If the main notation includes a slash, 
 the XML is constructed with a stem::
 
-    find, trouver, f/ind, trouv/er
+    f/ind, trouv/er, findParadigm, trouveParadigm
 
 generates::
 
-    <e lm="find"><i>f</i><par n="f/ind__vblex"/></e> 
+    <e lm="find"><i>f</i><par n="findParadigm"/></e> 
+
+Note that the script has removed the slash for the lemma name,
+and used the preceding codepoints for the detected stem.
+
+Note also the look of a line with `apertium` suggested paradigm-naming::
+
+    f/ind, trouv/er, f/ind, trouv/er
+
 
 
 Alternate/ambiguous translation
