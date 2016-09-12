@@ -151,9 +151,9 @@
     :copyright: 2016 Rob Crowther
     :license: GPL, see LICENSE for details.
 """
-# ? not covereed
-# or <b/>
+# ? not covered
 # cut down stanza info
+# check stemming
 import sys, getopt, re
 from collections import namedtuple
 
@@ -199,7 +199,7 @@ def monodixTemplate(fOut, dixLemma, dixStem, dixParadigm):
     fOut.write('"/></e>\n')
 
 def bilingualTemplate(fOut, dixLemma1, dixLemma2, dixParadigmMark):
-#       <e><p><l>snack<s n="n"/></l><r>baggin<s n="n"/></r></p></e>
+    # <e><p><l>snack<s n="n"/></l><r>baggin<s n="n"/></r></p></e>
     fOut.write('<e><p><l>')
     # fill out multi-words
     fOut.write(dixLemma1.replace(" ", "<b/>"))
@@ -218,8 +218,7 @@ def bilingualTemplateWithTranslationMarkRL(
      dstLemma,
      dixParadigmMark
     ):
-    #  <e srl="snack D"><p><l>snack<s n="n"/></l><r>baggin<s n="n"/></r></p></e>
-    # <e slr="baggin D"><p><l>snack<s n="n"/></l><r>baggin<s n="n"/></r></p></e>
+    # <e srl="snack D"><p><l>snack<s n="n"/></l><r>baggin<s n="n"/></r></p></e>
     first = True
     dst= dstLemma[0]
 
@@ -268,6 +267,10 @@ def bilingualTemplateWithTranslationMarkLR(
         fOut.write(dixParadigmMark)
         fOut.write('"/></r></p></e>\n')
     
+def stanzaAnnotateTemplate(fOut, stanzaName):
+    fOut.write('\n<!-- ')
+    fOut.write(stanzaName)
+    fOut.write(' -->\n')
     
 def timeTemplate(fOut, dixLemma, dixStem, dixParadigm):
     pass
@@ -291,7 +294,7 @@ stanzas = {
     'time-mood': Stanza('tmmood', timeTemplate, True)
 }
 
-lineRE = re.compile('^([^,]+),([^,]+)(?:,?([^,#]+)){0,2}')
+
 
 def processLine(fOut, target, stanza,  srcLemma, dstLemma, paradigms):
     """
@@ -303,13 +306,6 @@ def processLine(fOut, target, stanza,  srcLemma, dstLemma, paradigms):
     @param paradigms must be two elems, though the elems can be empty. 
     Must be pre-stripped.
     """
-    # get paradigms, based on stanza data
-    # if stanza.hasParadigms:
-    #    paradigm1 = elems[2].strip()
-    #     paradigm2 = elems[3].strip()
-    # else:
-    #   paradigm1 = stanza.baseParadigm
-    
     baseParadigm = stanza.baseParadigm
     paradigm = 'error'
     # which target?
@@ -394,7 +390,7 @@ def parseSet(line):
     return head, tail
                 
 
-def process(inPath, outPath, target):
+def process(inPath, outPath, target, annotate):
     """
     Process a file, stepping by line.
     """
@@ -418,6 +414,8 @@ def process(inPath, outPath, target):
             stanza = stanzas.get(sStr, unknownStanza)
             if stanza == unknownStanza:
                 printWarning("unknown stanza name: '" + sStr + "'")
+            else:
+                if annotate: stanzaAnnotateTemplate(fOut, sStr)
         elif stanza == unknownStanza:
             # not found a stanza, now
             # skip line if unknownStanza
@@ -455,17 +453,20 @@ def process(inPath, outPath, target):
 # main
 
 def main(argv):
+    annotate = False
     inPath = 'in'
     outPath = 'out'
     target = 's'
     try:
-        opts, args = getopt.getopt(argv,"hi:o:t:", ["infile=","outfile=",'type='])
+        opts, args = getopt.getopt(argv,"ahi:o:t:", ['annotate', 'infile=','outfile=','type='])
     except getopt.GetoptError:
-        print 'test.py -i <inputfile> -o <outputfile>'
+        print 'skel2dix.py <options> -i <inputfile> -o <outputfile>'
         sys.exit(2)
     for opt, arg in opts:
-        if opt == '-h':
-            print 'test.py -i <inputfile> -o <outputfile>'
+        if opt in ("-a", "--annotate"):
+            annotate = True
+        elif opt == '-h':
+            print 'skel2dix.py <options> -i <inputfile> -o <outputfile>'
             sys.exit()
         elif opt in ("-i", "--infile"):
             inPath = arg
@@ -479,11 +480,11 @@ def main(argv):
             target = arg
     print 'Input file: ', inPath
     print 'Target: ', target
-
+    print 'Annotate: ', annotate
     print 'Target: ', dictionaryNames[target]
 
     try:
-        process(inPath, outPath, target)
+        process(inPath, outPath, target, annotate)
     except IOError:
         print('file would not open: %s' % inPath)
     #finally:

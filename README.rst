@@ -133,7 +133,7 @@ Data lines can include sets of items::
 
     {weird, bizarre, strange}, bizarre
 
-In all dictionaries, these will be expanded into individual entries.
+In mono-dictionaries, these will be expanded into individual entries.
 In bilingual dictionaries, entries will be marked with the appropriate `slr`/`srl`
 marks. The first item in the set is the default::
 
