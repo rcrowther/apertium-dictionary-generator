@@ -46,10 +46,10 @@ From the commandline::
 
 Options include,
 
+-a : annotate the output with XML comments 
 -i : input file path
 -o : output filepath (optional, taken from input)
 -t : `s` for mono-dictionary source, `d` for mono-dictionary destination. `bi` for bilingual
--sz : add stanza annotation
 
 Many of the following examples are for mono-dictionaries, to keep 
 the examples cleaner.

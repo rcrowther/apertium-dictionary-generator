@@ -277,21 +277,19 @@ def timeTemplate(fOut, dixLemma, dixStem, dixParadigm):
 
 
 Stanza = namedtuple('Stanza', [
-    'baseParadigm', 
-    'templateCall', 
-    'hasParadigms'
+    'baseParadigm'
 ])
 
-unknownStanza = Stanza('?', 'error', False)
+unknownStanza = Stanza('?')
 
 stanzas = {
-    'thing': Stanza('t', timeTemplate, False),
-    'thing-wide': Stanza('tw', timeTemplate, False),
-    'thing-suchness': Stanza('tsuch', timeTemplate, False),
-    'tell': Stanza('tell', timeTemplate, False),
-    'join-mark': Stanza('join', timeTemplate, False),
-    'time': Stanza('vblex', timeTemplate, True),
-    'time-mood': Stanza('tmmood', timeTemplate, True)
+    'thing': Stanza('t'),
+    'thing-wide': Stanza('tw'),
+    'thing-suchness': Stanza('tsuch'),
+    'tell': Stanza('tell'),
+    'join-mark': Stanza('join'),
+    'time': Stanza('vblex'),
+    'time-mood': Stanza('tmmood')
 }
 
 
