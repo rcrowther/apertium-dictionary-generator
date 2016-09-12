@@ -192,7 +192,8 @@ def monodixTemplate(fOut, dixLemma, dixStem, dixParadigm):
     fOut.write('<e lm="')
     fOut.write(dixLemma)
     fOut.write('"><i>')
-    fOut.write(dixStem)
+    # fill out multi-words
+    fOut.write(dixStem.replace(" ", "<b/>"))
     fOut.write('</i><par n="')
     fOut.write(dixParadigm)
     fOut.write('"/></e>\n')
@@ -200,13 +201,15 @@ def monodixTemplate(fOut, dixLemma, dixStem, dixParadigm):
 def bilingualTemplate(fOut, dixLemma1, dixLemma2, dixParadigmMark):
 #       <e><p><l>snack<s n="n"/></l><r>baggin<s n="n"/></r></p></e>
     fOut.write('<e><p><l>')
-    fOut.write(dixLemma1)
+    # fill out multi-words
+    fOut.write(dixLemma1.replace(" ", "<b/>"))
     fOut.write('<s n="')
     fOut.write(dixParadigmMark)
     fOut.write('"/></l><r>')
-    fOut.write(dixLemma2)
+    # fill out multi-words
+    fOut.write(dixLemma2.replace(" ", "<b/>"))
     fOut.write('<s n="')
-    fOut.write(dixParadigmMark)
+    fOut.write(dixParadigmMark.replace("is", "was"))
     fOut.write('"/></r></p></e>\n')
     
 def bilingualTemplateWithTranslationMarkRL(
@@ -227,11 +230,13 @@ def bilingualTemplateWithTranslationMarkRL(
             fOut.write(' D')
             first = False
         fOut.write('"><p><l>')
-        fOut.write(src)
+        # fill out multi-words
+        fOut.write(src.replace(" ", "<b/>"))
         fOut.write('<s n="')
         fOut.write(dixParadigmMark)
         fOut.write('"/></l><r>')
-        fOut.write(dst)
+        # fill out multi-words
+        fOut.write(dst.replace(" ", "<b/>"))
         fOut.write('<s n="')
         fOut.write(dixParadigmMark)
         fOut.write('"/></r></p></e>\n')
@@ -252,11 +257,13 @@ def bilingualTemplateWithTranslationMarkLR(
             fOut.write(' D')
             first = False
         fOut.write('"><p><l>')
-        fOut.write(src)
+        # fill out multi-words
+        fOut.write(src.replace(" ", "<b/>"))
         fOut.write('<s n="')
         fOut.write(dixParadigmMark)
         fOut.write('"/></l><r>')
-        fOut.write(dst)
+        # fill out multi-words
+        fOut.write(dst.replace(" ", "<b/>"))
         fOut.write('<s n="')
         fOut.write(dixParadigmMark)
         fOut.write('"/></r></p></e>\n')
