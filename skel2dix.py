@@ -173,10 +173,11 @@ generates::
 """
 # ? not covered
 # check stemming
-# clean notification
+# clean notifications
 # spaces again
-# put all strip and block into lemma producers?
+# put all strip into lemma producers?
 # output file implied
+# dest index out of range
 import sys, getopt, re
 from collections import namedtuple
 
@@ -210,14 +211,31 @@ def prefix(line, limitStr):
     else: return line[:idx]
 
 def lemmaStem(lemmaMark):
+    """
+    creates a lemma and stem matcher.
+    remove slash, on stem insert blank-tags.
+    """
     idx = lemmaMark.find('/')
     if idx == -1:
-        return  lemmaMark, lemmaMark
+        return  lemmaMark, lemmaMark.replace(" ", "<b/>")
     else:
-        return lemmaMark.replace("/", ""),  lemmaMark[:idx]
+        return lemmaMark.replace("/", ""),  lemmaMark[:idx].replace(" ", "<b/>")
     
 def lemma(lemmaMark):
     return lemmaMark.replace("/", "")
+    
+def matcher(lemmaMark):
+    """
+    creates a string matcher.
+    remove slash, insert blank-tags.
+    used for late matches in bi-lingual dictionaries.
+    """
+    return lemmaMark.replace("/", "").replace(" ", "<b/>")
+    
+def lemmaMatcher(lemmaMark):
+    l = lemmaMark.replace("/", "")
+    return l, l.replace(" ", "<b/>")
+    
     
 def monodixTemplate(fOut, lemmas, dixParadigm):
     # <e lm="earn"><i>earn</i><par n="reg__vblex"/></e>   
@@ -227,22 +245,22 @@ def monodixTemplate(fOut, lemmas, dixParadigm):
         fOut.write(lemma)
         fOut.write('"><i>')
         # fill out multi-words
-        fOut.write(stem.replace(" ", "<b/>"))
+        fOut.write(stem)
         fOut.write('</i><par n="')
         fOut.write(dixParadigm)
         fOut.write('"/></e>\n')
 
 def bilingualTemplate(fOut, srcLemma, dstLemma, dixParadigm):
     # <e><p><l>snack<s n="n"/></l><r>baggin<s n="n"/></r></p></e>
-    srcL = lemma(srcLemma)
-    dstL = lemma(dstLemma)
+    srcM = matcher(srcLemma)
+    dstM = matcher(dstLemma)
 
     fOut.write('<e><p><l>')
-    fOut.write(srcL)
+    fOut.write(srcM)
     fOut.write('<s n="')
     fOut.write(dixParadigm)
     fOut.write('"/></l><r>')
-    fOut.write(dstL)
+    fOut.write(dstM)
     fOut.write('<s n="')
     fOut.write(dixParadigm)
     fOut.write('"/></r></p></e>\n')
@@ -255,20 +273,20 @@ def bilingualTemplateWithTranslationMarkRL(
     ):
     # <e srl="snack D"><p><l>snack<s n="n"/></l><r>baggin<s n="n"/></r></p></e>
     first = True
-    dstL = lemma(dstLemma)
+    dstM = matcher(dstLemma)
     for srcLemma in srcLemmas:
-        srcL = lemma(srcLemma)
+        srcL, srcM = lemmaMatcher(srcLemma)
         fOut.write('<e srl="')
         fOut.write(srcL)
         if first: 
             fOut.write(' D')
             first = False
         fOut.write('"><p><l>')
-        fOut.write(srcL)
+        fOut.write(srcM)
         fOut.write('<s n="')
         fOut.write(dixParadigm)
         fOut.write('"/></l><r>')
-        fOut.write(dstL)
+        fOut.write(dstM)
         fOut.write('<s n="')
         fOut.write(dixParadigm)
         fOut.write('"/></r></p></e>\n')
@@ -281,20 +299,20 @@ def bilingualTemplateWithTranslationMarkLR(
     ):
     # <e slr="baggin D"><p><l>snack<s n="n"/></l><r>baggin<s n="n"/></r></p></e>
     first = True
-    srcL = lemma(srcLemma)
+    srcM = matcher(srcLemma)
     for dstLemma in dstLemmas:
-        dstL = lemma(dstLemma)
+        dstL, dstM = lemmaMatcher(srcLemma)
         fOut.write('<e slr="')
         fOut.write(dstL)
         if first: 
             fOut.write(' D')
             first = False
         fOut.write('"><p><l>')
-        fOut.write(srcL)
+        fOut.write(srcM)
         fOut.write('<s n="')
         fOut.write(dixParadigm)
         fOut.write('"/></l><r>')
-        fOut.write(dstL)
+        fOut.write(dstM)
         fOut.write('<s n="')
         fOut.write(dixParadigm)
         fOut.write('"/></r></p></e>\n')
@@ -484,7 +502,7 @@ def process(inPath, outPath, target, annotate):
 def main(argv):
     annotate = False
     inPath = 'in'
-    outPath = 'out'
+    outPath = ''
     target = 's'
     try:
         opts, args = getopt.getopt(argv,"ahi:o:t:", ['annotate', 'infile=','outfile=','type='])
@@ -500,14 +518,25 @@ def main(argv):
         elif opt in ("-i", "--infile"):
             inPath = arg
         elif opt in ("-o", "--outfile"):
-            outputfile = arg
+            outPath = arg
         elif opt in ("-t", "--type"):
             # test enumeration
             if arg != 's' and arg != 'd' and arg != 'bi':
                 print ('-type option must be from: {s, d, bi}')
                 sys.exit()
             target = arg
+            
+    #  if not stated, default the output filepath
+    if not outPath:
+        i = inPath.rfind('.')
+        if i != -1:
+            outPath = inPath[:i] + '-' + target + '.parDix'
+        else:
+            outPath = inPath + '-' + target + '.parDix'
+            
     print 'Input file: ', inPath
+    print 'Output file: ', outPath
+
     print 'Target: ', target
     print 'Annotate: ', annotate
     print 'Target: ', dictionaryNames[target]

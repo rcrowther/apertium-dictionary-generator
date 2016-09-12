@@ -1,0 +1,95 @@
+
+<!-- thing -->
+<e><p><l>Anvil<s n="t"/></l><r>forge<s n="t"/></r></p></e>
+<e><p><l>Hearse<s n="t"/></l><r>borne<s n="t"/></r></p></e>
+<e><p><l>hearse<s n="t"/></l><r>bier<s n="t"/></r></p></e>
+<e><p><l>hole<s n="t"/></l><r>oyle<s n="t"/></r></p></e>
+<e><p><l>shelter<s n="t"/></l><r>lowse<s n="t"/></r></p></e>
+<e><p><l>pen<s n="t"/></l><r>box<s n="t"/></r></p></e>
+<e><p><l>Cess<s n="t"/></l><r>midden<s n="t"/></r></p></e>
+<e><p><l>dung<s n="t"/></l><r>muck<s n="t"/></r></p></e>
+<e slr="shit D"><p><l>shit<s n="t"/></l><r>shit<s n="t"/></r></p></e>
+<e slr="shit"><p><l>shit<s n="t"/></l><r>shit<s n="t"/></r></p></e>
+<e><p><l>potatoes<s n="t"/></l><r>tatties<s n="t"/></r></p></e>
+<e><p><l>bridge<s n="t"/></l><r>brig<s n="t"/></r></p></e>
+<e><p><l>eye<s n="t"/></l><r>ee<s n="t"/></r></p></e>
+<e><p><l>attic<s n="t"/></l><r>garrett<s n="t"/></r></p></e>
+<e><p><l>Hare<s n="t"/></l><r>neddy<s n="t"/></r></p></e>
+<e><p><l>Badger<s n="t"/></l><r>brock<s n="t"/></r></p></e>
+<e><p><l>Beak<s n="t"/></l><r>neb<s n="t"/></r></p></e>
+<e><p><l>stream<s n="t"/></l><r>beck<s n="t"/></r></p></e>
+<e><p><l>Puddle<s n="t"/></l><r>dub<s n="t"/></r></p></e>
+<e><p><l>Flea<s n="t"/></l><r>lop<s n="t"/></r></p></e>
+<e><p><l>latch<s n="t"/></l><r>sneck<s n="t"/></r></p></e>
+<e><p><l>calf<s n="t"/></l><r>stirk<s n="t"/></r></p></e>
+<e><p><l>pig<s n="t"/></l><r>gilt<s n="t"/></r></p></e>
+<e><p><l>Toilet<s n="t"/></l><r>privvy<s n="t"/></r></p></e>
+<e><p><l>Maggot<s n="t"/></l><r>mawk<s n="t"/></r></p></e>
+<e><p><l>tantrum<s n="t"/></l><r>mard<s n="t"/></r></p></e>
+<e><p><l>girl<s n="t"/></l><r>lass<s n="t"/></r></p></e>
+<e><p><l>boy<s n="t"/></l><r>lad<s n="t"/></r></p></e>
+<e><p><l>snack<s n="t"/></l><r>baggin<s n="t"/></r></p></e>
+<e><p><l>Mud<s n="t"/></l><r>clags<s n="t"/></r></p></e>
+<e><p><l>Money<s n="t"/></l><r>brass<s n="t"/></r></p></e>
+<e><p><l>Shoe<s n="t"/></l><r>sho<s n="t"/></r></p></e>
+<e><p><l>tea<s n="t"/></l><r>brew<s n="t"/></r></p></e>
+
+<!-- thing-wide -->
+<e slr="he D"><p><l>he<s n="tw"/></l><r>he<s n="tw"/></r></p></e>
+<e slr="he"><p><l>he<s n="tw"/></l><r>he<s n="tw"/></r></p></e>
+<e slr="he"><p><l>he<s n="tw"/></l><r>he<s n="tw"/></r></p></e>
+<e slr="she D"><p><l>she<s n="tw"/></l><r>she<s n="tw"/></r></p></e>
+<e slr="she"><p><l>she<s n="tw"/></l><r>she<s n="tw"/></r></p></e>
+<e slr="you D"><p><l>you<s n="tw"/></l><r>you<s n="tw"/></r></p></e>
+<e slr="you"><p><l>you<s n="tw"/></l><r>you<s n="tw"/></r></p></e>
+<e><p><l>we<s n="tw"/></l><r>us<s n="tw"/></r></p></e>
+<e><p><l>Anything<s n="tw"/></l><r>owt<s n="tw"/></r></p></e>
+<e><p><l>Nothing<s n="tw"/></l><r>nowt<b/><s n="tw"/></r></p></e>
+<e><p><l>Something<s n="tw"/></l><r>summat<b/><s n="tw"/></r></p></e>
+<e><p><l>other<s n="tw"/></l><r>tuther<b/><s n="tw"/></r></p></e>
+
+<!-- thing-suchness -->
+<e srl="fat D"><p><l>fat<s n="tsuch"/></l><r>brosen<b/><s n="tsuch"/></r></p></e>
+<e srl="large"><p><l>large<s n="tsuch"/></l><r>brosen<b/><s n="tsuch"/></r></p></e>
+<e><p><l>A<b/>lot<s n="tsuch"/></l><r>a<b/>deal<s n="tsuch"/></r></p></e>
+<e srl="Good D"><p><l>Good<s n="tsuch"/></l><r>gradely<b/><s n="tsuch"/></r></p></e>
+<e srl="very"><p><l>very<s n="tsuch"/></l><r>gradely<b/><s n="tsuch"/></r></p></e>
+<e srl="foolish D"><p><l>foolish<s n="tsuch"/></l><r>puddled<s n="tsuch"/></r></p></e>
+<e srl="stupid"><p><l>stupid<s n="tsuch"/></l><r>puddled<s n="tsuch"/></r></p></e>
+<e slr="little D"><p><l>little<s n="tsuch"/></l><r>little<s n="tsuch"/></r></p></e>
+<e slr="little"><p><l>little<s n="tsuch"/></l><r>little<s n="tsuch"/></r></p></e>
+<e slr="little"><p><l>little<s n="tsuch"/></l><r>little<s n="tsuch"/></r></p></e>
+<e><p><l>Old<s n="tsuch"/></l><r>owd<s n="tsuch"/></r></p></e>
+<e srl="leaning D"><p><l>leaning<s n="tsuch"/></l><r>keck<b/><s n="tsuch"/></r></p></e>
+<e srl="tipped"><p><l>tipped<s n="tsuch"/></l><r>keck<b/><s n="tsuch"/></r></p></e>
+<e srl="tilted"><p><l>tilted<s n="tsuch"/></l><r>keck<b/><s n="tsuch"/></r></p></e>
+
+<!-- tell -->
+<e><p><l>No<s n="tell"/></l><r>nay<b/><s n="tell"/></r></p></e>
+<e><p><l>Yes<s n="tell"/></l><r>aye<s n="tell"/></r></p></e>
+
+<!-- time -->
+<e><p><l>are<s n="vblex"/></l><r>art<b/><s n="vblex"/></r></p></e>
+<e><p><l>Earn<s n="vblex"/></l><r>make<s n="vblex"/></r></p></e>
+<e><p><l>beat<s n="vblex"/></l><r>cap<s n="vblex"/></r></p></e>
+<e><p><l>press<s n="vblex"/></l><r>throng<s n="vblex"/></r></p></e>
+<e><p><l>thrash<s n="vblex"/></l><r>bray<s n="vblex"/></r></p></e>
+<e><p><l>smack<s n="vblex"/></l><r>skelp<s n="vblex"/></r></p></e>
+<e><p><l>Scream<s n="vblex"/></l><r>skrike<s n="vblex"/></r></p></e>
+<e><p><l>understand<s n="vblex"/></l><r>ken<s n="vblex"/></r></p></e>
+<e><p><l>look<s n="vblex"/></l><r>sken<s n="vblex"/></r></p></e>
+<e><p><l>watch<s n="vblex"/></l><r>sken<s n="vblex"/></r></p></e>
+<e><p><l>mock<s n="vblex"/></l><r>skit<s n="vblex"/></r></p></e>
+<e><p><l>water<s n="vblex"/></l><r>deg<s n="vblex"/></r></p></e>
+<e><p><l>soak<s n="vblex"/></l><r>witchett<s n="vblex"/></r></p></e>
+<e><p><l>worry<s n="vblex"/></l><r>moider<s n="vblex"/></r></p></e>
+<e><p><l>dig<s n="vblex"/></l><r>delve<s n="vblex"/></r></p></e>
+<e><p><l>weed<s n="vblex"/></l><r>lowk<s n="vblex"/></r></p></e>
+<e><p><l>get<s n="vblex"/></l><r>get<s n="vblex"/></r></p></e>
+<e><p><l>eat<s n="vblex"/></l><r>et<s n="vblex"/></r></p></e>
+<e><p><l>ate<s n="vblex"/></l><r>et<s n="vblex"/></r></p></e>
+
+<!-- time-mood -->
+<e><p><l>Must<s n="tmmood"/></l><r>mun<b/><s n="tmmood"/></r></p></e>
+<e slr="Maybe D"><p><l>Maybe<s n="tmmood"/></l><r>Maybe<s n="tmmood"/></r></p></e>
+<e slr="Maybe"><p><l>Maybe<s n="tmmood"/></l><r>Maybe<s n="tmmood"/></r></p></e>

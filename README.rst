@@ -27,21 +27,21 @@ features it can not create, but major items are,
 
 No full output
     the results in the output files must be pasted into 
-    dictionaries. The script does the grunt work.
+    dictionaries.
 
 Dictionaries only
     no transfer files etc.
  
 Cross-category hints can not be added to bi-lingual dictionaries
-    no shifting to feminine/male end-marks/inflexions, unknown
-    gender marks etc.
+    no shifting to feminine/male end-marks/inflexions, asymmetric
+    left right analysis etc.
 
 Clean up letter case
     in Apertium, letter case is significant. The intentions
     of letter case are too hard to guess.
 
 To add other features the generated code will need to be
-hand-edited.
+hand-edited. But the script can do the grunt work.
 
 Usage
 ~~~~~
