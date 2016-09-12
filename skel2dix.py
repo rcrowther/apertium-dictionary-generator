@@ -174,6 +174,8 @@ generates::
 # ? not covered
 # check stemming
 # clean notifications
+# one way > or <
+
 import sys, getopt, re
 from collections import namedtuple
 
@@ -295,7 +297,7 @@ def bilingualTemplateWithTranslationMarkLR(
     first = True
     srcM = matcher(srcLemma)
     for dstLemma in dstLemmas:
-        dstL, dstM = lemmaMatcher(srcLemma)
+        dstL, dstM = lemmaMatcher(dstLemma)
         fOut.write('<e slr="')
         fOut.write(dstL)
         if first: 
@@ -329,7 +331,7 @@ stanzas = {
     'thing-wide': Stanza('tw'),
     'thing-suchness': Stanza('tsuch'),
     'tell': Stanza('tell'),
-    'join-mark': Stanza('join'),
+    'stead-way': Stanza('steadw'),
     'time': Stanza('vblex'),
     'time-mood': Stanza('tmmood')
 }
