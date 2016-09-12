@@ -152,8 +152,10 @@
     :license: GPL, see LICENSE for details.
 """
 # ? not covered
-# cut down stanza info
 # check stemming
+# clean notification
+# spaces again
+# put all strip and block into lemma producers?
 import sys, getopt, re
 from collections import namedtuple
 
@@ -186,85 +188,94 @@ def prefix(line, limitStr):
     if idx == -1: return line
     else: return line[:idx]
 
-
-def monodixTemplate(fOut, dixLemma, dixStem, dixParadigm):
+def lemmaStem(lemmaMark):
+    idx = lemmaMark.find('/')
+    if idx == -1:
+        return  lemmaMark, lemmaMark
+    else:
+        return lemmaMark.replace("/", ""),  lemmaMark[:idx]
+    
+def lemma(lemmaMark):
+    return lemmaMark.replace("/", "")
+    
+def monodixTemplate(fOut, lemmas, dixParadigm):
     # <e lm="earn"><i>earn</i><par n="reg__vblex"/></e>   
-    fOut.write('<e lm="')
-    fOut.write(dixLemma)
-    fOut.write('"><i>')
-    # fill out multi-words
-    fOut.write(dixStem.replace(" ", "<b/>"))
-    fOut.write('</i><par n="')
-    fOut.write(dixParadigm)
-    fOut.write('"/></e>\n')
+    for lemmaMark in lemmas:
+        lemma, stem = lemmaStem(lemmaMark)
+        fOut.write('<e lm="')
+        fOut.write(lemma)
+        fOut.write('"><i>')
+        # fill out multi-words
+        fOut.write(stem.replace(" ", "<b/>"))
+        fOut.write('</i><par n="')
+        fOut.write(dixParadigm)
+        fOut.write('"/></e>\n')
 
-def bilingualTemplate(fOut, dixLemma1, dixLemma2, dixParadigmMark):
+def bilingualTemplate(fOut, srcLemma, dstLemma, dixParadigm):
     # <e><p><l>snack<s n="n"/></l><r>baggin<s n="n"/></r></p></e>
+    srcL = lemma(srcLemma)
+    dstL = lemma(dstLemma)
+
     fOut.write('<e><p><l>')
-    # fill out multi-words
-    fOut.write(dixLemma1.replace(" ", "<b/>"))
+    fOut.write(srcL)
     fOut.write('<s n="')
-    fOut.write(dixParadigmMark)
+    fOut.write(dixParadigm)
     fOut.write('"/></l><r>')
-    # fill out multi-words
-    fOut.write(dixLemma2.replace(" ", "<b/>"))
+    fOut.write(dstL)
     fOut.write('<s n="')
-    fOut.write(dixParadigmMark.replace("is", "was"))
+    fOut.write(dixParadigm)
     fOut.write('"/></r></p></e>\n')
     
 def bilingualTemplateWithTranslationMarkRL(
     fOut,
      srcLemmas,
      dstLemma,
-     dixParadigmMark
+     dixParadigm
     ):
     # <e srl="snack D"><p><l>snack<s n="n"/></l><r>baggin<s n="n"/></r></p></e>
     first = True
-    dst= dstLemma[0]
-
-    for src in srcLemmas:
+    dstL = lemma(dstLemma)
+    for srcLemma in srcLemmas:
+        srcL = lemma(srcLemma)
         fOut.write('<e srl="')
-        fOut.write(src)
+        fOut.write(srcL)
         if first: 
             fOut.write(' D')
             first = False
         fOut.write('"><p><l>')
-        # fill out multi-words
-        fOut.write(src.replace(" ", "<b/>"))
+        fOut.write(srcL)
         fOut.write('<s n="')
-        fOut.write(dixParadigmMark)
+        fOut.write(dixParadigm)
         fOut.write('"/></l><r>')
-        # fill out multi-words
-        fOut.write(dst.replace(" ", "<b/>"))
+        fOut.write(dstL)
         fOut.write('<s n="')
-        fOut.write(dixParadigmMark)
+        fOut.write(dixParadigm)
         fOut.write('"/></r></p></e>\n')
     
 def bilingualTemplateWithTranslationMarkLR(
     fOut,
      srcLemma,
      dstLemmas,
-     dixParadigmMark
+     dixParadigm
     ):
     # <e slr="baggin D"><p><l>snack<s n="n"/></l><r>baggin<s n="n"/></r></p></e>
     first = True
-    src = srcLemma[0]
-    for dst in dstLemmas:
+    srcL = lemma(srcLemma)
+    for dstLemma in dstLemmas:
+        dstL = lemma(dstLemma)
         fOut.write('<e slr="')
-        fOut.write(dst)
+        fOut.write(dstL)
         if first: 
             fOut.write(' D')
             first = False
         fOut.write('"><p><l>')
-        # fill out multi-words
-        fOut.write(src.replace(" ", "<b/>"))
+        fOut.write(srcL)
         fOut.write('<s n="')
-        fOut.write(dixParadigmMark)
+        fOut.write(dixParadigm)
         fOut.write('"/></l><r>')
-        # fill out multi-words
-        fOut.write(dst.replace(" ", "<b/>"))
+        fOut.write(dstL)
         fOut.write('<s n="')
-        fOut.write(dixParadigmMark)
+        fOut.write(dixParadigm)
         fOut.write('"/></r></p></e>\n')
     
 def stanzaAnnotateTemplate(fOut, stanzaName):
@@ -294,10 +305,10 @@ stanzas = {
 
 
 
-def processLine(fOut, target, stanza,  srcLemma, dstLemma, paradigms):
+def processLine(fOut, target, stanza,  srcLemmaMarks, dstLemmaMarks, paradigms):
     """
     Processes line data by writing to the appropriate template.
-    Assumes all input is correct;y formed e.g. that one of srcLemma and dstLemma 
+    Assumes all input is correctly formed e.g. that one of srcLemma and dstLemma 
     is a list of length = 1.
     @param srcLemma a list
     @param dstLemma a list
@@ -306,48 +317,47 @@ def processLine(fOut, target, stanza,  srcLemma, dstLemma, paradigms):
     """
     baseParadigm = stanza.baseParadigm
     paradigm = 'error'
+
+
+        
     # which target?
     if target == 's':
         p = paradigms[0]
         if p: paradigm = p + '__' + baseParadigm
         else: paradigm = baseParadigm
-        for lemma in srcLemma:
-            monodixTemplate(fOut, 
-                            dixLemma = lemma.strip(),
-                            dixStem = prefix(lemma , '/'), 
-                            dixParadigm = paradigm
+        monodixTemplate(fOut, 
+                        lemmas = srcLemmaMarks, 
+                        dixParadigm = paradigm
                         )
     elif target == 'd':
         p = paradigms[1]
         if p: paradigm = p + '__' + baseParadigm
         else: paradigm = baseParadigm
-        for lemma in dstLemma:
-            monodixTemplate(fOut, 
-                            dixLemma = lemma.strip(),
-                            dixStem = prefix(lemma , '/'), 
-                            dixParadigm = paradigm
+        monodixTemplate(fOut, 
+                        lemmas = dstLemmaMarks,
+                        dixParadigm = paradigm
                         )
     elif target == 'bi':
-        if(len(srcLemma) > 1):
+        if(len(srcLemmaMarks) > 1):
             bilingualTemplateWithTranslationMarkRL(
             fOut,
-            srcLemma,
-            dstLemma,
+            srcLemmaMarks,
+            dstLemmaMarks[0],
             baseParadigm
             )
-        elif (len(dstLemma) > 1):
+        elif (len(dstLemmaMarks) > 1):
             bilingualTemplateWithTranslationMarkLR(
             fOut,
-            srcLemma,
-            dstLemma,
+            srcLemmaMarks[0],
+            dstLemmaMarks,
             baseParadigm
             )
         else:
             # no alternative translations. Easy...
             bilingualTemplate(
             fOut, 
-            srcLemma[0], 
-            dstLemma[0], 
+            srcLemmaMarks[0], 
+            dstLemmaMarks[0], 
             baseParadigm
             )
       
@@ -422,16 +432,16 @@ def process(inPath, outPath, target, annotate):
             # process a line
             # slice off tail comments with 'prefix'
             cleanLine = prefix(line, '#')
-            srcLemma, tail = parseSet(cleanLine)
+            srcLemmas, tail = parseSet(cleanLine)
             # print(' ,'.join(srcLemma) + ':' + tail)
             if (tail == False):
                 printError("data line has one element: '" + cleanLine + "'")
                 pass
             else:
-                dstLemma, tail = parseSet(tail)
+                dstLemmas, tail = parseSet(tail)
                 if (tail == False): paradigms = ['', '']
                 else: paradigms = tail.split(',')
-                if len(srcLemma) > 1 and len(dstLemma) > 1:
+                if len(srcLemmas) > 1 and len(dstLemmas) > 1:
                     printError("source and destination are both sets: '" + cleanLine + "'")
                 else:
                     if len(paradigms) > 2:
@@ -439,7 +449,7 @@ def process(inPath, outPath, target, annotate):
                     #print('srcLemma:' + ', '.join(srcLemma))
                     #print('dstLemma:' + ', '.join(dstLemma))
                     #print('paradigms:' + ', '.join(paradigms))
-                    processLine(fOut, target, stanza, srcLemma, dstLemma, paradigms)
+                    processLine(fOut, target, stanza, srcLemmas, dstLemmas, paradigms)
 
     fIn.close()
     fOut.close()

@@ -21,11 +21,11 @@ single lines, one per translation::
 
 What it can not do
 ------------------
-The script is an automated input helper. There are many Apertiumn 
+The script is an automated input helper. There are many Apertium 
 features it can not create, but major items are,
 
 No full output
-    the results in the output files will need to be pasted into 
+    the results in the output files must be pasted into 
     dictionaries. The script does the grunt work.
 
 Dictionaries only
@@ -34,6 +34,10 @@ Dictionaries only
 Cross-category hints can not be added to bi-lingual dictionaries
     no shifting to feminine/male end-marks/inflexions, unknown
     gender marks etc.
+
+Clean up letter case
+    in Apertium, letter case is significant. The intentions
+    of letter case are too hard to guess.
 
 To add other features the generated code will need to be
 hand-edited.
