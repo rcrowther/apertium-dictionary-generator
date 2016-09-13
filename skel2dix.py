@@ -171,7 +171,12 @@ generates::
     :copyright: 2016 Rob Crowther
     :license: GPL, see LICENSE for details.
 """
-# ? not covered
+# TODO:
+# add source to annotation
+# Individual specification of paradigm in lists
+# sets {} to lists []
+# check fails gracefully to leeave partial files?
+# check saving fails... on lines, anyhow?
 # check stemming
 # clean notifications
 # one way > or <
@@ -313,11 +318,16 @@ def bilingualTemplateWithTranslationMarkLR(
         fOut.write(dixParadigm)
         fOut.write('"/></r></p></e>\n')
     
-def stanzaAnnotateTemplate(fOut, stanzaName):
+def stanzaAnnotateTemplate(fOut, stanzaName, inPath):
     fOut.write('\n<!-- ')
     fOut.write(stanzaName)
     fOut.write(' -->\n')
-
+    
+    idx = inPath.rfind('/')
+    fName = inPath if idx == -1 else inPath[:idx]
+    fOut.write('<!-- ')
+    fOut.write(fName)
+    fOut.write(' -->\n')
 
 
 Stanza = namedtuple('Stanza', [
@@ -455,7 +465,7 @@ def process(inPath, outPath, target, annotate):
             if stanza == unknownStanza:
                 printWarning("unknown stanza name: '" + sStr + "'")
             else:
-                if annotate: stanzaAnnotateTemplate(fOut, sStr)
+                if annotate: stanzaAnnotateTemplate(fOut, sStr, inPath)
         elif stanza == unknownStanza:
             # not found a stanza, now
             # skip line if unknownStanza
