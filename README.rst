@@ -9,7 +9,7 @@ dictionary information needs to generate XML.
 
 The text file input data is in this form::
 
-    .wordToTranslate :firstParadigmPrefix .translationWord :second paradigmPrefix
+    .wordToTranslate :firstParadigmPrefix .translationWord :secondParadigmPrefix
     ...
 
 single lines, one per translation::
@@ -17,16 +17,18 @@ single lines, one per translation::
     .head :regularNoun .noggin :regularNoun
     ...
 
+Prefixes are optional.
+
 
 Notes
 ~~~~~
 What it can not do
 ------------------
 The script is an automated input helper. There are many Apertium 
-features it can not create, major items are,
+features it can not create. Major items are,
 
 No full output
-    the results in the output files must be pasted into 
+    results in the output files must be pasted into 
     dictionaries.
 
 Dictionaries only
@@ -104,7 +106,7 @@ but::
 
     == verb
     ...
-    buy, acheter, irregularbuy, regularverb
+    .buy :irregularbuy .acheter :regularverb
  
 generates::
 
@@ -125,7 +127,7 @@ Data lines can include lists of items::
 
     {.weird .bizarre .strange} .bizarre
 
-Note there is no need for the period/full stop mark if a list is supplied.
+Note there is no need for an opening period/full-stop if a list is supplied.
 
 In mono-dictionaries, lists will be expanded into individual entries.
 In bilingual dictionaries, entries will be marked with the appropriate `slr`/`srl`
@@ -134,7 +136,7 @@ marks::
     <e srl="strange"><p><l>weird<s n="vblex"/></l><r>strange<s n="vblex"/></r></p></e>    
     ...
 
-The first item in the list is the default::
+The first item in the list is the default (from the example above)::
 
     <e srl="weird D"><p><l>weird<s n="vblex"/></l><r>bizarre<s n="vblex"/></r></p></e>    
     ...
@@ -184,7 +186,7 @@ generates::
 Note that the script has removed the slash for the lemma name,
 and used the preceding codepoints for the detected stem.
 
-Note also the look of a line with `apertium` suggested paradigm-naming::
+Note also the look of a line with `apertium`-suggested paradigm-naming::
 
     .f/ind :f/ind .trouv/er :trouv/er
 
@@ -211,5 +213,5 @@ Last Note
 
     {|throw |chuck}#regular  |jeter#regular
 
-but is horrible to type.
+...but is horrible to type.
 
