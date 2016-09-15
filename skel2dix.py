@@ -173,13 +173,14 @@ generates::
 """
 # TODO:
 # add date to annotation
-# Individual specification of paradigm in lists
+# reposition paradigm prefix defaulting
+# check strips() for duplication (stripped in paradigm prefix, and...?)
 # sets {} to lists []
-# check fails gracefully to leeave partial files?
+# check fails gracefully to leave partial files?
 # check saving fails... on lines, anyhow?
 # check stemming
 # clean notifications
-# one way > or <
+# one way > or <?
 
 import sys, getopt, re
 from collections import namedtuple
@@ -414,11 +415,9 @@ def processLine(fOut, targetDictionary, stanza, parseResult):
   
 
 
-        ##################
-        #
 # Anyone who likes Python because it is clean should stop long before
 # this.
-#...and it should be a function, but Python can't handle it
+#...and it should be a function, but Python scoping can't handle it
 class Parser():
     """
     Parses a line.
@@ -617,8 +616,8 @@ def process(inPath, outPath, targetDictionary, annotate):
                     printError("source and destination are both sets: '" + line + "'")
                 else:
                     # assert paradigms, fill empty from default
-                    # TODO: This is happening wastefully early,
-                    # as bi- template does not uses the prefix
+                    # TODO: This is placed wastefully early,
+                    # as bi- template does not uses paradigm prefixs
                     def assertParadigm(pairs, defaultP):
                         b = []
                         for pair in pairs:
@@ -635,9 +634,6 @@ def process(inPath, outPath, targetDictionary, annotate):
 
     fIn.close()
     fOut.close()
-
-# Writefile
-
 
 
 # main

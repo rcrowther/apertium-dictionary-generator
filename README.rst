@@ -4,17 +4,17 @@ Preprocessor for `apertium` .dix files.
 
 If you are compiling from corpus, you need power tools. If you are 
 editing existing files, you need a text editor with XML support.
-This script is for a limited use case, where you have organised
-dictionary information and need to generate XML.
+This script is for a limited use case; self-organised
+dictionary information needs to generate XML.
 
 The text file input data is in this form::
 
-    wordToTranslate, translationWord, Optional(firstParadigmName, second paradigmName)
+    .wordToTranslate :firstParadigmPrefix .translationWord :second paradigmPrefix
     ...
 
 single lines, one per translation::
 
-    head, noggin
+    .head :regularNoun .noggin :regularNoun
     ...
 
 
@@ -23,7 +23,7 @@ Notes
 What it can not do
 ------------------
 The script is an automated input helper. There are many Apertium 
-features it can not create, but major items are,
+features it can not create, major items are,
 
 No full output
     the results in the output files must be pasted into 
@@ -33,7 +33,7 @@ Dictionaries only
     no transfer files etc.
  
 Cross-category hints can not be added to bi-lingual dictionaries
-    no shifting to feminine/male end-marks/inflexions, asymmetric
+    no shifting feminine/masculine end-marks/inflexions, asymmetric
     left right analysis etc.
 
 Clean up letter case
@@ -41,7 +41,8 @@ Clean up letter case
     of letter case are too hard to guess.
 
 To add other features the generated code will need to be
-hand-edited. But the script can do the grunt work.
+hand-edited. But the script can do the bulk work.
+
 
 What it has
 -----------
@@ -58,14 +59,14 @@ From the commandline::
 
     ./skel2dix.py <options> -i /.../inputFile
 
-Options include,
+Current options are,
 
 -a : annotate the output with XML comments 
 -i : input file path
--o : output filepath (optional, taken from input)
+-o : output filepath (optional, default taken from input)
 -t : `s` for mono-dictionary source, `d` for mono-dictionary destination. `bi` for bilingual
 
-Output filepaths are tagged with dictionary extensions, so the script can be run repeatedly on a source file without adapting filepath names.
+Output filepaths are tagged with dictionary extensions, so the script can be run repeatedly on a source file without adapting filepath names (change -t instead).
 
 Many of the following examples are for mono-dictionaries, to keep 
 the examples cleaner.
@@ -91,7 +92,9 @@ Stanza marks are case-insensitive (can be titled in source, but lower in the `st
 If text data do not include optional paradigm marks, the mark defaults to the 
 value mapped in `stanza`. So::
 
-    buy, acheter
+    == verb
+    ...
+    .buy .acheter
  
 generates::
 
@@ -99,7 +102,8 @@ generates::
 
 but::
 
-
+    == verb
+    ...
     buy, acheter, irregularbuy, regularverb
  
 generates::
@@ -115,7 +119,42 @@ data is not parsed.
 Can be useful for commenting out big blocks of data.
 
 
- 
+Alternate/ambiguous translation
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Data lines can include lists of items::
+
+    {.weird .bizarre .strange} .bizarre
+
+Note there is no need for the period/full stop mark if a list is supplied.
+
+In mono-dictionaries, lists will be expanded into individual entries.
+In bilingual dictionaries, entries will be marked with the appropriate `slr`/`srl`
+marks::
+
+    <e srl="strange"><p><l>weird<s n="vblex"/></l><r>strange<s n="vblex"/></r></p></e>    
+    ...
+
+The first item in the list is the default::
+
+    <e srl="weird D"><p><l>weird<s n="vblex"/></l><r>bizarre<s n="vblex"/></r></p></e>    
+    ...
+
+
+Paradigm prefixes near sets
+---------------------------
+
+Lists can have prefixes defined on each element::
+
+    {.weird :regular .bizarre :regular .strange :regular}  .bizarre :regular
+
+...but also overall. This is useful while making a dictionary; you can define a prefix for a paradigm to make the dictionary work, then refine later. The words in this list are not regular, but the dictionary will work::
+
+    {.throw .chuck} :regular  .jeter :regular
+
+As you build up paradigms, under-ride,
+
+    {.throw :thr/ow .chuck} :regular  .jeter :regular
+
 
 Other Features
 ~~~~~~~~~~~~~~
@@ -128,7 +167,7 @@ Comments are introduced with `#`::
 
 Comments can follow data lines::
 
-    find, trouver # expand this definition?
+    .find .trouver # expand this definition?
 
 
 Stemming-paradigm notation
@@ -136,7 +175,7 @@ Stemming-paradigm notation
 If the main notation includes a slash, 
 the XML is constructed with a stem::
 
-    f/ind, trouv/er, findParadigm, trouveParadigm
+    .f/ind :findParadigm .trouv/er :trouverParadigm
 
 generates::
 
@@ -147,22 +186,11 @@ and used the preceding codepoints for the detected stem.
 
 Note also the look of a line with `apertium` suggested paradigm-naming::
 
-    f/ind, trouv/er, f/ind, trouv/er
+    .f/ind :f/ind .trouv/er :trouv/er
 
 
 
-Alternate/ambiguous translation
--------------------------------
-Data lines can include sets of items::
 
-    {weird, bizarre, strange}, bizarre
-
-In mono-dictionaries, these will be expanded into individual entries.
-In bilingual dictionaries, entries will be marked with the appropriate `slr`/`srl`
-marks. The first item in the set is the default::
-
-    <e srl="weird D"><p><l>weird<s n="vblex"/></l><r>bizarre<s n="vblex"/></r></p></e>    
-    ...
 
 Multi-word usage
 ----------------
@@ -170,9 +198,18 @@ Multi-word usage
 Whitespace in word definitions (apart from head and tail whitespace)
 will be treated as multi-word definitions::
 
-    a lot, beaucoup
+    .a lot .beaucoup
 
 generates::
 
     <e lm="a lot"><i>a<b/>lot</i><par n="adj"/></e>   
+
+
+Last Note
+~~~~~~~~~
+'.' and ':' are easy to type, but hard to read. If you would like the files to be more readable, the files and the script could be refactored. To me, this reads better::
+
+    {|throw |chuck}#regular  |jeter#regular
+
+but is horrible to type.
 
