@@ -18,8 +18,8 @@ single lines, one per translation::
     ...
 
 
-Note
-~~~~
+Notes
+~~~~~
 What it can not do
 ------------------
 The script is an automated input helper. There are many Apertium 
@@ -43,6 +43,15 @@ Clean up letter case
 To add other features the generated code will need to be
 hand-edited. But the script can do the grunt work.
 
+What it has
+-----------
+
+Extensive error reporting
+    Not always accurate, but gives line numbers.
+
+Robust
+    Now uses a mini-parser, and skips unparsable lines
+
 Usage
 ~~~~~
 From the commandline::
@@ -55,6 +64,8 @@ Options include,
 -i : input file path
 -o : output filepath (optional, taken from input)
 -t : `s` for mono-dictionary source, `d` for mono-dictionary destination. `bi` for bilingual
+
+Output filepaths are tagged with dictionary extensions, so the script can be run repeatedly on a source file without adapting filepath names.
 
 Many of the following examples are for mono-dictionaries, to keep 
 the examples cleaner.

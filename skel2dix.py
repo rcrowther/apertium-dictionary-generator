@@ -172,7 +172,7 @@ generates::
     :license: GPL, see LICENSE for details.
 """
 # TODO:
-# add source to annotation
+# add date to annotation
 # Individual specification of paradigm in lists
 # sets {} to lists []
 # check fails gracefully to leeave partial files?
@@ -238,45 +238,48 @@ def lemmaMatcher(lemmaMark):
     l = lemmaMark.strip().replace("/", "")
     return l, l.replace(" ", "<b/>")
     
-    
-def monodixTemplate(fOut, lemmas, dixParadigm):
+def mkParadigm(paradigmPrefix, baseParadigm):
+    return baseParadigm if not paradigmPrefix else paradigmPrefix.strip() + '__' + baseParadigm
+                                
+def monodixTemplate(fOut, pairs, baseParadigm):
     # <e lm="earn"><i>earn</i><par n="reg__vblex"/></e>   
-    for lemmaMark in lemmas:
-        lemma, stem = lemmaStem(lemmaMark)
+    for pair in pairs:
+        lemma, stem = lemmaStem(pair.mark)
+        paradigm = mkParadigm(pair.paradigm, baseParadigm)
         fOut.write('<e lm="')
         fOut.write(lemma)
         fOut.write('"><i>')
         fOut.write(stem)
         fOut.write('</i><par n="')
-        fOut.write(dixParadigm)
+        fOut.write(paradigm)
         fOut.write('"/></e>\n')
 
-def bilingualTemplate(fOut, srcLemma, dstLemma, dixParadigm):
+def bilingualTemplate(fOut, srcPair, dstPair, baseParadigm):
     # <e><p><l>snack<s n="n"/></l><r>baggin<s n="n"/></r></p></e>
-    srcM = matcher(srcLemma)
-    dstM = matcher(dstLemma)
+    srcM = matcher(srcPair.mark)
+    dstM = matcher(dstPair.mark)
 
     fOut.write('<e><p><l>')
     fOut.write(srcM)
     fOut.write('<s n="')
-    fOut.write(dixParadigm)
+    fOut.write(baseParadigm)
     fOut.write('"/></l><r>')
     fOut.write(dstM)
     fOut.write('<s n="')
-    fOut.write(dixParadigm)
+    fOut.write(baseParadigm)
     fOut.write('"/></r></p></e>\n')
     
 def bilingualTemplateWithTranslationMarkRL(
     fOut,
-     srcLemmas,
-     dstLemma,
-     dixParadigm
+     srcPairs,
+     dstPair,
+     baseParadigm
     ):
     # <e srl="snack D"><p><l>snack<s n="n"/></l><r>baggin<s n="n"/></r></p></e>
     first = True
-    dstM = matcher(dstLemma)
-    for srcLemma in srcLemmas:
-        srcL, srcM = lemmaMatcher(srcLemma)
+    dstM = matcher(dstPair.mark)
+    for srcPair in srcPairs:
+        srcL, srcM = lemmaMatcher(srcPair.mark)
         fOut.write('<e srl="')
         fOut.write(srcL)
         if first: 
@@ -285,24 +288,24 @@ def bilingualTemplateWithTranslationMarkRL(
         fOut.write('"><p><l>')
         fOut.write(srcM)
         fOut.write('<s n="')
-        fOut.write(dixParadigm)
+        fOut.write(baseParadigm)
         fOut.write('"/></l><r>')
         fOut.write(dstM)
         fOut.write('<s n="')
-        fOut.write(dixParadigm)
+        fOut.write(baseParadigm)
         fOut.write('"/></r></p></e>\n')
     
 def bilingualTemplateWithTranslationMarkLR(
     fOut,
-     srcLemma,
-     dstLemmas,
-     dixParadigm
+     srcPair,
+     dstPairs,
+     baseParadigm
     ):
     # <e slr="baggin D"><p><l>snack<s n="n"/></l><r>baggin<s n="n"/></r></p></e>
     first = True
-    srcM = matcher(srcLemma)
-    for dstLemma in dstLemmas:
-        dstL, dstM = lemmaMatcher(dstLemma)
+    srcM = matcher(srcPair.mark)
+    for dstPair in dstPairs:
+        dstL, dstM = lemmaMatcher(dstPair.mark)
         fOut.write('<e slr="')
         fOut.write(dstL)
         if first: 
@@ -311,11 +314,11 @@ def bilingualTemplateWithTranslationMarkLR(
         fOut.write('"><p><l>')
         fOut.write(srcM)
         fOut.write('<s n="')
-        fOut.write(dixParadigm)
+        fOut.write(baseParadigm)
         fOut.write('"/></l><r>')
         fOut.write(dstM)
         fOut.write('<s n="')
-        fOut.write(dixParadigm)
+        fOut.write(baseParadigm)
         fOut.write('"/></r></p></e>\n')
     
 def stanzaAnnotateTemplate(fOut, stanzaName, inPath):
@@ -334,6 +337,8 @@ Stanza = namedtuple('Stanza', [
     'baseParadigm'
 ])
 
+
+
 unknownStanza = Stanza('?')
 
 stanzas = {
@@ -346,9 +351,18 @@ stanzas = {
     'time-mood': Stanza('tmmood')
 }
 
+MarkParadigmPair = namedtuple('MarkParadigmPair', [
+    'mark',
+    'paradigm'
+])
 
+ParsedData = namedtuple('ParsedData', [
+    'src',
+    'dst',
+    'defaultParadigms'
+])
 
-def processLine(fOut, target, stanza,  srcLemmaMarks, dstLemmaMarks, paradigms):
+def processLine(fOut, targetDictionary, stanza, parseResult):
     """
     Processes line data by writing to the appropriate template.
     Assumes all input is correctly formed e.g. that one of srcLemma and dstLemma 
@@ -362,85 +376,198 @@ def processLine(fOut, target, stanza,  srcLemmaMarks, dstLemmaMarks, paradigms):
     paradigm = 'error'
 
     # which target?
-    if target == 's':
-        p = paradigms[0]
-        if p: paradigm = p.strip() + '__' + baseParadigm
-        else: paradigm = baseParadigm
-        monodixTemplate(fOut, 
-                        lemmas = srcLemmaMarks, 
-                        dixParadigm = paradigm
+    if targetDictionary == 's':
+        monodixTemplate(
+                        fOut, 
+                        parseResult.src, 
+                        baseParadigm
                         )
-    elif target == 'd':
-        p = paradigms[1]
-        if p: paradigm = p.strip() + '__' + baseParadigm
-        else: paradigm = baseParadigm
-        monodixTemplate(fOut, 
-                        lemmas = dstLemmaMarks,
-                        dixParadigm = paradigm
+    elif targetDictionary == 'd':
+        monodixTemplate(
+                        fOut, 
+                        parseResult.dst, 
+                        baseParadigm
                         )
-    elif target == 'bi':
-        if(len(srcLemmaMarks) > 1):
+    elif targetDictionary == 'bi':
+        if(len(parseResult.src) > 1):
             bilingualTemplateWithTranslationMarkRL(
             fOut,
-            srcLemmaMarks,
-            dstLemmaMarks[0],
+            parseResult.src, 
+            parseResult.dst[0], 
             baseParadigm
             )
-        elif (len(dstLemmaMarks) > 1):
+        elif (len(parseResult.dst) > 1):
             bilingualTemplateWithTranslationMarkLR(
             fOut,
-            srcLemmaMarks[0],
-            dstLemmaMarks,
+            parseResult.src[0], 
+            parseResult.dst, 
             baseParadigm
             )
         else:
             # no alternative translations. Easy...
             bilingualTemplate(
             fOut, 
-            srcLemmaMarks[0], 
-            dstLemmaMarks[0], 
+            parseResult.src[0], 
+            parseResult.dst[0],  
             baseParadigm
-            )
-      
+            )    
+  
 
 
-def parseSet(line):
+        ##################
+        #
+# Anyone who likes Python because it is clean should stop long before
+# this.
+#...and it should be a function, but Python can't handle it
+class Parser():
     """
-    Parses a string for an initial 'xxx', or '{xxx, yyy, zzz},'.
-    Returns are whitespace-stripped (tail is left-stripped).
-    @return: the parsed element, a list, and tail, a string. The element
-    will be a list with at least one element, maybe empty.
+    Parses a line.
     """
-    head = ['']
-    tail = ''
-    if line[0] != '{':
-        splitLine = line.split(',', 1)
-        if len(splitLine) < 1:
-            printWarning("data line has too few elements?: '" + line + "'")
-        elif len(splitLine) < 2:
-            head = [splitLine[0]]
-        else:
-            head = [splitLine[0]]
-            tail = splitLine[1].lstrip()
-    else:
-        # drop the bracket
-        splitLine = line[1:].split('}', 1)
-        if len(splitLine) < 1:
-            printWarning("bracket not matched: '" + line + "'")
-        elif len(splitLine) < 2:
-            head = [splitLine[0]]
-        else:
-            # split bracketed contents
-            #head = map(lambda e: e.strip(), splitLine[0].split(','))
-            head = splitLine[0].split(',')
-            # trailing commas maybe still present e.g. '{},'
-            tail = splitLine[1].lstrip()
-            if len(tail) > 0 and tail[0] == ',':
-                tail = tail[1:].lstrip()
-    return head, tail
-                
+    EOL = '\f'
 
-def process(inPath, outPath, target, annotate):
+    def __init__(self):
+        self.b = [[],[]]
+        self.defaultParadigms = ['', '']
+        self.line = ''
+        self.prev = 0
+        self.i = 0
+        self.curr = ''
+        self.mark = ''
+        self.paradigm = ''
+        self.side = 0
+
+    def __printOut(self):
+        print("mark:" + self.mark)
+        print("curr:" + self.curr)
+        print("i: {0}".format(self.i))
+        
+    def skip(self):
+        self.i = self.i + 1
+    
+    def findAny(self, chars):
+        self.prev = self.i
+        for x in range(self.i, len(self.line)):
+            #print("x: {0}".format(x))
+            self.curr = self.line[x] 
+            if self.curr in chars:
+                self.i = x
+                return
+        # EOL
+        self.i = len(self.line)
+        self.curr = self.EOL
+        return
+    
+    def loadPair(self):
+        self.b[self.side].append(MarkParadigmPair(self.mark, self.paradigm))
+        self.mark = ''
+        self.paradigm = ''
+
+    def paradigmR(self):
+        self.findAny('.}{:#')
+        self.paradigm = self.line[self.prev:self.i]
+    
+    def markR(self):
+        self.findAny('.}{:#')
+        self.mark = self.line[self.prev:self.i]
+    
+    def pair(self):
+        self.markR()
+        #self.__printOut()
+        if self.curr == ':':
+            self.skip()
+            self.paradigmR()
+        self.loadPair()
+    
+    def pairList(self):
+        #self.__printOut()
+        while self.curr == '.':
+            self.skip()
+            self.pair()
+        #self.skip()
+        
+    def set(self):
+        self.findAny('.}{:#')
+
+    def parseDefaultParadigmOption(self, target):
+        if self.curr ==  ':':
+            self.skip()
+            self.findAny('.}{:#')
+            self.defaultParadigms[target] = self.line[self.prev:self.i]
+        
+    def parseSide(self, target):
+        self.side = target
+        self.findAny('.}{:#')
+        #self.__printOut()
+
+        if self.curr == '.':
+            self.skip()
+            self.pair()
+        elif self.curr ==  '{':
+            self.skip()
+            self.findAny('.}{:#')
+            if self.curr == '.':
+                self.pairList()
+                if self.curr == '}':
+                    self.skip()
+                    self.findAny('.}{:#')
+                    self.parseDefaultParadigmOption(target)
+                else:
+                    printWarning("set not closed?: '" + self.line + "'")
+                    # kill with fake EOL
+                    self.curr = self.EOL
+            else:
+                printWarning("set open not followed by mark?: '" + self.line + "'")
+                # kill with fake EOL
+                self.curr = self.EOL
+
+        elif self.curr ==  ':':
+            printWarning("paradigm not preceeded by mark: '" + self.line + "'")
+            # kill with fake EOL
+            self.curr = self.EOL
+        elif self.curr ==  '#':
+            # kill with fake EOL
+            self.curr = self.EOL
+        elif self.curr ==  '}':
+            printWarning("bracket not matched: '" + self.line + "'")
+            # kill with fake EOL
+            self.curr = self.EOL
+        elif self.curr == self.EOL:
+            printWarning("data expected, but End Of Line: '" + self.line + "'")
+
+
+    def parse(self, targetLine):
+        """
+        Parse a line.
+        Output is not stripped.
+        Reusable (oh, crimes, crimes).
+        @return a list of two lists of MarkParadigmPairs. If the parse 
+        fails, None, while emitting error messages.
+        """
+        self.b = [[],[]]
+        self.defaultParadigms = ['', '']
+        self.line = targetLine
+        self.prev = 0
+        self.i = 0
+        self.curr = ''
+        self.mark = ''
+        self.paradigm = ''
+        self.side = 0
+        
+        # root term for parse
+        #print('to parse: "' + self.line + '"')
+        self.parseSide(0)
+        if  self.curr == '.' or self.curr == '{':
+            self.parseSide(1)
+            return ParsedData(self.b[0], self.b[1], self.defaultParadigms)
+        else:
+            printWarning("Unable to find second element: '" + self.line + "'")
+            return None
+            
+################
+
+        
+
+def process(inPath, outPath, targetDictionary, annotate):
     """
     Process a file, stepping by line.
     """
@@ -451,6 +578,9 @@ def process(inPath, outPath, target, annotate):
     
     stanza = unknownStanza
     
+    p = Parser()
+
+        
     for l in fIn:
         lineNum += 1
         line = l.strip()
@@ -472,35 +602,36 @@ def process(inPath, outPath, target, annotate):
             pass
         else:
             # process a line
-            # slice off tail comments with 'prefix'
-            cleanLine = prefix(line, '#')
-            srcLemmas, tail = parseSet(cleanLine)
-            #print('srcLemmas:' + ' ,'.join(srcLemmas))
-            if not tail:
-                printError("data line has one element: '" + cleanLine + "'")
-                pass
+            r = p.parse(line)
+            if r == None:
+                print('parse fail?')
             else:
-                dstLemmas, tail = parseSet(tail)
-                #print('dstLemmas:' + ' ,'.join(dstLemmas))
-                #print('tail: "' + tail + '"')
+                #print("parse:")
+                #print(r.src)
+                #print(r.dst) 
+               # print(r.defaultParadigms)
+                #print("--")
 
-                if len(srcLemmas) > 1 and len(dstLemmas) > 1:
-                    printError("source and destination are both sets: '" + cleanLine + "'")
+                # verify this
+                if len(r.src)> 1 and len(r.dst) > 1:
+                    printError("source and destination are both sets: '" + line + "'")
                 else:
-                    paradigms = ['', ''] if not tail else tail.split(',')
-                    #print('paradigms:' + ', '.join(paradigms))
+                    # assert paradigms, fill empty from default
+                    # TODO: This is happening wastefully early,
+                    # as bi- template does not uses the prefix
+                    def assertParadigm(pairs, defaultP):
+                        b = []
+                        for pair in pairs:
+                            p = pair.paradigm.strip()
+                            newP = defaultP if not p else p
+                            b.append(MarkParadigmPair(pair.mark, newP))
+                        return b
+                    srcNew = assertParadigm(r.src, r.defaultParadigms[0])
+                    dstNew = assertParadigm(r.dst, r.defaultParadigms[1])
 
-                    if len(paradigms) < 2:
-                        printWarning("data line has one paradigm?: '" + cleanLine + "'")
-                        paradigms.append('')
-
-                    if len(paradigms) > 2:
-                        printWarning("data line has more than two paradigms?: '" + cleanLine + "'")
-                    #print('srcLemmas:' + ', '.join(srcLemmas))
-                    #print('dstLemmas:' + ', '.join(dstLemmas))
-                    #print('paradigms len:{0}'.format(len(paradigms)))
-
-                    processLine(fOut, target, stanza, srcLemmas, dstLemmas, paradigms)
+                    # defaults now processed, abandon
+                    newR = ParsedData(srcNew, dstNew, [])
+                    processLine(fOut, targetDictionary, stanza, newR)
 
     fIn.close()
     fOut.close()
@@ -515,7 +646,7 @@ def main(argv):
     annotate = False
     inPath = 'in'
     outPath = ''
-    target = 's'
+    targetDictionary = 's'
     try:
         opts, args = getopt.getopt(argv,"ahi:o:t:", ['annotate', 'infile=','outfile=','type='])
     except getopt.GetoptError:
@@ -536,25 +667,26 @@ def main(argv):
             if arg != 's' and arg != 'd' and arg != 'bi':
                 print ('-type option must be from: {s, d, bi}')
                 sys.exit()
-            target = arg
-            
+            targetDictionary = arg
+ 
+        
     #  if not stated, default the output filepath
     if not outPath:
         i = inPath.rfind('.')
         if i != -1:
-            outPath = inPath[:i] + '-' + target + '.parDix'
+            outPath = inPath[:i] + '-' + targetDictionary + '.parDix'
         else:
-            outPath = inPath + '-' + target + '.parDix'
+            outPath = inPath + '-' + targetDictionary + '.parDix'
             
     print 'Input file:', inPath
     print 'Output file:', outPath
 
-    print 'Target:', target
+    print 'targetDictionary:', targetDictionary
     print 'Annotate:', annotate
-    print 'Target:', dictionaryNames[target]
+    print 'targetDictionary:', dictionaryNames[targetDictionary]
 
     try:
-        process(inPath, outPath, target, annotate)
+        process(inPath, outPath, targetDictionary, annotate)
     except IOError:
         print('file would not open: %s' % inPath)
     #finally:
