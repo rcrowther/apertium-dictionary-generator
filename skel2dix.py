@@ -682,7 +682,16 @@ def process(inPath, outPath, targetDictionary, annotate):
     fIn.close()
     fOut.close()
 
-
+def printHelp():
+    print ('Usage: skel2dix.py <options> -i <inputfile> -o <outputfile>\n'
+        "Keynames in the 'stanza' variable must be adjusted to match input files\n\n"
+        '  -a, --annotate       annotate the output with stanza information\n'
+        '  -h, --help           print this help\n'
+        "  -t, --type           output dictionary type ('s' source mono,\n"
+        "                       'd' destination mono, or 'bi' bilingual)\n")
+        
+        
+        
 # main
 
 def main(argv):
@@ -693,13 +702,13 @@ def main(argv):
     try:
         opts, args = getopt.getopt(argv,"ahi:o:t:", ['annotate', 'infile=','outfile=','type='])
     except getopt.GetoptError:
-        print 'skel2dix.py <options> -i <inputfile> -o <outputfile>'
+        printHelp()
         sys.exit(2)
     for opt, arg in opts:
         if opt in ("-a", "--annotate"):
             annotate = True
         elif opt == '-h':
-            print 'skel2dix.py <options> -i <inputfile> -o <outputfile>'
+            printHelp()
             sys.exit()
         elif opt in ("-i", "--infile"):
             inPath = arg
