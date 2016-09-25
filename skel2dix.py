@@ -173,6 +173,8 @@ generates::
 """
 # TODO:
 # add date to annotation
+# when no paradigm prefix, offer, or even default, in mondicts 
+# to <s n=""/> not <par n=""/>
 # reposition paradigm prefix defaulting
 # check strips() for duplication (stripped in paradigm prefix, and...?)
 # sets {} to lists []
@@ -353,8 +355,8 @@ stanzas = {
     'vblex': Stanza('vblex'),
     'vbmod': Stanza('vbmod'),
     'vaux': Stanza('vaux'),
-    'vbser': Stanza('ToBeVerb'),
-    'vbhaver': Stanza('ToHaveVerb'),
+    'vbser': Stanza('vbser'),
+    'vbhaver': Stanza('vbhaver'),
     'adv': Stanza('adv'),
     'pr': Stanza('pr'),
     'ij': Stanza('ij'),
