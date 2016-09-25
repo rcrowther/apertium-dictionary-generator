@@ -342,15 +342,62 @@ Stanza = namedtuple('Stanza', [
 
 unknownStanza = Stanza('?')
 
+
 stanzas = {
-    'thing': Stanza('t'),
-    'thing-wide': Stanza('tw'),
-    'thing-suchness': Stanza('tsuch'),
-    'tell': Stanza('tell'),
-    'stead-way': Stanza('steadw'),
-    'time': Stanza('vblex'),
-    'time-mood': Stanza('tmmood')
+    'n': Stanza('n'),
+    'pn': Stanza('pn'),
+    'prn': Stanza('prn'),
+    'adj': Stanza('adj'),
+    'itg': Stanza('itg'),
+    'num': Stanza('num'),
+    'vblex': Stanza('vblex'),
+    'vbmod': Stanza('vbmod'),
+    'vaux': Stanza('vaux'),
+    'vbser': Stanza('ToBeVerb'),
+    'vbhaver': Stanza('ToHaveVerb'),
+    'adv': Stanza('adv'),
+    'pr': Stanza('pr'),
+    'ij': Stanza('ij'),
+    'cnjsub': Stanza('cnjsub'),
+    'cnjcoo': Stanza('cnjcoo'),
+    'cnjadv': Stanza('cnjadv'),
+    'pers': Stanza('pers'),
+    'ref': Stanza('ref'),
+    'res': Stanza('res')
 }
+
+#stanzas = {
+    #'Noun': Stanza('n'),
+    #'ProperNoun': Stanza('pn'),
+    #'Pronoun': Stanza('prn'),
+    #'Adjective': Stanza('adj'),
+    #'Interrogative': Stanza('itg'),
+    #'Numeral': Stanza('num'),
+    #'Verb': Stanza('vblex'),
+    #'ModalVerb': Stanza('vbmod'),
+    #'AuxiliaryVerb': Stanza('vaux'),
+    #'ToBeVerb': Stanza('vbser'),
+    #'ToHaveVerb': Stanza('vbhaver'),
+    #'Adverb': Stanza('adv'),
+    #'Preposition': Stanza('pr'),
+    #'Interjection': Stanza('ij'),
+    #'SubordinatingConjunction': Stanza('cnjsub'),
+    #'Co-ordinatingConjunction': Stanza('cnjcoo'),
+    #'AdverbConjunction': Stanza('cnjadv'),
+    #'PersonalPronoun': Stanza('pers'),
+    #'ReflexivePronoun': Stanza('ref'),
+    #'ReciprocalPronoun': Stanza('res')
+#}
+
+#stanzas = {
+    #'thing': Stanza('t'),
+    #'thing-wide': Stanza('tw'),
+    #'thing-suchness': Stanza('tsuch'),
+    #'tell': Stanza('tell'),
+    #'stead-way': Stanza('steadw'),
+    #'time': Stanza('vblex'),
+    #'time-mood': Stanza('tmmood')
+#}
 
 MarkParadigmPair = namedtuple('MarkParadigmPair', [
     'mark',
