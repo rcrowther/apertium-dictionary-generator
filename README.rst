@@ -49,26 +49,33 @@ hand-edited. But the script can do the bulk work.
 What it has
 -----------
 
-Extensive error reporting
+Good error reporting
     Not always accurate, but gives line numbers.
 
 Robust
-    Now uses a mini-parser, and skips unparsable lines
+    Uses a mini-parser, and skips unparsable lines
+
+Concatenated output
+    Multiple input files are concatenated to one output file
+
+Annotated output
+    Optionally, the resulting dictionaries can have
+    annotated comments noting the source.
+
 
 Usage
 ~~~~~
 From the commandline::
 
-    ./skel2dix.py <options> -i /.../inputFile
+    ./skel2dix.py <options> inputFiles
 
 Current options are,
 
--a : annotate the output with XML comments 
--i : input file path
--o : output filepath (optional, default taken from input)
--t : `s` for mono-dictionary source, `d` for mono-dictionary destination. `bi` for bilingual
+-a : annotate the output with XML comments
+-o : output filebasename (optional, default is 'output')
+-t : `s` for mono-dictionary source, `d` for mono-dictionary destination. `bi` for bilingual 'a' for all
 
-Output filepaths are tagged with dictionary extensions, so the script can be run repeatedly on a source file without adapting filepath names (change -t instead).
+Output filepaths are tagged with dictionary extensions, so the script can be run repeatedly on source files without adapting filepath names (change -t instead).
 
 Many of the following examples are for mono-dictionaries, to keep 
 the examples cleaner.
@@ -121,31 +128,27 @@ data is not parsed.
 Can be useful for commenting out big blocks of data.
 
 
+
 Alternate/ambiguous translation
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Data lines can include lists of items::
 
     {.weird .bizarre .strange} .bizarre
 
-Note there is no need for an opening period/full-stop if a list is supplied.
+Note there is no need for an opening period/full-stop to the list itself.
 
-In mono-dictionaries, lists will be expanded into individual entries.
-In bilingual dictionaries, entries will be marked with the appropriate `slr`/`srl`
-marks::
+In mono-dictionaries, lists will be expanded into individual entries. The first item in the list is the default. Subsequent entries generated from the list are marked with the 'r' attribute. From the example above::
 
-    <e srl="strange"><p><l>weird<s n="vblex"/></l><r>strange<s n="vblex"/></r></p></e>    
-    ...
-
-The first item in the list is the default (from the example above)::
-
-    <e srl="weird D"><p><l>weird<s n="vblex"/></l><r>bizarre<s n="vblex"/></r></p></e>    
+    <e><p><l>weird<s n="adj"/></l><r>bizarre<s n="adj"/></r></p></e>    
+    <e r="LR"><p><l>bizarre<s n="adj"/></l><r>bizarre<s n="adj"/></r></p></e>    
+    <e r="LR"><p><l>strange<s n="adj"/></l><r>bizarre<s n="adj"/></r></p></e>    
     ...
 
 
 Paradigm prefixes near sets
 ---------------------------
 
-Lists can have prefixes defined on each element::
+Lists can have paradigm prefixes defined on each element::
 
     {.weird :regular .bizarre :regular .strange :regular}  .bizarre :regular
 
@@ -153,7 +156,7 @@ Lists can have prefixes defined on each element::
 
     {.throw .chuck} :regular  .jeter :regular
 
-As you build up paradigms, under-ride,
+As you build up paradigms, under-ride individual elemts in the list,
 
     {.throw :thr/ow .chuck} :regular  .jeter :regular
 
@@ -172,25 +175,19 @@ Comments can follow data lines::
     .find .trouver # expand this definition?
 
 
-Stemming-paradigm notation
---------------------------
-If the main notation includes a slash, 
-the XML is constructed with a stem::
+Auto-handling of paradigm slash marks
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+In monolingual dictionaries, entry matches will be cropped by slashed paradigm marks::
 
-    .f/ind :findParadigm .trouv/er :trouverParadigm
+    dandy :bab/y
 
-generates::
+generates,
 
-    <e lm="find"><i>f</i><par n="findParadigm"/></e> 
+    <e lm="dandy"><i>dand</i><par n="bab/y__n"/></e>
+   
+    ...
 
-Note that the script has removed the slash for the lemma name,
-and used the preceding codepoints for the detected stem.
-
-Note also the look of a line with `apertium`-suggested paradigm-naming::
-
-    .f/ind :f/ind .trouv/er :trouv/er
-
-
+Note that the script used the supplied text for the lemma name, then cropped for the text match.
 
 
 
@@ -211,7 +208,7 @@ Last Note
 ~~~~~~~~~
 '.' and ':' are easy to type, but hard to read. If you would like the files to be more readable, the files and the script could be refactored. To me, this reads better::
 
-    {|throw |chuck}#regular  |jeter#regular
+    {|throw |chuck} #regular  |jeter #regular
 
 ...but is horrible to type.
 

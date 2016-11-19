@@ -50,14 +50,15 @@ Usage
 ~~~~~
 From the commandline::
 
-    ./skel2dix.py <options> -i /.../inputFile
+    ./skel2dix.py <options> inputFiles
 
 Options include,
 
--a : annotate the output with XML comments 
--i : input file path
--o : output filepath (optional, taken from input)
--t : `s` for mono-dictionary source, `d` for mono-dictionary destination. `bi` for bilingual
+-a : annotate the output with XML comments
+-o : output filebasename (optional, default is 'output')
+-t : `s` for mono-dictionary source, `d` for mono-dictionary destination. `bi` for bilingual 'a' for all
+
+Output filepaths are tagged with dictionary extensions, so the script can be run repeatedly on source files without adapting filepath names (change -t instead).
 
 Many of the following examples are for mono-dictionaries, to keep 
 the examples cleaner.
@@ -123,23 +124,19 @@ Comments can follow data lines::
     find, trouver # expand this definition?
 
 
-Stemming-paradigm notation
---------------------------
-If the main notation includes a slash, 
-the XML is constructed with a stem::
+Auto-handling of paradigm slash marks
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+In monolingual dictionaries, entry matches will be cropped by slashed paradigm marks::
 
-    f/ind, trouv/er, findParadigm, trouveParadigm
+    dandy :bab/y
 
-generates::
+generates,
 
-    <e lm="find"><i>f</i><par n="findParadigm"/></e> 
+    <e lm="dandy"><i>dand</i><par n="bab/y__n"/></e>
+   
+    ...
 
-Note that the script has removed the slash for the lemma name,
-and used the preceding codepoints for the detected stem.
-
-Note also the look of a line with `apertium` suggested paradigm-naming::
-
-    f/ind, trouv/er, f/ind, trouv/er
+Note that the script used the supplied text for the lemma name, then cropped for the text match.
 
 
 
@@ -153,7 +150,9 @@ In mono-dictionaries, these will be expanded into individual entries.
 In bilingual dictionaries, entries will be marked with the appropriate `slr`/`srl`
 marks. The first item in the set is the default::
 
-    <e srl="weird D"><p><l>weird<s n="vblex"/></l><r>bizarre<s n="vblex"/></r></p></e>    
+    <e><p><l>weird<s n="adj"/></l><r>bizarre<s n="adj"/></r></p></e>    
+    <e r="LR"><p><l>bizarre<s n="adj"/></l><r>bizarre<s n="adj"/></r></p></e>    
+    <e r="LR"><p><l>strange<s n="adj"/></l><r>bizarre<s n="adj"/></r></p></e>    
     ...
 
 Multi-word usage
@@ -661,76 +660,6 @@ class Parser():
             
 ################
 
-        
-
-#def process(inPath, outPath, targetDictionary, annotate):
-    #"""
-    #Process a file, stepping by line.
-    #"""
-    #global lineNum
-    
-    #fIn = open(inPath, 'r')
-    #fOut = open(outPath, 'w')
-    
-    #stanza = unknownStanza
-    
-    #p = Parser()
-
-        
-    #for l in fIn:
-        #lineNum += 1
-        #line = l.strip()
-        
-        #if not line or line[0] == '#':
-            ## skip empty lines and comments
-            #pass
-        #elif line[0] == '=':
-            ## detect new stanza 
-            #sStr = suffix(line, '=').strip().lower()
-            #stanza = stanzas.get(sStr, unknownStanza)
-            #if stanza == unknownStanza:
-                #printWarning("unknown stanza name: '" + sStr + "'")
-            #else:
-                #if annotate: stanzaAnnotateTemplate(fOut, sStr, inPath)
-        #elif stanza == unknownStanza:
-            ## not found a stanza, now
-            ## skip line if unknownStanza
-            #pass
-        #else:
-            ## process a line
-            #r = p.parse(line)
-            #if r == None:
-                #print('parse fail?')
-            #else:
-                ##print("parse:")
-                ##print(r.src)
-                ##print(r.dst) 
-               ## print(r.defaultParadigms)
-                ##print("--")
-
-                ## verify this
-                #if len(r.src)> 1 and len(r.dst) > 1:
-                    #printError("source and destination are both sets: '" + line + "'")
-                #else:
-                    ## assert paradigms, fill empty from default
-                    ## TODO: This is placed wastefully early,
-                    ## as bi- template does not uses paradigm prefixs
-                    #def assertParadigm(pairs, defaultP):
-                        #b = []
-                        #for pair in pairs:
-                            #p = pair.paradigm.strip()
-                            #newP = defaultP if not p else p
-                            #b.append(MarkParadigmPair(pair.mark, newP))
-                        #return b
-                    #srcNew = assertParadigm(r.src, r.defaultParadigms[0])
-                    #dstNew = assertParadigm(r.dst, r.defaultParadigms[1])
-
-                    ## defaults now processed, abandon
-                    #newR = ParsedData(srcNew, dstNew, [])
-                    #processLine(fOut, targetDictionary, stanza, newR)
-
-    #fIn.close()
-    #fOut.close()
 
 def process(inPath, outPath, dictionaryType, annotate):
     """
@@ -866,14 +795,17 @@ def main(argv):
         default='bi',
         help="output dictionary type ('s': source monodix, 'd': destination monodix, or 'bi': bilingualdix. Default: 'bi')",
         )
+        
     parser.add_argument("-o", "--outputBasename",
         default='output',
         help="output file name. Must not be a path (default: 'output')"
         )
+        
     parser.add_argument("infiles", 
         nargs='*',
         help="files for input"
         )
+        
     args = parser.parse_args()
 
     # assert infiles as absolute paths
