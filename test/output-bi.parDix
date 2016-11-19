@@ -1,0 +1,599 @@
+
+<!-- n -->
+<!-- en-lanc_1 -->
+<e><p><l>anvil<s n="n"/></l><r>forge<s n="n"/></r></p></e>
+<e><p><l>hearse<s n="n"/></l><r>bier<s n="n"/></r></p></e>
+<e r="RL"><p><l>hearse<s n="n"/></l><r>borne<s n="n"/></r></p></e>
+<e><p><l>hole<s n="n"/></l><r>oyle<s n="n"/></r></p></e>
+<e><p><l>shelter<s n="n"/></l><r>lowse<s n="n"/></r></p></e>
+<e r="LR"><p><l>hut<s n="n"/></l><r>lowse<s n="n"/></r></p></e>
+<e r="LR"><p><l>hutch<s n="n"/></l><r>lowse<s n="n"/></r></p></e>
+<e r="LR"><p><l>shack<s n="n"/></l><r>lowse<s n="n"/></r></p></e>
+<e r="LR"><p><l>shanty<s n="n"/></l><r>lowse<s n="n"/></r></p></e>
+<e r="LR"><p><l>hut<s n="n"/></l><r>lowse<s n="n"/></r></p></e>
+<e><p><l>pen<s n="n"/></l><r>box<s n="n"/></r></p></e>
+<e r="LR"><p><l>sty<s n="n"/></l><r>box<s n="n"/></r></p></e>
+<e r="LR"><p><l>enclosure<s n="n"/></l><r>box<s n="n"/></r></p></e>
+<e r="LR"><p><l>sheepcote<s n="n"/></l><r>box<s n="n"/></r></p></e>
+<e r="LR"><p><l>sheepfold<s n="n"/></l><r>box<s n="n"/></r></p></e>
+<e r="LR"><p><l>sheep<b/>pen<s n="n"/></l><r>box<s n="n"/></r></p></e>
+<e r="LR"><p><l>sheepcote<s n="n"/></l><r>box<s n="n"/></r></p></e>
+<e><p><l>cess<s n="n"/></l><r>midden<s n="n"/></r></p></e>
+<e r="LR"><p><l>crap<s n="n"/></l><r>midden<s n="n"/></r></p></e>
+<e r="LR"><p><l>faecal<b/>matter<s n="n"/></l><r>midden<s n="n"/></r></p></e>
+<e r="LR"><p><l>faeces<s n="n"/></l><r>midden<s n="n"/></r></p></e>
+<e r="LR"><p><l>ordure<s n="n"/></l><r>midden<s n="n"/></r></p></e>
+<e r="LR"><p><l>poop<s n="n"/></l><r>midden<s n="n"/></r></p></e>
+<e r="LR"><p><l>stool<s n="n"/></l><r>midden<s n="n"/></r></p></e>
+<e><p><l>dung<s n="n"/></l><r>muck<s n="n"/></r></p></e>
+<e r="LR"><p><l>cow<b/>chip<s n="n"/></l><r>muck<s n="n"/></r></p></e>
+<e r="LR"><p><l>cow<b/>dung<s n="n"/></l><r>muck<s n="n"/></r></p></e>
+<e r="LR"><p><l>droppings<s n="n"/></l><r>muck<s n="n"/></r></p></e>
+<e><p><l>shit<s n="n"/></l><r>shite<s n="n"/></r></p></e>
+<e r="RL"><p><l>shit<s n="n"/></l><r>cac<s n="n"/></r></p></e>
+<e><p><l>potato<s n="n"/></l><r>tatty<s n="n"/></r></p></e>
+<e r="LR"><p><l>spud<s n="n"/></l><r>tatty<s n="n"/></r></p></e>
+<e r="LR"><p><l>tater<s n="n"/></l><r>tatty<s n="n"/></r></p></e>
+<e><p><l>bridge<s n="n"/></l><r>brig<s n="n"/></r></p></e>
+<e r="LR"><p><l>drawbridge<s n="n"/></l><r>brig<s n="n"/></r></p></e>
+<e r="LR"><p><l>span<s n="n"/></l><r>brig<s n="n"/></r></p></e>
+<e><p><l>eye<s n="n"/></l><r>ee<s n="n"/></r></p></e>
+<e r="LR"><p><l>oculus<s n="n"/></l><r>ee<s n="n"/></r></p></e>
+<e r="LR"><p><l>optic<s n="n"/></l><r>ee<s n="n"/></r></p></e>
+<e><p><l>attic<s n="n"/></l><r>garrett<s n="n"/></r></p></e>
+<e r="LR"><p><l>loft<s n="n"/></l><r>garrett<s n="n"/></r></p></e>
+<e><p><l>hare<s n="n"/></l><r>neddy<s n="n"/></r></p></e>
+<e r="LR"><p><l>coney<s n="n"/></l><r>neddy<s n="n"/></r></p></e>
+<e><p><l>badger<s n="n"/></l><r>brock<s n="n"/></r></p></e>
+<e><p><l>beak<s n="n"/></l><r>neb<s n="n"/></r></p></e>
+<e><p><l>stream<s n="n"/></l><r>beck<s n="n"/></r></p></e>
+<e r="LR"><p><l>creak<s n="n"/></l><r>beck<s n="n"/></r></p></e>
+<e r="LR"><p><l>brook<s n="n"/></l><r>beck<s n="n"/></r></p></e>
+<e><p><l>puddle<s n="n"/></l><r>dub<s n="n"/></r></p></e>
+<e><p><l>flea<s n="n"/></l><r>lop<s n="n"/></r></p></e>
+<e><p><l>latch<s n="n"/></l><r>sneck<s n="n"/></r></p></e>
+<e r="LR"><p><l>catch<s n="n"/></l><r>sneck<s n="n"/></r></p></e>
+<e><p><l>calf<s n="n"/></l><r>stirk<s n="n"/></r></p></e>
+<e><p><l>pig<s n="n"/></l><r>gilt<s n="n"/></r></p></e>
+<e r="LR"><p><l>hog<s n="n"/></l><r>gilt<s n="n"/></r></p></e>
+<e><p><l>toilet<s n="n"/></l><r>privvy<s n="n"/></r></p></e>
+<e r="LR"><p><l>water<b/>closet<s n="n"/></l><r>privvy<s n="n"/></r></p></e>
+<e r="LR"><p><l>closet<s n="n"/></l><r>privvy<s n="n"/></r></p></e>
+<e r="LR"><p><l>john<s n="n"/></l><r>privvy<s n="n"/></r></p></e>
+<e r="LR"><p><l>lav<s n="n"/></l><r>privvy<s n="n"/></r></p></e>
+<e r="LR"><p><l>lavatory<s n="n"/></l><r>privvy<s n="n"/></r></p></e>
+<e><p><l>maggot<s n="n"/></l><r>mawk<s n="n"/></r></p></e>
+<e><p><l>tantrum<s n="n"/></l><r>mard<s n="n"/></r></p></e>
+<e r="LR"><p><l>paddy<s n="n"/></l><r>mard<s n="n"/></r></p></e>
+<e><p><l>girl<s n="n"/></l><r>lass<s n="n"/></r></p></e>
+<e r="LR"><p><l>young<b/>lady<s n="n"/></l><r>lass<s n="n"/></r></p></e>
+<e r="LR"><p><l>young<b/>woman<s n="n"/></l><r>lass<s n="n"/></r></p></e>
+<e><p><l>boy<s n="n"/></l><r>lad<s n="n"/></r></p></e>
+<e><p><l>snack<s n="n"/></l><r>baggin<s n="n"/></r></p></e>
+<e><p><l>mud<s n="n"/></l><r>clags<s n="n"/></r></p></e>
+<e><p><l>money<s n="n"/></l><r>brass<s n="n"/></r></p></e>
+<e r="LR"><p><l>lolly<s n="n"/></l><r>brass<s n="n"/></r></p></e>
+<e r="LR"><p><l>loot<s n="n"/></l><r>brass<s n="n"/></r></p></e>
+<e r="LR"><p><l>lucre<s n="n"/></l><r>brass<s n="n"/></r></p></e>
+<e><p><l>shoe<s n="n"/></l><r>sho<s n="n"/></r></p></e>
+<e r="LR"><p><l>sneaker<s n="n"/></l><r>sho<s n="n"/></r></p></e>
+<e r="LR"><p><l>work<b/>shoe<s n="n"/></l><r>sho<s n="n"/></r></p></e>
+<e r="LR"><p><l>brogue<s n="n"/></l><r>sho<s n="n"/></r></p></e>
+<e><p><l>tea<s n="n"/></l><r>brew<s n="n"/></r></p></e>
+<e r="LR"><p><l>char<s n="n"/></l><r>brew<s n="n"/></r></p></e>
+
+<!-- prn -->
+<!-- en-lanc_1 -->
+<e><p><l>he<s n="prn"/></l><r>himself<s n="prn"/></r></p></e>
+<e r="RL"><p><l>he<s n="prn"/></l><r>hissel<s n="prn"/></r></p></e>
+<e><p><l>she<s n="prn"/></l><r>herself<s n="prn"/></r></p></e>
+<e><p><l>you<s n="prn"/></l><r>thou<s n="prn"/></r></p></e>
+<e><p><l>we<s n="prn"/></l><r>us<s n="prn"/></r></p></e>
+<e><p><l>anything<s n="prn"/></l><r>owt<s n="prn"/></r></p></e>
+<e><p><l>nothing<s n="prn"/></l><r>nowt<s n="prn"/></r></p></e>
+<e><p><l>something<s n="prn"/></l><r>summat<s n="prn"/></r></p></e>
+
+<!-- det -->
+<!-- en-lanc_1 -->
+<e><p><l>other<s n="det"/></l><r>tuther<s n="det"/></r></p></e>
+
+<!-- adj -->
+<!-- en-lanc_1 -->
+<e><p><l>fat<s n="adj"/></l><r>brosen<s n="adj"/></r></p></e>
+<e r="LR"><p><l>large<s n="adj"/></l><r>brosen<s n="adj"/></r></p></e>
+<e r="LR"><p><l>heavyset<s n="adj"/></l><r>brosen<s n="adj"/></r></p></e>
+<e r="LR"><p><l>stocky<s n="adj"/></l><r>brosen<s n="adj"/></r></p></e>
+<e r="LR"><p><l>thickset<s n="adj"/></l><r>brosen<s n="adj"/></r></p></e>
+<e r="LR"><p><l>dumpy<s n="adj"/></l><r>brosen<s n="adj"/></r></p></e>
+<e r="LR"><p><l>podgy<s n="adj"/></l><r>brosen<s n="adj"/></r></p></e>
+<e r="LR"><p><l>pudgy<s n="adj"/></l><r>brosen<s n="adj"/></r></p></e>
+<e><p><l>good<s n="adj"/></l><r>gradely<s n="adj"/></r></p></e>
+<e r="LR"><p><l>very<s n="adj"/></l><r>gradely<s n="adj"/></r></p></e>
+<e><p><l>foolish<s n="adj"/></l><r>puddled<s n="adj"/></r></p></e>
+<e r="LR"><p><l>stupid<s n="adj"/></l><r>puddled<s n="adj"/></r></p></e>
+<e><p><l>little<s n="adj"/></l><r>mickle<s n="adj"/></r></p></e>
+<e r="RL"><p><l>little<s n="adj"/></l><r>smidgen<s n="adj"/></r></p></e>
+<e r="RL"><p><l>little<s n="adj"/></l><r>a<b/>mite<s n="adj"/></r></p></e>
+<e><p><l>old<s n="adj"/></l><r>owd<s n="adj"/></r></p></e>
+<e r="LR"><p><l>disused<s n="adj"/></l><r>owd<s n="adj"/></r></p></e>
+<e r="LR"><p><l>obsolescent<s n="adj"/></l><r>owd<s n="adj"/></r></p></e>
+<e r="LR"><p><l>obsolete<s n="adj"/></l><r>owd<s n="adj"/></r></p></e>
+<e r="LR"><p><l>out-of-date<s n="adj"/></l><r>owd<s n="adj"/></r></p></e>
+<e r="LR"><p><l>outdated<s n="adj"/></l><r>owd<s n="adj"/></r></p></e>
+<e><p><l>leaning<s n="adj"/></l><r>keck<s n="adj"/></r></p></e>
+<e r="LR"><p><l>tipped<s n="adj"/></l><r>keck<s n="adj"/></r></p></e>
+<e r="LR"><p><l>tilted<s n="adj"/></l><r>keck<s n="adj"/></r></p></e>
+<e r="LR"><p><l>sloped<s n="adj"/></l><r>keck<s n="adj"/></r></p></e>
+<e r="LR"><p><l>angled<s n="adj"/></l><r>keck<s n="adj"/></r></p></e>
+<e r="LR"><p><l>slanted<s n="adj"/></l><r>keck<s n="adj"/></r></p></e>
+<e r="LR"><p><l>canted<s n="adj"/></l><r>keck<s n="adj"/></r></p></e>
+<e r="LR"><p><l>slanted<s n="adj"/></l><r>keck<s n="adj"/></r></p></e>
+<e><p><l>left-handed<s n="adj"/></l><r>cack-handed<s n="adj"/></r></p></e>
+
+<!-- ij -->
+<!-- en-lanc_1 -->
+<e><p><l>no<s n="ij"/></l><r>nay<s n="ij"/></r></p></e>
+<e r="LR"><p><l>negative<s n="ij"/></l><r>nay<s n="ij"/></r></p></e>
+<e r="LR"><p><l>nope<s n="ij"/></l><r>nay<s n="ij"/></r></p></e>
+<e r="LR"><p><l>no<b/>way<s n="ij"/></l><r>nay<s n="ij"/></r></p></e>
+<e><p><l>yes<s n="ij"/></l><r>aye<s n="ij"/></r></p></e>
+<e r="LR"><p><l>yeah<s n="ij"/></l><r>aye<s n="ij"/></r></p></e>
+<e r="LR"><p><l>yeh<s n="ij"/></l><r>aye<s n="ij"/></r></p></e>
+<e r="LR"><p><l>ok<s n="ij"/></l><r>aye<s n="ij"/></r></p></e>
+
+<!-- pr -->
+<!-- en-lanc_1 -->
+<e><p><l>between<s n="pr"/></l><r>betwixt<s n="pr"/></r></p></e>
+
+<!-- vblex -->
+<!-- en-lanc_1 -->
+<e><p><l>are<s n="vblex"/></l><r>art<s n="vblex"/></r></p></e>
+<e><p><l>earn<s n="vblex"/></l><r>make<s n="vblex"/></r></p></e>
+<e r="LR"><p><l>gain<s n="vblex"/></l><r>make<s n="vblex"/></r></p></e>
+<e r="LR"><p><l>realize<s n="vblex"/></l><r>make<s n="vblex"/></r></p></e>
+<e r="LR"><p><l>realise<s n="vblex"/></l><r>make<s n="vblex"/></r></p></e>
+<e><p><l>beat<s n="vblex"/></l><r>cap<s n="vblex"/></r></p></e>
+<e r="LR"><p><l>win<s n="vblex"/></l><r>cap<s n="vblex"/></r></p></e>
+<e><p><l>press<s n="vblex"/></l><r>throng<s n="vblex"/></r></p></e>
+<e r="LR"><p><l>mob<s n="vblex"/></l><r>throng<s n="vblex"/></r></p></e>
+<e r="LR"><p><l>crowd<s n="vblex"/></l><r>throng<s n="vblex"/></r></p></e>
+<e><p><l>thrash<s n="vblex"/></l><r>bray<s n="vblex"/></r></p></e>
+<e r="LR"><p><l>work<b/>over<s n="vblex"/></l><r>bray<s n="vblex"/></r></p></e>
+<e r="LR"><p><l>beat<b/>up<s n="vblex"/></l><r>bray<s n="vblex"/></r></p></e>
+<e r="LR"><p><l>drub<s n="vblex"/></l><r>bray<s n="vblex"/></r></p></e>
+<e r="LR"><p><l>trounce<s n="vblex"/></l><r>bray<s n="vblex"/></r></p></e>
+<e r="LR"><p><l>clobber<s n="vblex"/></l><r>bray<s n="vblex"/></r></p></e>
+<e><p><l>smack<s n="vblex"/></l><r>skrike<s n="vblex"/></r></p></e>
+<e r="LR"><p><l>skelp<s n="vblex"/></l><r>skrike<s n="vblex"/></r></p></e>
+<e r="LR"><p><l>scream<s n="vblex"/></l><r>skrike<s n="vblex"/></r></p></e>
+<e r="LR"><p><l>howl<s n="vblex"/></l><r>skrike<s n="vblex"/></r></p></e>
+<e r="LR"><p><l>cry<s n="vblex"/></l><r>skrike<s n="vblex"/></r></p></e>
+<e r="LR"><p><l>holler<s n="vblex"/></l><r>skrike<s n="vblex"/></r></p></e>
+<e r="LR"><p><l>shout<s n="vblex"/></l><r>skrike<s n="vblex"/></r></p></e>
+<e r="LR"><p><l>shout<b/>out<s n="vblex"/></l><r>skrike<s n="vblex"/></r></p></e>
+<e r="LR"><p><l>yell<s n="vblex"/></l><r>skrike<s n="vblex"/></r></p></e>
+<e><p><l>understand<s n="vblex"/></l><r>ken<s n="vblex"/></r></p></e>
+<e><p><l>look<s n="vblex"/></l><r>sken<s n="vblex"/></r></p></e>
+<e r="LR"><p><l>watch<s n="vblex"/></l><r>sken<s n="vblex"/></r></p></e>
+<e><p><l>mock<s n="vblex"/></l><r>skit<s n="vblex"/></r></p></e>
+<e r="LR"><p><l>tease<s n="vblex"/></l><r>skit<s n="vblex"/></r></p></e>
+<e r="LR"><p><l>taunt<s n="vblex"/></l><r>skit<s n="vblex"/></r></p></e>
+<e r="LR"><p><l>bemock<s n="vblex"/></l><r>skit<s n="vblex"/></r></p></e>
+<e><p><l>water<s n="vblex"/></l><r>deg<s n="vblex"/></r></p></e>
+<e r="LR"><p><l>irrigate<s n="vblex"/></l><r>deg<s n="vblex"/></r></p></e>
+<e><p><l>soak<s n="vblex"/></l><r>witchett<s n="vblex"/></r></p></e>
+<e r="LR"><p><l>drench<s n="vblex"/></l><r>witchett<s n="vblex"/></r></p></e>
+<e r="LR"><p><l>douse<s n="vblex"/></l><r>witchett<s n="vblex"/></r></p></e>
+<e r="LR"><p><l>sop<s n="vblex"/></l><r>witchett<s n="vblex"/></r></p></e>
+<e r="LR"><p><l>souse<s n="vblex"/></l><r>witchett<s n="vblex"/></r></p></e>
+<e><p><l>worry<s n="vblex"/></l><r>moider<s n="vblex"/></r></p></e>
+<e r="LR"><p><l>disorder<s n="vblex"/></l><r>moider<s n="vblex"/></r></p></e>
+<e r="LR"><p><l>disquiet<s n="vblex"/></l><r>moider<s n="vblex"/></r></p></e>
+<e r="LR"><p><l>distract<s n="vblex"/></l><r>moider<s n="vblex"/></r></p></e>
+<e r="LR"><p><l>perturb<s n="vblex"/></l><r>moider<s n="vblex"/></r></p></e>
+<e r="LR"><p><l>trouble<s n="vblex"/></l><r>moider<s n="vblex"/></r></p></e>
+<e r="LR"><p><l>unhinge<s n="vblex"/></l><r>moider<s n="vblex"/></r></p></e>
+<e><p><l>dig<s n="vblex"/></l><r>delve<s n="vblex"/></r></p></e>
+<e r="LR"><p><l>excavate<s n="vblex"/></l><r>delve<s n="vblex"/></r></p></e>
+<e><p><l>weed<s n="vblex"/></l><r>lowk<s n="vblex"/></r></p></e>
+<e><p><l>get<s n="vblex"/></l><r>get<s n="vblex"/></r></p></e>
+<e><p><l>eat<s n="vblex"/></l><r>et<s n="vblex"/></r></p></e>
+<e r="LR"><p><l>scoff<s n="vblex"/></l><r>et<s n="vblex"/></r></p></e>
+
+<!-- vbmod -->
+<!-- en-lanc_1 -->
+<e><p><l>must<s n="vbmod"/></l><r>mun<s n="vbmod"/></r></p></e>
+
+<!-- adv -->
+<!-- en-lanc_1 -->
+<e><p><l>a<b/>lot<s n="adv"/></l><r>a<b/>deal<s n="adv"/></r></p></e>
+
+<!-- n -->
+<!-- en-lanc_2 -->
+<e><p><l>toilet<s n="n"/></l><r>tippler<s n="n"/></r></p></e>
+<e><p><l>woman<s n="n"/></l><r>lady<s n="n"/></r></p></e>
+<e><p><l>gut<s n="n"/></l><r>weasand<s n="n"/></r></p></e>
+<e r="LR"><p><l>intestine<s n="n"/></l><r>weasand<s n="n"/></r></p></e>
+<e r="LR"><p><l>bowel<s n="n"/></l><r>weasand<s n="n"/></r></p></e>
+<e><p><l>clothes<s n="n"/></l><r>rags<s n="n"/></r></p></e>
+<e r="LR"><p><l>clothing<s n="n"/></l><r>rags<s n="n"/></r></p></e>
+<e r="LR"><p><l>apparel<s n="n"/></l><r>rags<s n="n"/></r></p></e>
+<e r="LR"><p><l>dress<s n="n"/></l><r>rags<s n="n"/></r></p></e>
+<e><p><l>people<s n="n"/></l><r>folks<s n="n"/></r></p></e>
+<e r="LR"><p><l>populace<s n="n"/></l><r>folks<s n="n"/></r></p></e>
+<e r="LR"><p><l>public<s n="n"/></l><r>folks<s n="n"/></r></p></e>
+<e r="LR"><p><l>social<b/>class<s n="n"/></l><r>folks<s n="n"/></r></p></e>
+<e r="LR"><p><l>socio-economic<b/>class<s n="n"/></l><r>folks<s n="n"/></r></p></e>
+<e><p><l>chump<s n="n"/></l><r>natural<s n="n"/></r></p></e>
+<e r="LR"><p><l>fool<s n="n"/></l><r>natural<s n="n"/></r></p></e>
+<e r="LR"><p><l>patsy<s n="n"/></l><r>natural<s n="n"/></r></p></e>
+<e r="LR"><p><l>fall<b/>guy<s n="n"/></l><r>natural<s n="n"/></r></p></e>
+<e r="LR"><p><l>sucker<s n="n"/></l><r>natural<s n="n"/></r></p></e>
+<e r="LR"><p><l>soft<b/>touch<s n="n"/></l><r>natural<s n="n"/></r></p></e>
+<e r="LR"><p><l>mug<s n="n"/></l><r>natural<s n="n"/></r></p></e>
+<e r="LR"><p><l>dupe<s n="n"/></l><r>natural<s n="n"/></r></p></e>
+<e r="LR"><p><l>buffoon<s n="n"/></l><r>natural<s n="n"/></r></p></e>
+<e><p><l>cord<s n="n"/></l><r>bantin<s n="n"/></r></p></e>
+<e r="LR"><p><l>twine<s n="n"/></l><r>bantin<s n="n"/></r></p></e>
+<e r="LR"><p><l>string<s n="n"/></l><r>bantin<s n="n"/></r></p></e>
+<e><p><l>milk<s n="n"/></l><r>beest<s n="n"/></r></p></e>
+<e><p><l>house<s n="n"/></l><r>biggin<s n="n"/></r></p></e>
+<e r="LR"><p><l>building<s n="n"/></l><r>biggin<s n="n"/></r></p></e>
+<e r="LR"><p><l>mansion<s n="n"/></l><r>biggin<s n="n"/></r></p></e>
+<e><p><l>brother<s n="n"/></l><r>breéther<s n="n"/></r></p></e>
+<e><p><l>shelf<s n="n"/></l><r>breyd<s n="n"/></r></p></e>
+<e><p><l>bird<s n="n"/></l><r>brid<s n="n"/></r></p></e>
+<e><p><l>chain<s n="n"/></l><r>chen<s n="n"/></r></p></e>
+<e><p><l>buttermilk<s n="n"/></l><r>churn<b/>milk<s n="n"/></r></p></e>
+<e><p><l>noise<s n="n"/></l><r>clatter<s n="n"/></r></p></e>
+<e r="LR"><p><l>racket<s n="n"/></l><r>clatter<s n="n"/></r></p></e>
+<e><p><l>stockings<s n="n"/></l><r>cockers<s n="n"/></r></p></e>
+<e><p><l>rough<s n="n"/></l><r>cogley<s n="n"/></r></p></e>
+<e r="LR"><p><l>stony<s n="n"/></l><r>cogley<s n="n"/></r></p></e>
+<e><p><l>father<s n="n"/></l><r>dad<s n="n"/></r></p></e>
+<e><p><l>slut<s n="n"/></l><r>daffock<s n="n"/></r></p></e>
+<e r="LR"><p><l>strumpet<s n="n"/></l><r>daffock<s n="n"/></r></p></e>
+<e r="LR"><p><l>trollop<s n="n"/></l><r>daffock<s n="n"/></r></p></e>
+<e r="LR"><p><l>adulteress<s n="n"/></l><r>daffock<s n="n"/></r></p></e>
+<e><p><l>daughter<s n="n"/></l><r>dotter<s n="n"/></r></p></e>
+<e><p><l>thoughtful<s n="n"/></l><r>dumps<s n="n"/></r></p></e>
+<e r="LR"><p><l>concerned<s n="n"/></l><r>dumps<s n="n"/></r></p></e>
+<e><p><l>door<s n="n"/></l><r>dur<s n="n"/></r></p></e>
+<e><p><l>feather<s n="n"/></l><r>fither<s n="n"/></r></p></e>
+<e><p><l>path<s n="n"/></l><r>gate<s n="n"/></r></p></e>
+<e r="LR"><p><l>route<s n="n"/></l><r>gate<s n="n"/></r></p></e>
+<e r="LR"><p><l>course<s n="n"/></l><r>gate<s n="n"/></r></p></e>
+<e><p><l>grass<s n="n"/></l><r>grese<s n="n"/></r></p></e>
+<e><p><l>hand<s n="n"/></l><r>hont<s n="n"/></r></p></e>
+<e><p><l>hands<s n="n"/></l><r>hons<s n="n"/></r></p></e>
+<e><p><l>comb<s n="n"/></l><r>cama<s n="n"/></r></p></e>
+<e><p><l>family<s n="n"/></l><r>meeny<s n="n"/></r></p></e>
+<e r="LR"><p><l>kinfolk<s n="n"/></l><r>meeny<s n="n"/></r></p></e>
+<e r="LR"><p><l>kinsfolk<s n="n"/></l><r>meeny<s n="n"/></r></p></e>
+<e><p><l>common<s n="n"/></l><r>moor<s n="n"/></r></p></e>
+<e r="LR"><p><l>heath<s n="n"/></l><r>moor<s n="n"/></r></p></e>
+<e><p><l>letch<s n="n"/></l><r>mullock<s n="n"/></r></p></e>
+<e r="LR"><p><l>dirty<b/>old<b/>man<s n="n"/></l><r>mullock<s n="n"/></r></p></e>
+<e r="LR"><p><l>satyr<s n="n"/></l><r>mullock<s n="n"/></r></p></e>
+<e r="LR"><p><l>pervert<s n="n"/></l><r>mullock<s n="n"/></r></p></e>
+<e r="LR"><p><l>satyr<s n="n"/></l><r>mullock<s n="n"/></r></p></e>
+<e r="LR"><p><l>degenerate<s n="n"/></l><r>mullock<s n="n"/></r></p></e>
+<e r="LR"><p><l>deviant<s n="n"/></l><r>mullock<s n="n"/></r></p></e>
+<e><p><l>upper<b/>class<s n="n"/></l><r>nob<s n="n"/></r></p></e>
+<e r="LR"><p><l>aristocrat<s n="n"/></l><r>nob<s n="n"/></r></p></e>
+<e><p><l>nose<s n="n"/></l><r>nese<s n="n"/></r></p></e>
+<e><p><l>aim<s n="n"/></l><r>neb<s n="n"/></r></p></e>
+<e r="LR"><p><l>brim<s n="n"/></l><r>neb<s n="n"/></r></p></e>
+<e><p><l>head<s n="n"/></l><r>napper<s n="n"/></r></p></e>
+<e><p><l>season<s n="n"/></l><r>sezen<s n="n"/></r></p></e>
+<e><p><l>lithe<s n="n"/></l><r>swipper<s n="n"/></r></p></e>
+<e r="LR"><p><l>lissome<s n="n"/></l><r>swipper<s n="n"/></r></p></e>
+<e r="LR"><p><l>lithesome<s n="n"/></l><r>swipper<s n="n"/></r></p></e>
+<e r="LR"><p><l>supple<s n="n"/></l><r>swipper<s n="n"/></r></p></e>
+<e r="LR"><p><l>svelte<s n="n"/></l><r>swipper<s n="n"/></r></p></e>
+<e><p><l>song<s n="n"/></l><r>sunk<s n="n"/></r></p></e>
+<e><p><l>wool<s n="n"/></l><r>woo<s n="n"/></r></p></e>
+<e><p><l>fear<s n="n"/></l><r>flay<s n="n"/></r></p></e>
+<e r="LR"><p><l>anxiety<s n="n"/></l><r>flay<s n="n"/></r></p></e>
+<e r="LR"><p><l>fright<s n="n"/></l><r>flay<s n="n"/></r></p></e>
+<e><p><l>friend<s n="n"/></l><r>crony<s n="n"/></r></p></e>
+<e r="LR"><p><l>companion<s n="n"/></l><r>crony<s n="n"/></r></p></e>
+<e><p><l>rat<s n="n"/></l><r>varment<s n="n"/></r></p></e>
+<e r="LR"><p><l>mouse<s n="n"/></l><r>varment<s n="n"/></r></p></e>
+<e r="LR"><p><l>stoat<s n="n"/></l><r>varment<s n="n"/></r></p></e>
+<e r="LR"><p><l>weasil<s n="n"/></l><r>varment<s n="n"/></r></p></e>
+<e r="LR"><p><l>cockroach<s n="n"/></l><r>varment<s n="n"/></r></p></e>
+<e><p><l>wizard<s n="n"/></l><r>warlock<s n="n"/></r></p></e>
+<e r="LR"><p><l>magician<s n="n"/></l><r>warlock<s n="n"/></r></p></e>
+<e r="LR"><p><l>necromancer<s n="n"/></l><r>warlock<s n="n"/></r></p></e>
+<e r="LR"><p><l>occultist<s n="n"/></l><r>warlock<s n="n"/></r></p></e>
+<e r="LR"><p><l>sorcerer<s n="n"/></l><r>warlock<s n="n"/></r></p></e>
+<e><p><l>grass<s n="n"/></l><r>editch<s n="n"/></r></p></e>
+
+<!-- prn -->
+<!-- en-lanc_2 -->
+
+<!-- adj -->
+<!-- en-lanc_2 -->
+<e><p><l>pregnant<s n="adj"/></l><r>in<b/>the<b/>family<b/>way<s n="adj"/></r></p></e>
+<e r="LR"><p><l>with<b/>child<s n="adj"/></l><r>in<b/>the<b/>family<b/>way<s n="adj"/></r></p></e>
+<e r="LR"><p><l>expectant<s n="adj"/></l><r>in<b/>the<b/>family<b/>way<s n="adj"/></r></p></e>
+<e><p><l>great<s n="adj"/></l><r>banging<s n="adj"/></r></p></e>
+<e r="LR"><p><l>corking<s n="adj"/></l><r>banging<s n="adj"/></r></p></e>
+<e r="LR"><p><l>cracking<s n="adj"/></l><r>banging<s n="adj"/></r></p></e>
+<e r="LR"><p><l>peachy<s n="adj"/></l><r>banging<s n="adj"/></r></p></e>
+<e><p><l>dirty<s n="adj"/></l><r>bawtry<s n="adj"/></r></p></e>
+<e r="LR"><p><l>naughty<s n="adj"/></l><r>bawtry<s n="adj"/></r></p></e>
+<e><p><l>under<b/>obligation<s n="adj"/></l><r>beholden<s n="adj"/></r></p></e>
+<e r="LR"><p><l>obliged<s n="adj"/></l><r>beholden<s n="adj"/></r></p></e>
+<e r="LR"><p><l>compelled<s n="adj"/></l><r>beholden<s n="adj"/></r></p></e>
+<e r="LR"><p><l>bound<s n="adj"/></l><r>beholden<s n="adj"/></r></p></e>
+<e><p><l>handsome<s n="adj"/></l><r>bonny<s n="adj"/></r></p></e>
+<e r="LR"><p><l>pretty<s n="adj"/></l><r>bonny<s n="adj"/></r></p></e>
+<e r="LR"><p><l>fine-looking<s n="adj"/></l><r>bonny<s n="adj"/></r></p></e>
+<e r="LR"><p><l>good-looking<s n="adj"/></l><r>bonny<s n="adj"/></r></p></e>
+<e r="LR"><p><l>well-favoured<s n="adj"/></l><r>bonny<s n="adj"/></r></p></e>
+<e r="LR"><p><l>beautiful<s n="adj"/></l><r>bonny<s n="adj"/></r></p></e>
+<e r="LR"><p><l>comely<s n="adj"/></l><r>bonny<s n="adj"/></r></p></e>
+<e r="LR"><p><l>fair<s n="adj"/></l><r>bonny<s n="adj"/></r></p></e>
+<e><p><l>bright<s n="adj"/></l><r>breet<s n="adj"/></r></p></e>
+<e r="LR"><p><l>shiny<s n="adj"/></l><r>breet<s n="adj"/></r></p></e>
+<e r="LR"><p><l>polished<s n="adj"/></l><r>breet<s n="adj"/></r></p></e>
+<e r="LR"><p><l>shiny<s n="adj"/></l><r>breet<s n="adj"/></r></p></e>
+<e r="LR"><p><l>glossy<s n="adj"/></l><r>breet<s n="adj"/></r></p></e>
+<e><p><l>healthy<s n="adj"/></l><r>cant<s n="adj"/></r></p></e>
+<e r="LR"><p><l>comfortable<s n="adj"/></l><r>cant<s n="adj"/></r></p></e>
+<e><p><l>wholesome<s n="adj"/></l><r>doesum<s n="adj"/></r></p></e>
+<e r="LR"><p><l>healthy<s n="adj"/></l><r>doesum<s n="adj"/></r></p></e>
+<e><p><l>forward<s n="adj"/></l><r>endways<s n="adj"/></r></p></e>
+<e r="RL"><p><l>forward<s n="adj"/></l><r>forrud<s n="adj"/></r></p></e>
+<e><p><l>iron<s n="adj"/></l><r>eiron<s n="adj"/></r></p></e>
+<e><p><l>ugly<s n="adj"/></l><r>feaw<s n="adj"/></r></p></e>
+<e r="LR"><p><l>vile<s n="adj"/></l><r>feaw<s n="adj"/></r></p></e>
+<e r="LR"><p><l>frightful<s n="adj"/></l><r>feaw<s n="adj"/></r></p></e>
+<e r="LR"><p><l>horrifying<s n="adj"/></l><r>feaw<s n="adj"/></r></p></e>
+<e r="LR"><p><l>horrible<s n="adj"/></l><r>feaw<s n="adj"/></r></p></e>
+<e r="LR"><p><l>despicable<s n="adj"/></l><r>feaw<s n="adj"/></r></p></e>
+<e r="LR"><p><l>slimy<s n="adj"/></l><r>feaw<s n="adj"/></r></p></e>
+<e r="LR"><p><l>unworthy<s n="adj"/></l><r>feaw<s n="adj"/></r></p></e>
+<e r="LR"><p><l>worthless<s n="adj"/></l><r>feaw<s n="adj"/></r></p></e>
+<e r="LR"><p><l>wretched<s n="adj"/></l><r>feaw<s n="adj"/></r></p></e>
+<e><p><l>jagged<s n="adj"/></l><r>hacklt<s n="adj"/></r></p></e>
+<e r="LR"><p><l>toothed<s n="adj"/></l><r>hacklt<s n="adj"/></r></p></e>
+<e r="LR"><p><l>notched<s n="adj"/></l><r>hacklt<s n="adj"/></r></p></e>
+<e r="LR"><p><l>cut<s n="adj"/></l><r>hacklt<s n="adj"/></r></p></e>
+<e><p><l>sleepy<s n="adj"/></l><r>muzzy<s n="adj"/></r></p></e>
+<e><p><l>slender<s n="adj"/></l><r>spare<s n="adj"/></r></p></e>
+<e r="LR"><p><l>thin<s n="adj"/></l><r>spare<s n="adj"/></r></p></e>
+<e r="LR"><p><l>slim<s n="adj"/></l><r>spare<s n="adj"/></r></p></e>
+<e r="LR"><p><l>lean<s n="adj"/></l><r>spare<s n="adj"/></r></p></e>
+<e><p><l>dawn<s n="adj"/></l><r>strike<b/>of<b/>day<s n="adj"/></r></p></e>
+<e r="LR"><p><l>first<b/>light<s n="adj"/></l><r>strike<b/>of<b/>day<s n="adj"/></r></p></e>
+<e r="LR"><p><l>daybreak<s n="adj"/></l><r>strike<b/>of<b/>day<s n="adj"/></r></p></e>
+<e r="LR"><p><l>break<b/>of<b/>day<s n="adj"/></l><r>strike<b/>of<b/>day<s n="adj"/></r></p></e>
+<e r="LR"><p><l>break<b/>of<b/>the<b/>day<s n="adj"/></l><r>strike<b/>of<b/>day<s n="adj"/></r></p></e>
+<e r="LR"><p><l>sunup<s n="adj"/></l><r>strike<b/>of<b/>day<s n="adj"/></r></p></e>
+<e><p><l>grassy<s n="adj"/></l><r>editch<s n="adj"/></r></p></e>
+
+<!-- det -->
+<!-- en-lanc_2 -->
+
+<!-- cnjadv -->
+<!-- en-lanc_2 -->
+<e><p><l>as<s n="cnjadv"/></l><r>for<s n="cnjadv"/></r></p></e>
+
+<!-- cnjsub -->
+<!-- en-lanc_2 -->
+<e><p><l>because<s n="cnjsub"/></l><r>'cose<s n="cnjsub"/></r></p></e>
+
+<!-- pr -->
+<!-- en-lanc_2 -->
+<e><p><l>about<s n="pr"/></l><r>abaht<s n="pr"/></r></p></e>
+<e><p><l>near<s n="pr"/></l><r>naar<s n="pr"/></r></p></e>
+<e r="RL"><p><l>near<s n="pr"/></l><r>awbut<s n="pr"/></r></p></e>
+
+<!-- vblex -->
+<!-- en-lanc_2 -->
+<e><p><l>strike<s n="vblex"/></l><r>clout<s n="vblex"/></r></p></e>
+<e r="LR"><p><l>hit<s n="vblex"/></l><r>clout<s n="vblex"/></r></p></e>
+<e r="LR"><p><l>impact<s n="vblex"/></l><r>clout<s n="vblex"/></r></p></e>
+<e r="LR"><p><l>knock<s n="vblex"/></l><r>clout<s n="vblex"/></r></p></e>
+<e><p><l>work<s n="vblex"/></l><r>toil<s n="vblex"/></r></p></e>
+<e r="LR"><p><l>labour<s n="vblex"/></l><r>toil<s n="vblex"/></r></p></e>
+<e r="LR"><p><l>exert<s n="vblex"/></l><r>toil<s n="vblex"/></r></p></e>
+<e r="LR"><p><l>do<b/>work<s n="vblex"/></l><r>toil<s n="vblex"/></r></p></e>
+<e><p><l>offer<s n="vblex"/></l><r>awsin<s n="vblex"/></r></p></e>
+<e><p><l>stick,<s n="vblex"/></l><r>bárkle<s n="vblex"/></r></p></e>
+<e r="LR"><p><l>adhere<s n="vblex"/></l><r>bárkle<s n="vblex"/></r></p></e>
+<e><p><l>talk<s n="vblex"/></l><r>blab<s n="vblex"/></r></p></e>
+<e r="LR"><p><l>tattle<s n="vblex"/></l><r>blab<s n="vblex"/></r></p></e>
+<e r="LR"><p><l>gossip<s n="vblex"/></l><r>blab<s n="vblex"/></r></p></e>
+<e r="LR"><p><l>prate<s n="vblex"/></l><r>blab<s n="vblex"/></r></p></e>
+<e><p><l>burn<s n="vblex"/></l><r>brun<s n="vblex"/></r></p></e>
+<e><p><l>kiss<s n="vblex"/></l><r>buss<s n="vblex"/></r></p></e>
+<e><p><l>play<s n="vblex"/></l><r>dandle<s n="vblex"/></r></p></e>
+<e><p><l>shake<s n="vblex"/></l><r>diddle<s n="vblex"/></r></p></e>
+<e><p><l>put<b/>on<b/>clothes<s n="vblex"/></l><r>don<s n="vblex"/></r></p></e>
+<e r="LR"><p><l>dress<s n="vblex"/></l><r>don<s n="vblex"/></r></p></e>
+<e><p><l>tire<s n="vblex"/></l><r>fag<s n="vblex"/></r></p></e>
+<e><p><l>talk<s n="vblex"/></l><r>gab<s n="vblex"/></r></p></e>
+<e r="RL"><p><l>talk<s n="vblex"/></l><r>lip<s n="vblex"/></r></p></e>
+<e><p><l>offend<s n="vblex"/></l><r>huff<s n="vblex"/></r></p></e>
+<e r="LR"><p><l>disrespect<s n="vblex"/></l><r>huff<s n="vblex"/></r></p></e>
+<e><p><l>run<s n="vblex"/></l><r>lob<s n="vblex"/></r></p></e>
+<e><p><l>sort<s n="vblex"/></l><r>make<s n="vblex"/></r></p></e>
+<e><p><l>equal<s n="vblex"/></l><r>marrow<s n="vblex"/></r></p></e>
+<e><p><l>pull<s n="vblex"/></l><r>maul<s n="vblex"/></r></p></e>
+<e><p><l>try<s n="vblex"/></l><r>oss<s n="vblex"/></r></p></e>
+<e><p><l>walk<s n="vblex"/></l><r>pad<s n="vblex"/></r></p></e>
+<e><p><l>push<s n="vblex"/></l><r>pick<s n="vblex"/></r></p></e>
+<e><p><l>question<s n="vblex"/></l><r>pump<s n="vblex"/></r></p></e>
+<e r="LR"><p><l>interrogate<s n="vblex"/></l><r>pump<s n="vblex"/></r></p></e>
+<e r="LR"><p><l>examine<s n="vblex"/></l><r>pump<s n="vblex"/></r></p></e>
+<e><p><l>drink<s n="vblex"/></l><r>quift<s n="vblex"/></r></p></e>
+<e r="LR"><p><l>booze<s n="vblex"/></l><r>quift<s n="vblex"/></r></p></e>
+<e r="LR"><p><l>quaff<s n="vblex"/></l><r>quift<s n="vblex"/></r></p></e>
+<e r="LR"><p><l>tipple<s n="vblex"/></l><r>quift<s n="vblex"/></r></p></e>
+<e r="LR"><p><l>swill<s n="vblex"/></l><r>quift<s n="vblex"/></r></p></e>
+<e><p><l>smoke<s n="vblex"/></l><r>reech<s n="vblex"/></r></p></e>
+<e><p><l>smell<s n="vblex"/></l><r>snuff<s n="vblex"/></r></p></e>
+<e><p><l>slide<s n="vblex"/></l><r>slur<s n="vblex"/></r></p></e>
+<e r="LR"><p><l>skid<s n="vblex"/></l><r>slur<s n="vblex"/></r></p></e>
+<e r="LR"><p><l>slew<s n="vblex"/></l><r>slur<s n="vblex"/></r></p></e>
+<e><p><l>wash<s n="vblex"/></l><r>wesh<s n="vblex"/></r></p></e>
+<e r="LR"><p><l>cleanse<s n="vblex"/></l><r>wesh<s n="vblex"/></r></p></e>
+<e r="LR"><p><l>clean<s n="vblex"/></l><r>wesh<s n="vblex"/></r></p></e>
+<e r="LR"><p><l>wash<b/>up<s n="vblex"/></l><r>wesh<s n="vblex"/></r></p></e>
+<e><p><l>dress<b/>up<s n="vblex"/></l><r>dolly<s n="vblex"/></r></p></e>
+<e r="LR"><p><l>overdress<s n="vblex"/></l><r>dolly<s n="vblex"/></r></p></e>
+<e r="LR"><p><l>deck<b/>up<s n="vblex"/></l><r>dolly<s n="vblex"/></r></p></e>
+<e r="LR"><p><l>fancy<b/>up<s n="vblex"/></l><r>dolly<s n="vblex"/></r></p></e>
+<e r="LR"><p><l>deck<b/>out<s n="vblex"/></l><r>dolly<s n="vblex"/></r></p></e>
+<e r="LR"><p><l>get<b/>up<s n="vblex"/></l><r>dolly<s n="vblex"/></r></p></e>
+<e r="LR"><p><l>tog<b/>up<s n="vblex"/></l><r>dolly<s n="vblex"/></r></p></e>
+<e r="LR"><p><l>tog<b/>out<s n="vblex"/></l><r>dolly<s n="vblex"/></r></p></e>
+
+<!-- adv -->
+<!-- en-lanc_2 -->
+<e><p><l>where<s n="adv"/></l><r>weer<s n="adv"/></r></p></e>
+<e><p><l>forward<s n="adv"/></l><r>endways<s n="adv"/></r></p></e>
+<e r="RL"><p><l>forward<s n="adv"/></l><r>forrud<s n="adv"/></r></p></e>
+<e><p><l>however<s n="adv"/></l><r>eaware<s n="adv"/></r></p></e>
+<e><p><l>where<s n="adv"/></l><r>weer<s n="adv"/></r></p></e>
+
+<!-- n -->
+<!-- en-lanc_3 -->
+<e><p><l>police<s n="n"/></l><r>bayly<s n="n"/></r></p></e>
+<e r="LR"><p><l>bailiff<s n="n"/></l><r>bayly<s n="n"/></r></p></e>
+<e r="LR"><p><l>law<s n="n"/></l><r>bayly<s n="n"/></r></p></e>
+<e r="LR"><p><l>police<b/>force<s n="n"/></l><r>bayly<s n="n"/></r></p></e>
+<e r="LR"><p><l>constabulary<s n="n"/></l><r>bayly<s n="n"/></r></p></e>
+<e r="LR"><p><l>scotland<b/>yard<s n="n"/></l><r>bayly<s n="n"/></r></p></e>
+<e r="LR"><p><l>jurisprudence<s n="n"/></l><r>bayly<s n="n"/></r></p></e>
+<e><p><l>tantrum<s n="n"/></l><r>benny<s n="n"/></r></p></e>
+<e><p><l>breeches<s n="n"/></l><r>britchies<s n="n"/></r></p></e>
+<e r="LR"><p><l>trousers<s n="n"/></l><r>britchies<s n="n"/></r></p></e>
+<e r="LR"><p><l>pants<s n="n"/></l><r>britchies<s n="n"/></r></p></e>
+<e><p><l>broken<s n="n"/></l><r>brossen<s n="n"/></r></p></e>
+<e r="LR"><p><l>damaged<s n="n"/></l><r>brossen<s n="n"/></r></p></e>
+<e r="LR"><p><l>battered<s n="n"/></l><r>brossen<s n="n"/></r></p></e>
+<e r="LR"><p><l>beat-up<s n="n"/></l><r>brossen<s n="n"/></r></p></e>
+<e r="LR"><p><l>beaten-up<s n="n"/></l><r>brossen<s n="n"/></r></p></e>
+<e r="LR"><p><l>busted<s n="n"/></l><r>brossen<s n="n"/></r></p></e>
+<e r="LR"><p><l>burst<s n="n"/></l><r>brossen<s n="n"/></r></p></e>
+<e r="LR"><p><l>broken-down<s n="n"/></l><r>brossen<s n="n"/></r></p></e>
+<e r="LR"><p><l>tumble-down<s n="n"/></l><r>brossen<s n="n"/></r></p></e>
+<e><p><l>sandwich<s n="n"/></l><r>butty<s n="n"/></r></p></e>
+<e><p><l>devil<s n="n"/></l><r>dule<s n="n"/></r></p></e>
+<e r="LR"><p><l>satan<s n="n"/></l><r>dule<s n="n"/></r></p></e>
+<e r="LR"><p><l>beelzebub<s n="n"/></l><r>dule<s n="n"/></r></p></e>
+<e r="LR"><p><l>lucifer<s n="n"/></l><r>dule<s n="n"/></r></p></e>
+<e r="LR"><p><l>old<b/>nick<s n="n"/></l><r>dule<s n="n"/></r></p></e>
+<e r="LR"><p><l>prince<b/>of<b/>darkness<s n="n"/></l><r>dule<s n="n"/></r></p></e>
+<e r="LR"><p><l>the<b/>devil<s n="n"/></l><r>dule<s n="n"/></r></p></e>
+<e r="LR"><p><l>the<b/>tempter<s n="n"/></l><r>dule<s n="n"/></r></p></e>
+<e><p><l>callus<s n="n"/></l><r>seg<s n="n"/></r></p></e>
+<e><p><l>bastard<s n="n"/></l><r>git<s n="n"/></r></p></e>
+<e r="LR"><p><l>asshole<s n="n"/></l><r>git<s n="n"/></r></p></e>
+<e r="LR"><p><l>mother<b/>fucker<s n="n"/></l><r>git<s n="n"/></r></p></e>
+<e r="LR"><p><l>motherfucker<s n="n"/></l><r>git<s n="n"/></r></p></e>
+<e r="LR"><p><l>sob<s n="n"/></l><r>git<s n="n"/></r></p></e>
+<e r="LR"><p><l>son<b/>of<b/>a<b/>bitch<s n="n"/></l><r>git<s n="n"/></r></p></e>
+<e r="LR"><p><l>whoreson<s n="n"/></l><r>git<s n="n"/></r></p></e>
+<e><p><l>mouth<s n="n"/></l><r>gob<s n="n"/></r></p></e>
+<e><p><l>wife<s n="n"/></l><r>missus<s n="n"/></r></p></e>
+<e><p><l>boss<s n="n"/></l><r>master<s n="n"/></r></p></e>
+<e r="LR"><p><l>gaffer<s n="n"/></l><r>master<s n="n"/></r></p></e>
+<e r="LR"><p><l>honcho<s n="n"/></l><r>master<s n="n"/></r></p></e>
+<e r="LR"><p><l>chief<s n="n"/></l><r>master<s n="n"/></r></p></e>
+<e r="LR"><p><l>foreman<s n="n"/></l><r>master<s n="n"/></r></p></e>
+<e r="LR"><p><l>gaffer<s n="n"/></l><r>master<s n="n"/></r></p></e>
+<e r="LR"><p><l>chairman<s n="n"/></l><r>master<s n="n"/></r></p></e>
+<e><p><l>head<s n="n"/></l><r>yed<s n="n"/></r></p></e>
+<e><p><l>ache<s n="n"/></l><r>warch<s n="n"/></r></p></e>
+<e r="LR"><p><l>hurt<s n="n"/></l><r>warch<s n="n"/></r></p></e>
+<e><p><l>ear<s n="n"/></l><r>lug<s n="n"/></r></p></e>
+<e><p><l>cold<s n="n"/></l><r>nesh<s n="n"/></r></p></e>
+<e r="LR"><p><l>arctic<s n="n"/></l><r>nesh<s n="n"/></r></p></e>
+<e r="LR"><p><l>glacial<s n="n"/></l><r>nesh<s n="n"/></r></p></e>
+<e r="LR"><p><l>icy<s n="n"/></l><r>nesh<s n="n"/></r></p></e>
+<e r="LR"><p><l>frosty<s n="n"/></l><r>nesh<s n="n"/></r></p></e>
+<e r="LR"><p><l>frozen<s n="n"/></l><r>nesh<s n="n"/></r></p></e>
+<e r="LR"><p><l>glacial<s n="n"/></l><r>nesh<s n="n"/></r></p></e>
+<e r="LR"><p><l>icy<s n="n"/></l><r>nesh<s n="n"/></r></p></e>
+<e r="LR"><p><l>wintry<s n="n"/></l><r>nesh<s n="n"/></r></p></e>
+<e><p><l>sense<s n="n"/></l><r>nouse<s n="n"/></r></p></e>
+<e r="LR"><p><l>faculty<s n="n"/></l><r>nouse<s n="n"/></r></p></e>
+<e r="LR"><p><l>reason<s n="n"/></l><r>nouse<s n="n"/></r></p></e>
+
+<!-- prn -->
+<!-- en-lanc_3 -->
+<e><p><l>myself<s n="prn"/></l><r>mysen<s n="prn"/></r></p></e>
+<e><p><l>we<s n="prn"/></l><r>us<s n="prn"/></r></p></e>
+
+<!-- pr -->
+<!-- en-lanc_3 -->
+<e><p><l>with<s n="pr"/></l><r>wi<s n="pr"/></r></p></e>
+
+<!-- adj -->
+<!-- en-lanc_3 -->
+<e><p><l>foolish<s n="adj"/></l><r>gormless<s n="adj"/></r></p></e>
+<e><p><l>glad<s n="adj"/></l><r>fain<s n="adj"/></r></p></e>
+
+<!-- vblex -->
+<!-- en-lanc_3 -->
+<e><p><l>strike<s n="vblex"/></l><r>clout<s n="vblex"/></r></p></e>
+<e><p><l>fix<s n="vblex"/></l><r>fettle<s n="vblex"/></r></p></e>
+<e r="LR"><p><l>mend<s n="vblex"/></l><r>fettle<s n="vblex"/></r></p></e>
+<e r="LR"><p><l>repair<s n="vblex"/></l><r>fettle<s n="vblex"/></r></p></e>
+<e r="LR"><p><l>restore<s n="vblex"/></l><r>fettle<s n="vblex"/></r></p></e>
+<e r="LR"><p><l>prepare<s n="vblex"/></l><r>fettle<s n="vblex"/></r></p></e>
+<e r="LR"><p><l>ready<s n="vblex"/></l><r>fettle<s n="vblex"/></r></p></e>
+<e><p><l>exhaust<s n="vblex"/></l><r>jigger<s n="vblex"/></r></p></e>
+<e><p><l>killed<s n="vblex"/></l><r>kilt<s n="vblex"/></r></p></e>
+<e r="LR"><p><l>consume<s n="vblex"/></l><r>kilt<s n="vblex"/></r></p></e>
+<e r="LR"><p><l>exhaust<s n="vblex"/></l><r>kilt<s n="vblex"/></r></p></e>
+<e r="LR"><p><l>expend<s n="vblex"/></l><r>kilt<s n="vblex"/></r></p></e>
+<e r="LR"><p><l>use<b/>up<s n="vblex"/></l><r>kilt<s n="vblex"/></r></p></e>
+<e r="LR"><p><l>wipe<b/>out<s n="vblex"/></l><r>kilt<s n="vblex"/></r></p></e>
+<e r="LR"><p><l>deplete<s n="vblex"/></l><r>kilt<s n="vblex"/></r></p></e>
+<e><p><l>annoy<s n="vblex"/></l><r>moither<s n="vblex"/></r></p></e>
+<e r="LR"><p><l>bother<s n="vblex"/></l><r>moither<s n="vblex"/></r></p></e>
+<e r="LR"><p><l>harass<s n="vblex"/></l><r>moither<s n="vblex"/></r></p></e>
+<e r="LR"><p><l>beset<s n="vblex"/></l><r>moither<s n="vblex"/></r></p></e>
+<e r="LR"><p><l>chafe<s n="vblex"/></l><r>moither<s n="vblex"/></r></p></e>
+<e r="LR"><p><l>chevvy<s n="vblex"/></l><r>moither<s n="vblex"/></r></p></e>
+<e r="LR"><p><l>chevy<s n="vblex"/></l><r>moither<s n="vblex"/></r></p></e>
+<e r="LR"><p><l>chivy<s n="vblex"/></l><r>moither<s n="vblex"/></r></p></e>
+<e r="LR"><p><l>get<b/>at<s n="vblex"/></l><r>moither<s n="vblex"/></r></p></e>
+<e r="LR"><p><l>get<b/>to<s n="vblex"/></l><r>moither<s n="vblex"/></r></p></e>
+<e r="LR"><p><l>harry<s n="vblex"/></l><r>moither<s n="vblex"/></r></p></e>
+<e r="LR"><p><l>hassle<s n="vblex"/></l><r>moither<s n="vblex"/></r></p></e>
+<e r="LR"><p><l>irritate<s n="vblex"/></l><r>moither<s n="vblex"/></r></p></e>
+<e r="LR"><p><l>nark<s n="vblex"/></l><r>moither<s n="vblex"/></r></p></e>
+<e r="LR"><p><l>nettle<s n="vblex"/></l><r>moither<s n="vblex"/></r></p></e>
+<e r="LR"><p><l>plague<s n="vblex"/></l><r>moither<s n="vblex"/></r></p></e>
+<e r="LR"><p><l>rag<s n="vblex"/></l><r>moither<s n="vblex"/></r></p></e>
+<e r="LR"><p><l>rile<s n="vblex"/></l><r>moither<s n="vblex"/></r></p></e>
+<e r="LR"><p><l>vex<s n="vblex"/></l><r>moither<s n="vblex"/></r></p></e>
+<e r="LR"><p><l>chivy<s n="vblex"/></l><r>moither<s n="vblex"/></r></p></e>
+<e><p><l>tire<s n="vblex"/></l><r>wack<s n="vblex"/></r></p></e>
+<e r="LR"><p><l>exhaust<s n="vblex"/></l><r>wack<s n="vblex"/></r></p></e>
+<e r="LR"><p><l>fag<s n="vblex"/></l><r>wack<s n="vblex"/></r></p></e>
+<e r="LR"><p><l>fag<b/>out<s n="vblex"/></l><r>wack<s n="vblex"/></r></p></e>
+<e r="LR"><p><l>fatigue<s n="vblex"/></l><r>wack<s n="vblex"/></r></p></e>
+<e r="LR"><p><l>jade<s n="vblex"/></l><r>wack<s n="vblex"/></r></p></e>
+<e r="LR"><p><l>wear<s n="vblex"/></l><r>wack<s n="vblex"/></r></p></e>
+<e r="LR"><p><l>wear<b/>down<s n="vblex"/></l><r>wack<s n="vblex"/></r></p></e>
+<e r="LR"><p><l>wear<b/>out<s n="vblex"/></l><r>wack<s n="vblex"/></r></p></e>
+<e r="LR"><p><l>wear<b/>upon<s n="vblex"/></l><r>wack<s n="vblex"/></r></p></e>
+<e r="LR"><p><l>wear<s n="vblex"/></l><r>wack<s n="vblex"/></r></p></e>
+<e><p><l>was<s n="vblex"/></l><r>were<s n="vblex"/></r></p></e>
+
+<!-- cnjsub -->
+<!-- en-lanc_3 -->
+<e><p><l>while<s n="cnjsub"/></l><r>until<s n="cnjsub"/></r></p></e>
+
+<!-- adv -->
+<!-- en-lanc_3 -->
+<e><p><l>there<s n="adv"/></l><r>yon<s n="adv"/></r></p></e>

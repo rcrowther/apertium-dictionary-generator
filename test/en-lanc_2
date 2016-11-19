@@ -1,0 +1,127 @@
+==
+Various
+
+http://www.dunkerley-tuson.co.uk/
+==
+
+
+== n
+.toilet :house .tippler :house #dup
+.woman :Dutch .lady :Dutch # needs inflecting?
+{.gut .intestine .bowel} :house .weasand :house # from Tim Bobbin, thanks specti
+{.clothes .clothing .apparel .dress} :Dutch .rags :Dutch # The Sandknockers, Palmer
+{.people .populace .public .social class .socio-economic class} :Dutch .folks :Dutch # The Sandknockers, Palmer
+{.chump .fool .patsy .fall guy .sucker .soft touch .mug .dupe .buffoon} :Dutch .natural:Dutch # Tim Bobbin
+
+{.cord .twine .string} :Dutch .bantin :Dutch # Dunkerley (SB)
+.milk :Dutch .beest :Dutch # Dunkerley (SB)
+{.house .building .mansion} :house .biggin :house # Dunkerley (SB)
+.brother :house .breéther :house  # Dunkerley (SB)
+.shelf :house .breyd :house  # Dunkerley 
+.bird :house .brid :house
+#.man :house .chap :house #dup # Dunkerley (SB)
+.chain :house.chen :house # Dunkerley (SB)
+.buttermilk :Dutch .churn milk :Dutch # Dunkerley (SB)
+{.noise .racket} :Dutch .clatter :Dutch # Dunkerley (SB)
+.stockings :Dutch .cockers :Dutch # Dunkerley (SB)
+{.rough .stony} :Dutch .cogley :Dutch  # Dunkerley 
+.father :house .dad :house # Dunkerley (celtic)
+{.slut .strumpet .trollop .adulteress} :house .daffock :house # Dunkerley (SB)
+.daughter :house .dotter :house # Dunkerley (SB)
+{.thoughtful .concerned} :Dutch .dumps :Dutch # Dunkerley (SB)
+.door  :house .dur :house # Dunkerley 
+.feather:house .fither :house # Dunkerley (SB)
+{.path .route .course}:house .gate:access # Dunkerley (SB)
+.grass:house .grese:access # Dunkerley (SB)
+.hand :Dutch .hont :Dutch # Dunkerley
+.hands :Dutch .hons :Dutch # Dunkerley
+.comb :Dutch .cama :Dutch # Dunkerley (SB)
+{.family .kinfolk .kinsfolk} :Dutch .meeny :Dutch # Dunkerley (SB)
+{.common .heath} :Dutch .moor :house # Dunkerley
+{.letch .dirty old man .satyr .pervert .satyr .degenerate .deviant}:Dutch .mullock :Dutch # Dunkerley 
+{.upper class :Dutch .aristocrat:house} .nob :house # Dunkerley 
+.nose:house .nese :house # Dunkerley (SB)
+{.aim .brim} :house .neb :house # Dunkerley (SB)
+.head :house .napper :house #dup  # Dunkerley
+.season :house .sezen :house # Dunkerley (SB)
+{.lithe .lissome .lithesome .supple .svelte} :house .swipper :house # Dunkerley 
+.song :house .sunk :Dutch  # Dunkerley (SB)
+.wool :Dutch .woo:Dutch  # Dunkerley (SB)
+{.fear .anxiety .fright}:Dutch .flay:Dutch # Dunkerley (SB)
+
+{.friend .companion} :house .crony :pen/ny #Dunkerley
+{.rat .mouse .stoat. weasil .cockroach} :access .varment :house # Dunkerley (SB)
+{.wizard .magician .necromancer .occultist .sorcerer} :house .warlock :house  # Dunkerley (SB)
+.grass :access .editch :access # Dunkerley
+
+== prn
+#  .you .yourselves #plural problem
+
+== adj
+{.pregnant .with child .expectant} :expensive .in the family way :expensive # Joe Samson, thanks
+{.great .corking .cracking .peachy} :expensive .banging :expensive # Dunkerley
+{.dirty .naughty} :happ/y .bawtry :happ/y # Dunkerley (SB)
+{.under obligation .obliged .compelled .bound} :expensive .beholden :expensive # Dunkerley (SB)
+{.handsome .pretty .fine-looking .good-looking .well-favoured .beautiful .comely .fair} :expensive .bonny :expensive # Dunkerley 
+{.bright .shiny .polished .shiny .glossy} :happ/y .breet :long/ # Dunkerley 
+{.healthy .comfortable} :expensive .cant :expensive
+{.wholesome .healthy} :expensive .doesum :expensive # Dunkerley (SB)
+.forward :long/  {.endways .forrud} :long/ # Dunkerley (SB)
+.iron :expensive .eiron :expensive # Dunkerley (SB)
+{.ugly .vile .frightful .horrifying .horrible .despicable .slimy .unworthy .worthless .wretched} :happ/y .feaw  :expensive # Dunkerley (SB)
+{.jagged .toothed .notched .cut} :expensive   .hacklt :expensive   # Dunkerley (SB)
+.sleepy :happ/y .muzzy :happ/y  # Dunkerley (SB)
+{.slender .thin .slim .lean} :expensive .spare :nice/ # Dunkerley (SB)
+{.dawn .first light .daybreak .break of day .break of the day .sunup} :expensive .strike of day :expensive # Dunkerley (SB)
+.grassy :happ/y .editch :expensive # Dunkerley
+
+== det
+
+
+
+== cnjadv
+.as :after .for :after # 'as' like 'while'
+
+== cnjsub
+.because :that .'cose :that #Dunkerley
+
+== pr
+.about :at .abaht :at # Dunkerley
+.near :at {.naar .awbut} :at #Dunkerley
+
+== vblex
+{.strike .hit .impact .knock} :accept .clout :accept # The Sandknockers, Palmer
+{.work .labour .exert .do work} :accept .toil :accept # The Sandknockers, Palmer
+.offer :accept .awsin :accept #Dunkerley
+{.stick, .adhere :enjoy} :accept .bárkle  :accept # Dunkerley (SB)
+{.talk .tattle :enjoy .gossip .prate :enjoy}:accept .blab :accept # Dunkerley (SB)
+.burn :accept .brun :accept # Dunkerley
+.kiss :accept .buss :accept # Dunkerley
+.play :accept .dandle :accept # Dunkerley (SB)
+.shake :accept .diddle :accept # Dunkerley
+{.put on clothes .dress :liv/e} :noinf .don :plan # Dunkerley (SB)
+.tire :enjoy .fag :plug #dup # Dunkerley (SB)
+.talk :accept {.gab .lip} :accept # Dunkerley (SB)
+{.offend .disrespect} :accept .huff :accept # Dunkerley
+.run :accept .lob :dub # Dunkerley (SB)
+.sort :accept .make :ma/ke # Dunkerley 
+.equal :accept .marrow :accept # Dunkerley 
+.pull :accept .maul :accept # Dunkerley 
+.try :accept .oss :noinf # Dunkerley 
+.walk :accept .pad :accept # Dunkerley (SB)
+.push :accept .pick :accept # Dunkerley 
+{.question :accept .interrogate :enjoy .examine :enjoy} .pump :accept # Dunkerley 
+{.drink .booze :enjoy .quaff .tipple .swill} :noinf .quift :accept # Dunkerley (SB)
+.smoke :enjoy .reech :accept  # Dunkerley (SB) NB they smoked - Beechnt
+.smell :accept .snuff :accept # Dunkerley (SB)
+{.slide :enjoy .skid .slew} :accept .slur :occur # Dunkerley
+{.wash :liv/e .cleanse :enjoy .clean :accept .wash up :noinf} .wesh :accept  # Dunkerley
+{.dress up .overdress .deck up .fancy up .deck out .get up .tog up .tog out} :accept .dolly :appl/y # Dunkerley
+
+== adv
+.where :maybe .weer :maybe #Dunkerley
+
+.forward :maybe {.endways .forrud} :maybe # Dunkerley (SB)
+.however :maybe .eaware :maybe # Dunkerley (SB)
+
+.where :where .weer :where #Dunkerley

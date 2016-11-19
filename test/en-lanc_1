@@ -1,0 +1,103 @@
+==
+ex-postgrad work .from spoken source
+http://hazelgardner.com/old-lancashire-dialect-words-and-their-origins/
+==
+
+== n
+.anvil :house .forge :house # Forge is from SE, i.e. to forge metal, but only exists as a noun in the dialect
+.hearse :house {.bier .borne} :house # It is quite likely that these variations are of ON origin, as the modern Norwegian word for ‘hearse’ is bare, pronounced ‘bore’ 
+.hole :house .oyle :house 
+{.shelter .hut .hutch .shack .shanty .hut} :house .lowse :house # ‘Lewse’- OE hleo (shelter and warm)
+{.pen .sty .enclosure .sheepcote .sheepfold .sheep pen .sheepcote} :house .box :access 
+{.cess .crap .faecal matter .faeces .ordure .poop .stool} :Dutch .midden :Dutch  # ‘Midden’- Thought to be from the ON myki-dynga (cow dung + dung) which became mydding in ME.
+{.dung .cow chip .cow dung .droppings} :Dutch .muck :Dutch  # ON myki (cow dung)
+.shit :Dutch {.shite .cac} :Dutch
+#{.potatoes :access .spuds .taters} :VCR .tatties :Dutch
+{.potato :access .spud .tater} :VCR .tatty :bab/y 
+{.bridge .drawbridge .span} :house .brig :house  # ‘Brig’- ON briggja
+{.eye .oculus .optic} :house .ee :ox  # ‘Een’ preserves the Old English plural form ‘-en’ which exists in SE in the forms ‘oxen’ and ‘children’.
+{.attic .loft} :house .garrett :house 
+{.hare .coney} :house .neddy :house 
+.badger :house .brock :house # The word ‘brock’ meaning badger, is from the Old Irish broc. This is likely to have been brought to the North West along with other Irish borrowings by the Norwegians.
+.beak :house .neb :house # OE nebb
+{.stream .creak .brook} :house .beck :house  # ‘Beck’- ON bekkr
+.puddle :house .dub :house
+.flea :house .lop :house # ‘Lops’- ON hioppa. ‘Loppe’ is ‘flea’ in modern Danish and Norwegian.
+{.latch .catch} :access .sneck :house
+.calf :house .stirk :house #? ‘Stirk’-OE stirc. ‘Whye’ is from ON kviga
+{.pig .hog} :house .gilt :house  # ON (female)gyltr
+{.toilet .water closet .closet .john .lav .lavatory} :house .privvy :house  # ‘Privvy’ is archaic English slang for ‘toilet’
+.maggot :house .mawk :house # ‘Mawks’ has the same origin as SE ‘maggots’; ON maðkr
+{.tantrum .paddy} :house .mard :house 
+{.girl .young lady .young woman} :house .lass :house  #?
+.boy :house .lad :house 
+.snack  :house .baggin :house
+.mud :Dutch .clags :Dutch 
+{.money .lolly .loot .lucre} :Dutch .brass :Dutch
+{.shoe .sneaker .work shoe .brogue} :house .sho :ox  # ‘Shoon’ preserves the Old English plural form ‘-en’ which exists in SE in the forms ‘oxen’ and ‘children’.
+{.tea .char} :house .brew :house 
+
+== prn
+.he :/he {hissen .himself .hissel} :/he
+.she :/she {hoo .herself} :/she # ‘Hoo’ is from the OE 3rd person pronoun heo (the ‘h’ is usually dropped by dialect speakers).
+# plural too?
+.you :/you {thee .thou} :/you # ‘Thou’ and 'thee' archaic English
+.we :/we .us :/we
+.anything :everyone .owt :everyone
+.nothing :everyone .nowt :everyone # OE nawiht
+.something :something .summat :something # Thought to be an abbreviated form of ‘somewhat’ :OE sum plus hwæt.
+
+== det
+.other :other .tuther :other #  (way round)
+
+== adj
+{.fat .large .heavyset .stocky .thickset .dumpy .podgy .pudgy} :happ/y .brosen :broad/ # (obese) 
+{.good .very} :maybe .gradely :lovel/y # ON (of kind) greiðliga
+{.foolish .stupid} :expensive .puddled  :expensive
+.little :expensive {.mickle .smidgen .a mite} :expensive #  ‘Mickle’- ON mikill 
+{.old .disused .obsolescent .obsolete .out-of-date .outdated} :long/ .owd :long/  
+{.leaning .tipped .tilted .sloped .angled .slanted .canted .slanted} :expensive .keck :expensive # ON keikr (bent backwards)
+.left-handed :expensive .cack-handed :expensive # ON keikr (bent backwards) or OE cac from Latin (excrement)
+
+== ij
+{.no .negative .nope .no way} :hello .nay :hello # ON nei
+{.yes .yeah .yeh .ok} :hello .aye :hello 
+
+== pr
+.between :at .betwixt :at # OE betwixt
+
+
+== vblex
+.are :noinf .art :noinf # ‘art’ archaic English
+{.earn .gain .realize .realise} :accept .make :ma/ke  # (his living)
+{.beat .win} :noinf .cap :step  # (defeat) 
+{.press .mob .crowd} :liv/e .throng :accept   # ‘Thronged’ (busy) is from the ON throngr, meaning ‘pressed to do something’. The SE word ‘throng’ means ‘a tightly packed crowd’; it seems likely that the standard word and the dialect word have the same origins, but the dialect word has remained semantically closer to the ON
+{.thrash .work over :noinf .beat up :noinf .drub :dub .trounce :enjoy .clobber} :accept .bray :accept 
+{.smack .skelp .scream .howl .cry .holler .shout .shout out .yell} :accept .skrike :accept # ‘Skrike’ is exactly the same in modern Norwegian, and comes from the ON skraekja, meaning to scream or cry out in anguish. It is closely related to ‘shriek’
+.understand :accept .ken :accept #?inf
+{.look :accept .watch :liv/e} .sken :plan # ‘Sken’ (to look) is certainly of ON origin, as modern Swedish sken and modern Norwegian skinne mean ‘to glare’, ‘to look’ or ‘to peer
+{.mock .tease :enjoy .taunt .bemock} :accept .skit :fit 
+{.water :accept .irrigate :enjoy} .deg :plug  # ON doegva, ‘to sprinkle’
+{.soak .drench .douse :enjoy .sop :step .souse :enjoy} :accept .witchett :accept 
+{.worry .disorder .disquiet .distract .perturb .trouble :enjoy .unhinge :enjoy} :accept .moider :accept 
+{.dig :d/ig .excavate :enjoy} .delve :enjoy  # OE delfa. Although it is an SE word, SE speakers would not use the word in this context.
+.weed :accept .lowk :accept # In Modern Norwegian, luke means ‘to weed’. This indicates the possibility of the dialect word ‘lowking’ (weeding) being of Old Norse origin
+
+.get :g/et .get :beg/et # The words ‘getten’, ‘gitten’ and ‘gotten’ preserve an old ‘–en’ form which no longer exists in SE for the word ‘got’. ‘Gotten’ does still exist, however, in American English.
+{.eat .scoff} :/eat .et :beg/et  
+
+== vbmod
+.must :must .mun :must # (spoken data) ON munu 
+
+== adv
+# ‘Marry’ is an archaic English word .used frequently in the works of Shakespeare
+# ‘Happen’ is not to be confused with the SE verb ‘happen’. It is from the ON happ .which means ‘chance’ or ‘good luck’. The verb ‘happen’ :and ‘perhaps’ and ‘happy’ also come from ON happ :but appeared much later (fourteenth century) than the original expression, which still exists in the dialect. (e.g. happen I will, happen I won’t)
+#.maybe {.happen .marry} 
+.a lot :maybe .a deal :maybe
+
+
+
+
+=
+.Time when work stops knocking off time .neet :night :bait time, clocking off, rest, baggin time, going home time, leisure time ‘Bait’- ON beit (food)
+

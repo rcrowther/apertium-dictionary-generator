@@ -172,6 +172,11 @@ generates::
     :license: GPL, see LICENSE for details.
 """
 # TODO:
+#x set, not derive, target basenames
+# lexical .lrx skeleton?
+#x fix annotation to basenames
+# default paradigms?
+
 # add date to annotation
 # when no paradigm prefix, offer, or even default, in mondicts 
 # to <s n=""/> not <par n=""/>
@@ -185,6 +190,8 @@ generates::
 # one way > or <?
 
 import sys, getopt, re
+import os.path
+import argparse
 from collections import namedtuple
 
 
@@ -195,145 +202,6 @@ dictionaryNames = {
 }
 
 lineNum = 0
-
-def printWarning(message):
-    global lineNum
-    print('{0:2d}:[warning] {1}'.format(lineNum, message))
-    
-def printError(message):
-    global lineNum
-    print('{0:2d}:[error] {1}'.format(lineNum, message))
-    
-def suffix(line, limitStr):
-    idx = line.rfind(limitStr)
-    #print idx
-    if idx == -1: return line
-    else: return line[idx + 1:]
-
-def prefix(line, limitStr):
-    idx = line.find(limitStr)
-    #print idx
-    if idx == -1: return line
-    else: return line[:idx]
-
-def lemmaStem(lemmaMark):
-    """
-    creates a lemma and stem matcher.
-    remove slash, on stem insert blank-tags.
-    """
-    lm = lemmaMark.strip()
-    idx = lm.find('/')
-    if idx == -1:
-        return  lm, lm.replace(" ", "<b/>")
-    else:
-        return lm.replace("/", ""),  lm[:idx].replace(" ", "<b/>")
-
-
-def matcher(lemmaMark):
-    """
-    creates a string matcher.
-    remove slash, insert blank-tags.
-    used for late matches in bi-lingual dictionaries.
-    """
-    return lemmaMark.strip().replace("/", "").replace(" ", "<b/>")
-    
-def lemmaMatcher(lemmaMark):
-    l = lemmaMark.strip().replace("/", "")
-    return l, l.replace(" ", "<b/>")
-    
-def mkParadigm(paradigmPrefix, baseParadigm):
-    return baseParadigm if not paradigmPrefix else paradigmPrefix.strip() + '__' + baseParadigm
-                                
-def monodixTemplate(fOut, pairs, baseParadigm):
-    # <e lm="earn"><i>earn</i><par n="reg__vblex"/></e>   
-    for pair in pairs:
-        lemma, stem = lemmaStem(pair.mark)
-        paradigm = mkParadigm(pair.paradigm, baseParadigm)
-        fOut.write('<e lm="')
-        fOut.write(lemma)
-        fOut.write('"><i>')
-        fOut.write(stem)
-        fOut.write('</i><par n="')
-        fOut.write(paradigm)
-        fOut.write('"/></e>\n')
-
-def bilingualTemplate(fOut, srcPair, dstPair, baseParadigm):
-    # <e><p><l>snack<s n="n"/></l><r>baggin<s n="n"/></r></p></e>
-    srcM = matcher(srcPair.mark)
-    dstM = matcher(dstPair.mark)
-
-    fOut.write('<e><p><l>')
-    fOut.write(srcM)
-    fOut.write('<s n="')
-    fOut.write(baseParadigm)
-    fOut.write('"/></l><r>')
-    fOut.write(dstM)
-    fOut.write('<s n="')
-    fOut.write(baseParadigm)
-    fOut.write('"/></r></p></e>\n')
-    
-def bilingualTemplateWithTranslationMarkRL(
-    fOut,
-     srcPairs,
-     dstPair,
-     baseParadigm
-    ):
-    # <e srl="snack D"><p><l>snack<s n="n"/></l><r>baggin<s n="n"/></r></p></e>
-    first = True
-    dstM = matcher(dstPair.mark)
-    for srcPair in srcPairs:
-        srcL, srcM = lemmaMatcher(srcPair.mark)
-        fOut.write('<e srl="')
-        fOut.write(srcL)
-        if first: 
-            fOut.write(' D')
-            first = False
-        fOut.write('"><p><l>')
-        fOut.write(srcM)
-        fOut.write('<s n="')
-        fOut.write(baseParadigm)
-        fOut.write('"/></l><r>')
-        fOut.write(dstM)
-        fOut.write('<s n="')
-        fOut.write(baseParadigm)
-        fOut.write('"/></r></p></e>\n')
-    
-def bilingualTemplateWithTranslationMarkLR(
-    fOut,
-     srcPair,
-     dstPairs,
-     baseParadigm
-    ):
-    # <e slr="baggin D"><p><l>snack<s n="n"/></l><r>baggin<s n="n"/></r></p></e>
-    first = True
-    srcM = matcher(srcPair.mark)
-    for dstPair in dstPairs:
-        dstL, dstM = lemmaMatcher(dstPair.mark)
-        fOut.write('<e slr="')
-        fOut.write(dstL)
-        if first: 
-            fOut.write(' D')
-            first = False
-        fOut.write('"><p><l>')
-        fOut.write(srcM)
-        fOut.write('<s n="')
-        fOut.write(baseParadigm)
-        fOut.write('"/></l><r>')
-        fOut.write(dstM)
-        fOut.write('<s n="')
-        fOut.write(baseParadigm)
-        fOut.write('"/></r></p></e>\n')
-    
-def stanzaAnnotateTemplate(fOut, stanzaName, inPath):
-    fOut.write('\n<!-- ')
-    fOut.write(stanzaName)
-    fOut.write(' -->\n')
-    
-    idx = inPath.rfind('/')
-    fName = inPath if idx == -1 else inPath[:idx]
-    fOut.write('<!-- ')
-    fOut.write(fName)
-    fOut.write(' -->\n')
 
 
 Stanza = namedtuple('Stanza', [
@@ -350,6 +218,7 @@ stanzas = {
     'pn': Stanza('pn'),
     'prn': Stanza('prn'),
     'adj': Stanza('adj'),
+    'det': Stanza('det'),
     'itg': Stanza('itg'),
     'num': Stanza('num'),
     'vblex': Stanza('vblex'),
@@ -411,6 +280,185 @@ ParsedData = namedtuple('ParsedData', [
     'dst',
     'defaultParadigms'
 ])
+
+def parseWarning(message):
+    global lineNum
+    print('{0:2d}:[warning] {1}'.format(lineNum, message))
+    
+def parseError(message):
+    global lineNum
+    print('{0:2d}:[error] {1}'.format(lineNum, message))
+    
+def printWarning(message):
+    print('[warning] {0}'.format(message))
+    
+def printError(message):
+    print('[error] {0}'.format(message))
+    
+def suffix(line, limitStr):
+    idx = line.rfind(limitStr)
+    #print idx
+    if idx == -1: return line
+    else: return line[idx + 1:]
+
+def prefix(line, limitStr):
+    idx = line.find(limitStr)
+    #print idx
+    if idx == -1: return line
+    else: return line[:idx]
+
+#def lemmaStem(lemmaMark):
+    #"""
+    #creates a lemma and stem matcher.
+    #remove slash, on stem insert blank-tags.
+    #"""
+    #lm = lemmaMark.strip()
+    #idx = lm.find('/')
+    #if idx == -1:
+        #return  lm, lm.replace(" ", "<b/>")
+    #else:
+        #return lm.replace("/", ""),  lm[:idx].replace(" ", "<b/>")
+def lemmaStem(entryData):
+    """
+    creates a lemma and stem matcher.
+    remove slash, on stem insert blank-tags.
+    """
+    p = entryData.paradigm.strip()
+    markStripped = entryData.mark.strip()
+    stemWithBlanks = markStripped.replace(" ", "<b/>")
+    idx = p.find('/')
+    if idx == -1:
+        return markStripped, stemWithBlanks
+    else:
+        try:
+            stemSliceIdx = len(stemWithBlanks) - (len(p) - idx - 1)
+        except:
+            return None
+        return markStripped, stemWithBlanks[:stemSliceIdx]
+
+
+def matcher(lemmaMark):
+    """
+    creates a string matcher.
+    remove slash, insert blank-tags.
+    used for late matches in bi-lingual dictionaries.
+    """
+    return lemmaMark.strip().replace("/", "").replace(" ", "<b/>")
+    
+def lemmaMatcher(lemmaMark):
+    l = lemmaMark.strip().replace("/", "")
+    return l, l.replace(" ", "<b/>")
+    
+def mkParadigm(paradigmPrefix, baseParadigm):
+    return baseParadigm if not paradigmPrefix else paradigmPrefix.strip() + '__' + baseParadigm
+                                
+def monodixTemplate(fOut, pairs, baseParadigm):
+    # <e lm="tatty"><i>tatt</i><par n="bab/y__n"/></e>
+    for pair in pairs:
+        ls = lemmaStem(pair)
+        if not ls:
+            printError("building lemma and stem mark:{0} paradigm:{1}".format(pair.mark, pair.paradigm))
+        else:
+            lemma, stem = ls
+            paradigm = mkParadigm(pair.paradigm, baseParadigm)
+            fOut.write('<e lm="')
+            fOut.write(lemma)
+            fOut.write('"><i>')
+            fOut.write(stem)
+            fOut.write('</i><par n="')
+            fOut.write(paradigm)
+            fOut.write('"/></e>\n')
+
+def bilingualTemplate(fOut, srcPair, dstPair, baseParadigm):
+    # <e><p><l>snack<s n="n"/></l><r>baggin<s n="n"/></r></p></e>
+    srcM = matcher(srcPair.mark)
+    dstM = matcher(dstPair.mark)
+
+    fOut.write('<e><p><l>')
+    fOut.write(srcM)
+    fOut.write('<s n="')
+    fOut.write(baseParadigm)
+    fOut.write('"/></l><r>')
+    fOut.write(dstM)
+    fOut.write('<s n="')
+    fOut.write(baseParadigm)
+    fOut.write('"/></r></p></e>\n')
+    
+def bilingualTemplateWithTranslationMarkRL(
+    fOut,
+     srcPairs,
+     dstPair,
+     baseParadigm
+    ):
+    # <e srl="snack D"><p><l>snack<s n="n"/></l><r>baggin<s n="n"/></r></p></e>
+    first = True
+    dstM = matcher(dstPair.mark)
+    for srcPair in srcPairs:
+        srcL, srcM = lemmaMatcher(srcPair.mark)
+        #fOut.write('<e srl="')
+        fOut.write('<e')
+        if first: 
+            first = False
+        else:
+            fOut.write(' r="LR"')
+
+        #fOut.write(srcL)
+        #if first: 
+            #fOut.write(' D')
+            #first = False
+        fOut.write('><p><l>')
+        fOut.write(srcM)
+        fOut.write('<s n="')
+        fOut.write(baseParadigm)
+        fOut.write('"/></l><r>')
+        fOut.write(dstM)
+        fOut.write('<s n="')
+        fOut.write(baseParadigm)
+        fOut.write('"/></r></p></e>\n')
+    
+def bilingualTemplateWithTranslationMarkLR(
+    fOut,
+     srcPair,
+     dstPairs,
+     baseParadigm
+    ):
+    # <e slr="baggin D"><p><l>snack<s n="n"/></l><r>baggin<s n="n"/></r></p></e>
+    first = True
+    srcM = matcher(srcPair.mark)
+    for dstPair in dstPairs:
+        dstL, dstM = lemmaMatcher(dstPair.mark)
+        #fOut.write('<e slr="')
+        fOut.write('<e')
+        if first: 
+            first = False
+        else: 
+            fOut.write(' r="RL"')
+        
+        #fOut.write(dstL)
+        #if first: 
+            #fOut.write(' D')
+            #first = False
+        fOut.write('><p><l>')
+        fOut.write(srcM)
+        fOut.write('<s n="')
+        fOut.write(baseParadigm)
+        fOut.write('"/></l><r>')
+        fOut.write(dstM)
+        fOut.write('<s n="')
+        fOut.write(baseParadigm)
+        fOut.write('"/></r></p></e>\n')
+    
+def stanzaAnnotateTemplate(fOut, stanzaName, inPath):
+    fOut.write('\n<!-- ')
+    fOut.write(stanzaName)
+    fOut.write(' -->\n')
+    
+    # initial tests guarantee a basename exists 
+    fName = os.path.basename(inPath)
+    fOut.write('<!-- ')
+    fOut.write(fName)
+    fOut.write(' -->\n')
+
 
 def processLine(fOut, targetDictionary, stanza, parseResult):
     """
@@ -484,7 +532,7 @@ class Parser():
         self.paradigm = ''
         self.side = 0
 
-    def __printOut(self):
+    def _printOut(self):
         print("mark:" + self.mark)
         print("curr:" + self.curr)
         print("i: {0}".format(self.i))
@@ -520,14 +568,14 @@ class Parser():
     
     def pair(self):
         self.markR()
-        #self.__printOut()
+        #self._printOut()
         if self.curr == ':':
             self.skip()
             self.paradigmR()
         self.loadPair()
     
     def pairList(self):
-        #self.__printOut()
+        #self._printOut()
         while self.curr == '.':
             self.skip()
             self.pair()
@@ -545,7 +593,7 @@ class Parser():
     def parseSide(self, target):
         self.side = target
         self.findAny('.}{:#')
-        #self.__printOut()
+        #self._printOut()
 
         if self.curr == '.':
             self.skip()
@@ -560,27 +608,27 @@ class Parser():
                     self.findAny('.}{:#')
                     self.parseDefaultParadigmOption(target)
                 else:
-                    printWarning("set not closed?: '" + self.line + "'")
+                    parseError("set not closed?: '" + self.line + "'")
                     # kill with fake EOL
                     self.curr = self.EOL
             else:
-                printWarning("set open not followed by mark?: '" + self.line + "'")
+                parseError("set open not followed by mark?: '" + self.line + "'")
                 # kill with fake EOL
                 self.curr = self.EOL
 
         elif self.curr ==  ':':
-            printWarning("paradigm not preceeded by mark: '" + self.line + "'")
+            parseError("paradigm not preceeded by mark: '" + self.line + "'")
             # kill with fake EOL
             self.curr = self.EOL
         elif self.curr ==  '#':
             # kill with fake EOL
             self.curr = self.EOL
         elif self.curr ==  '}':
-            printWarning("bracket not matched: '" + self.line + "'")
+            parseError("bracket not matched: '" + self.line + "'")
             # kill with fake EOL
             self.curr = self.EOL
         elif self.curr == self.EOL:
-            printWarning("data expected, but End Of Line: '" + self.line + "'")
+            parseError("data expected, but End Of Line: '" + self.line + "'")
 
 
     def parse(self, targetLine):
@@ -608,27 +656,98 @@ class Parser():
             self.parseSide(1)
             return ParsedData(self.b[0], self.b[1], self.defaultParadigms)
         else:
-            printWarning("Unable to find second element: '" + self.line + "'")
+            parseWarning("Unable to find second element: '" + self.line + "'")
             return None
             
 ################
 
         
 
-def process(inPath, outPath, targetDictionary, annotate):
+#def process(inPath, outPath, targetDictionary, annotate):
+    #"""
+    #Process a file, stepping by line.
+    #"""
+    #global lineNum
+    
+    #fIn = open(inPath, 'r')
+    #fOut = open(outPath, 'w')
+    
+    #stanza = unknownStanza
+    
+    #p = Parser()
+
+        
+    #for l in fIn:
+        #lineNum += 1
+        #line = l.strip()
+        
+        #if not line or line[0] == '#':
+            ## skip empty lines and comments
+            #pass
+        #elif line[0] == '=':
+            ## detect new stanza 
+            #sStr = suffix(line, '=').strip().lower()
+            #stanza = stanzas.get(sStr, unknownStanza)
+            #if stanza == unknownStanza:
+                #printWarning("unknown stanza name: '" + sStr + "'")
+            #else:
+                #if annotate: stanzaAnnotateTemplate(fOut, sStr, inPath)
+        #elif stanza == unknownStanza:
+            ## not found a stanza, now
+            ## skip line if unknownStanza
+            #pass
+        #else:
+            ## process a line
+            #r = p.parse(line)
+            #if r == None:
+                #print('parse fail?')
+            #else:
+                ##print("parse:")
+                ##print(r.src)
+                ##print(r.dst) 
+               ## print(r.defaultParadigms)
+                ##print("--")
+
+                ## verify this
+                #if len(r.src)> 1 and len(r.dst) > 1:
+                    #printError("source and destination are both sets: '" + line + "'")
+                #else:
+                    ## assert paradigms, fill empty from default
+                    ## TODO: This is placed wastefully early,
+                    ## as bi- template does not uses paradigm prefixs
+                    #def assertParadigm(pairs, defaultP):
+                        #b = []
+                        #for pair in pairs:
+                            #p = pair.paradigm.strip()
+                            #newP = defaultP if not p else p
+                            #b.append(MarkParadigmPair(pair.mark, newP))
+                        #return b
+                    #srcNew = assertParadigm(r.src, r.defaultParadigms[0])
+                    #dstNew = assertParadigm(r.dst, r.defaultParadigms[1])
+
+                    ## defaults now processed, abandon
+                    #newR = ParsedData(srcNew, dstNew, [])
+                    #processLine(fOut, targetDictionary, stanza, newR)
+
+    #fIn.close()
+    #fOut.close()
+
+def process(inPath, outPath, dictionaryType, annotate):
     """
     Process a file, stepping by line.
     """
     global lineNum
     
+    print(outPath)
     fIn = open(inPath, 'r')
-    fOut = open(outPath, 'w')
+    fOut = open(outPath, 'a')
     
     stanza = unknownStanza
     
     p = Parser()
 
-        
+    lineNum = 0
+    
     for l in fIn:
         lineNum += 1
         line = l.strip()
@@ -641,7 +760,7 @@ def process(inPath, outPath, targetDictionary, annotate):
             sStr = suffix(line, '=').strip().lower()
             stanza = stanzas.get(sStr, unknownStanza)
             if stanza == unknownStanza:
-                printWarning("unknown stanza name: '" + sStr + "'")
+                parseWarning("unknown stanza name: '" + sStr + "'")
             else:
                 if annotate: stanzaAnnotateTemplate(fOut, sStr, inPath)
         elif stanza == unknownStanza:
@@ -652,7 +771,7 @@ def process(inPath, outPath, targetDictionary, annotate):
             # process a line
             r = p.parse(line)
             if r == None:
-                print('parse fail?')
+                printWarning('parse fail?')
             else:
                 #print("parse:")
                 #print(r.src)
@@ -662,7 +781,7 @@ def process(inPath, outPath, targetDictionary, annotate):
 
                 # verify this
                 if len(r.src)> 1 and len(r.dst) > 1:
-                    printError("source and destination are both sets: '" + line + "'")
+                    parseError("source and destination are both sets: '" + line + "'")
                 else:
                     # assert paradigms, fill empty from default
                     # TODO: This is placed wastefully early,
@@ -679,21 +798,51 @@ def process(inPath, outPath, targetDictionary, annotate):
 
                     # defaults now processed, abandon
                     newR = ParsedData(srcNew, dstNew, [])
-                    processLine(fOut, targetDictionary, stanza, newR)
+                    processLine(fOut, dictionaryType, stanza, newR)
 
     fIn.close()
     fOut.close()
+    
+def _silentRemove(entryPath):
+    try:
+        os.remove(entryPath)
+    except OSError:
+        pass
+    
+def outputEntryPath(outputBasenamePath, basename, tpe):
+    return os.path.join(outputBasenamePath, basename + '-' + tpe + '.parDix')
 
-def printHelp():
-    print ('Usage: skel2dix.py <options> -i <inputfile> -o <outputfile>\n'
-        "Keynames in the 'stanza' variable must be adjusted to match input files\n\n"
-        '  -a, --annotate       annotate the output with stanza information\n'
-        '  -h, --help           print this help\n'
-        "  -t, --type           output dictionary type ('s' source mono,\n"
-        "                       'd' destination mono, or 'bi' bilingual)\n")
+def processOpts(opts):
+    
+    if(opts.type == 'a'):
+        oS = outputEntryPath(opts.outputBasenamePath, opts.outputBasename, 's')
+        oD = outputEntryPath(opts.outputBasenamePath, opts.outputBasename, 'd')
+        oBi = outputEntryPath(opts.outputBasenamePath, opts.outputBasename, 'bi')
+        # trunc the output files
+        _silentRemove(oS) 
+        _silentRemove(oD) 
+        _silentRemove(oBi) 
+
+        for inPath in opts.infiles:
+            process(inPath, oS, 's', opts.annotate)
+            process(inPath, oD, 'd', opts.annotate)
+            process(inPath, oBi, 'bi', opts.annotate)
+            
+    else:
+        oPath = outputEntryPath(opts.outputBasenamePath, opts.outputBasename, opts.type)
+        # trunc the output files
+        _silentRemove(oPath) 
+
+        for inPath in opts.infiles:
+            process(inPath, oPath, opts.type, opts.annotate)
+
         
-        
-        
+def stripExtension(path):
+    #os.path.basename(path)
+    i = path.rfind('.')
+    return path[:i] if (i != -1) else path
+    
+
 # main
 
 def main(argv):
@@ -701,49 +850,68 @@ def main(argv):
     inPath = 'in'
     outPath = ''
     targetDictionary = 's'
-    try:
-        opts, args = getopt.getopt(argv,"ahi:o:t:", ['annotate', 'infile=','outfile=','type='])
-    except getopt.GetoptError:
-        printHelp()
-        sys.exit(2)
-    for opt, arg in opts:
-        if opt in ("-a", "--annotate"):
-            annotate = True
-        elif opt == '-h':
-            printHelp()
-            sys.exit()
-        elif opt in ("-i", "--infile"):
-            inPath = arg
-        elif opt in ("-o", "--outfile"):
-            outPath = arg
-        elif opt in ("-t", "--type"):
-            # test enumeration
-            if arg != 's' and arg != 'd' and arg != 'bi':
-                print ('-type option must be from: {s, d, bi}')
-                sys.exit()
-            targetDictionary = arg
- 
+    
+    parser = argparse.ArgumentParser(
+        epilog= "NB: keynames in the internal 'stanza' variable must be adjusted to match input files"
+        )
         
-    #  if not stated, default the output filepath
-    if not outPath:
-        i = inPath.rfind('.')
-        if i != -1:
-            outPath = inPath[:i] + '-' + targetDictionary + '.parDix'
-        else:
-            outPath = inPath + '-' + targetDictionary + '.parDix'
-            
-    print 'Input file:', inPath
-    print 'Output file:', outPath
+    parser.add_argument("-a", "--annotate", 
+        default=False,
+        help="annotate the output with stanza information",
+        action="store_true"
+        )
+        
+    parser.add_argument("-t", "--type",
+        choices=['s', 'd', 'bi', 'a'],
+        default='bi',
+        help="output dictionary type ('s': source monodix, 'd': destination monodix, or 'bi': bilingualdix. Default: 'bi')",
+        )
+    parser.add_argument("-o", "--outputBasename",
+        default='output',
+        help="output file name. Must not be a path (default: 'output')"
+        )
+    parser.add_argument("infiles", 
+        nargs='*',
+        help="files for input"
+        )
+    args = parser.parse_args()
 
-    print 'targetDictionary:', targetDictionary
-    print 'Annotate:', annotate
-    print 'targetDictionary:', dictionaryNames[targetDictionary]
+    # assert infiles as absolute paths
+    args.infiles = [os.path.abspath(f) for f in args.infiles]
+    # test infiles exist
+    success = True
+    for f in args.infiles:
+        if (not os.path.exists(f)):
+            printError('Path not exists path: {0}'.format(f))
+            success = False
+            break
+        if (os.path.isdir(f)):
+            printError('Path is dir path: {0}'.format(f))
+            success = False
+            break
+    if (not success):
+        return 1
+        
+    # test basename is not a path
+    if (args.outputBasename.find(os.pathsep) != -1):
+        printError('-o outputBasename option appears to be a path: {0}'.format(args.outputBasename))
+        return 1
+        
+    # set output directory to first inFile arg
+    args.outputBasenamePath = os.path.dirname(args.infiles[0]) 
 
+    print ('Input files:' + str(args.infiles))
+    print ('outputBasename:' + str(args.outputBasename))
+    print ('OutputBasenamePath:' + str(args.outputBasenamePath))
+    print ('Type:' + str(args.type))
+    print ('Annotate:' + str(args.annotate))
+    
+    
     try:
-        process(inPath, outPath, targetDictionary, annotate)
+        processOpts(args)
     except IOError:
-        print('file would not open: %s' % inPath)
-    #finally:
+        printError('file would not open: %s' % inPath)
+
 
 if __name__ == "__main__":
     main(sys.argv[1:])
