@@ -56,6 +56,7 @@ Options include,
 
 -a : annotate the output with XML comments
 -o : output filebasename (optional, default is 'output')
+-l : output lemmas to a file, one per line. This option responds to -a and -t
 -t : `s` for mono-dictionary source, `d` for mono-dictionary destination. `bi` for bilingual 'a' for all
 
 Output filepaths are tagged with dictionary extensions, so the script can be run repeatedly on source files without adapting filepath names (change -t instead).
@@ -306,17 +307,7 @@ def prefix(line, limitStr):
     if idx == -1: return line
     else: return line[:idx]
 
-#def lemmaStem(lemmaMark):
-    #"""
-    #creates a lemma and stem matcher.
-    #remove slash, on stem insert blank-tags.
-    #"""
-    #lm = lemmaMark.strip()
-    #idx = lm.find('/')
-    #if idx == -1:
-        #return  lm, lm.replace(" ", "<b/>")
-    #else:
-        #return lm.replace("/", ""),  lm[:idx].replace(" ", "<b/>")
+
 def lemmaStem(entryData):
     """
     creates a lemma and stem matcher.
@@ -342,10 +333,10 @@ def matcher(lemmaMark):
     remove slash, insert blank-tags.
     used for late matches in bi-lingual dictionaries.
     """
-    return lemmaMark.strip().replace("/", "").replace(" ", "<b/>")
+    return lemmaMark.strip().replace(" ", "<b/>")
     
 def lemmaMatcher(lemmaMark):
-    l = lemmaMark.strip().replace("/", "")
+    l = lemmaMark.strip()
     return l, l.replace(" ", "<b/>")
     
 def mkParadigm(paradigmPrefix, baseParadigm):
@@ -446,7 +437,15 @@ def bilingualTemplateWithTranslationMarkLR(
         fOut.write('<s n="')
         fOut.write(baseParadigm)
         fOut.write('"/></r></p></e>\n')
-    
+
+
+def lemmaPrintTemplate(fOut, entryDatas):
+    for entryData in entryDatas:
+        lemma = entryData.mark.strip()
+        fOut.write(lemma)
+        fOut.write('\n')
+        
+        
 def stanzaAnnotateTemplate(fOut, stanzaName, inPath):
     fOut.write('\n<!-- ')
     fOut.write(stanzaName)
@@ -459,6 +458,9 @@ def stanzaAnnotateTemplate(fOut, stanzaName, inPath):
     fOut.write(' -->\n')
 
 
+
+
+########################
 def processLine(fOut, targetDictionary, stanza, parseResult):
     """
     Processes line data by writing to the appropriate template.
@@ -470,7 +472,6 @@ def processLine(fOut, targetDictionary, stanza, parseResult):
     Must be pre-stripped.
     """
     baseParadigm = stanza.baseParadigm
-    paradigm = 'error'
 
     # which target?
     if targetDictionary == 's':
@@ -510,9 +511,21 @@ def processLine(fOut, targetDictionary, stanza, parseResult):
             )    
   
 
+        
+def processLineForLemma(fOut, dictionaryType, parseResult):
+    # <e lm="tatty"><i>tatt</i><par n="bab/y__n"/></e>
+    if dictionaryType == 's':
+        lemmaPrintTemplate(fOut, parseResult.src)
+    elif dictionaryType == 'd':
+        lemmaPrintTemplate(fOut, parseResult.dst)
+    else:
+        # bi and a do the same thing, print all lemmas
+        lemmaPrintTemplate(fOut, parseResult.src)
+        lemmaPrintTemplate(fOut, parseResult.dst)
 
+            
 # Anyone who likes Python because it is clean should stop long before
-# this.
+# classes.
 #...and it should be a function, but Python scoping can't handle it
 class Parser():
     """
@@ -660,6 +673,63 @@ class Parser():
             
 ################
 
+def processLemmas(inPath, outPath, dictionaryType, annotate):
+    """
+    Process a file, stepping by line.
+    """
+    global lineNum
+    
+    print(outPath)
+    fIn = open(inPath, 'r')
+    fOut = open(outPath, 'a')
+    
+    stanza = unknownStanza
+    
+    p = Parser()
+
+    lineNum = 0
+    
+    for l in fIn:
+        lineNum += 1
+        line = l.strip()
+        
+        if not line or line[0] == '#':
+            # skip empty lines and comments
+            pass
+        elif line[0] == '=':
+            # detect new stanza 
+            sStr = suffix(line, '=').strip().lower()
+            stanza = stanzas.get(sStr, unknownStanza)
+            if stanza == unknownStanza:
+                parseWarning("unknown stanza name: '" + sStr + "'")
+            else:
+                if annotate: stanzaAnnotateTemplate(fOut, sStr, inPath)
+        elif stanza == unknownStanza:
+            # not found a stanza, now
+            # skip line if unknownStanza
+            pass
+        else:
+            # process a line
+            r = p.parse(line)
+            if r == None:
+                printWarning('parse fail?')
+            else:
+                # verify this
+                if len(r.src)> 1 and len(r.dst) > 1:
+                    parseError("source and destination are both sets: '" + line + "'")
+                else:
+                    # gather entryData, no paradigm needed
+                    srcNew = [MarkParadigmPair(e.mark, '') for e in r.src]
+                    dstNew = [MarkParadigmPair(e.mark, '') for e in r.dst]
+                    # defaults now processed, abandon
+                    newR = ParsedData(srcNew, dstNew, [])
+                    # no stanza?
+                    processLineForLemma(fOut, dictionaryType, newR)
+
+    fIn.close()
+    fOut.close()
+
+
 
 def process(inPath, outPath, dictionaryType, annotate):
     """
@@ -667,7 +737,6 @@ def process(inPath, outPath, dictionaryType, annotate):
     """
     global lineNum
     
-    print(outPath)
     fIn = open(inPath, 'r')
     fOut = open(outPath, 'a')
     
@@ -742,28 +811,35 @@ def outputEntryPath(outputBasenamePath, basename, tpe):
     return os.path.join(outputBasenamePath, basename + '-' + tpe + '.parDix')
 
 def processOpts(opts):
-    
-    if(opts.type == 'a'):
-        oS = outputEntryPath(opts.outputBasenamePath, opts.outputBasename, 's')
-        oD = outputEntryPath(opts.outputBasenamePath, opts.outputBasename, 'd')
-        oBi = outputEntryPath(opts.outputBasenamePath, opts.outputBasename, 'bi')
-        # trunc the output files
-        _silentRemove(oS) 
-        _silentRemove(oD) 
-        _silentRemove(oBi) 
-
+    if (opts.lemmaFile):
+        o = os.path.join(opts.outputBasenamePath,  opts.outputBasename + '-lemmas')
+        # delete existing output file
+        _silentRemove(o) 
         for inPath in opts.infiles:
-            process(inPath, oS, 's', opts.annotate)
-            process(inPath, oD, 'd', opts.annotate)
-            process(inPath, oBi, 'bi', opts.annotate)
-            
+            processLemmas(inPath, o, opts.type, opts.annotate)
+
     else:
-        oPath = outputEntryPath(opts.outputBasenamePath, opts.outputBasename, opts.type)
-        # trunc the output files
-        _silentRemove(oPath) 
-
-        for inPath in opts.infiles:
-            process(inPath, oPath, opts.type, opts.annotate)
+        if(opts.type == 'a'):
+            oS = outputEntryPath(opts.outputBasenamePath, opts.outputBasename, 's')
+            oD = outputEntryPath(opts.outputBasenamePath, opts.outputBasename, 'd')
+            oBi = outputEntryPath(opts.outputBasenamePath, opts.outputBasename, 'bi')
+            # delete existing output files
+            _silentRemove(oS) 
+            _silentRemove(oD) 
+            _silentRemove(oBi) 
+    
+            for inPath in opts.infiles:
+                process(inPath, oS, 's', opts.annotate)
+                process(inPath, oD, 'd', opts.annotate)
+                process(inPath, oBi, 'bi', opts.annotate)
+                
+        else:
+            oPath = outputEntryPath(opts.outputBasenamePath, opts.outputBasename, opts.type)
+            # trunc the output files
+            _silentRemove(oPath) 
+    
+            for inPath in opts.infiles:
+                process(inPath, oPath, opts.type, opts.annotate)
 
         
 def stripExtension(path):
@@ -790,6 +866,12 @@ def main(argv):
         action="store_true"
         )
         
+    parser.add_argument("-l", "--lemmaFile",
+        default=False,
+        help="output lemmas to a file, one per line. Parses like the main parser (ignoring unknown stanza names etc.) Responds to -t, printing src/dst/all dictionary entries. Also responds to -a.",
+        action="store_true"
+        )
+        
     parser.add_argument("-t", "--type",
         choices=['s', 'd', 'bi', 'a'],
         default='bi',
@@ -800,7 +882,7 @@ def main(argv):
         default='output',
         help="output file name. Must not be a path (default: 'output')"
         )
-        
+
     parser.add_argument("infiles", 
         nargs='*',
         help="files for input"
@@ -833,10 +915,12 @@ def main(argv):
     args.outputBasenamePath = os.path.dirname(args.infiles[0]) 
 
     print ('Input files:' + str(args.infiles))
-    print ('outputBasename:' + str(args.outputBasename))
+    print ('OutputBasename:' + str(args.outputBasename))
     print ('OutputBasenamePath:' + str(args.outputBasenamePath))
     print ('Type:' + str(args.type))
     print ('Annotate:' + str(args.annotate))
+    print ('LemmaFile:' + str(args.lemmaFile))
+
     
     
     try:

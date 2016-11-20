@@ -1,6 +1,3 @@
-
-<!-- n -->
-<!-- en-lanc_1 -->
 <e lm="forge"><i>forge</i><par n="house__n"/></e>
 <e lm="bier"><i>bier</i><par n="house__n"/></e>
 <e lm="borne"><i>borne</i><par n="house__n"/></e>
@@ -34,9 +31,6 @@
 <e lm="brass"><i>brass</i><par n="Dutch__n"/></e>
 <e lm="sho"><i>sho</i><par n="ox__n"/></e>
 <e lm="brew"><i>brew</i><par n="house__n"/></e>
-
-<!-- prn -->
-<!-- en-lanc_1 -->
 <e lm="himself"><i>himse</i><par n="/he__prn"/></e>
 <e lm="hissel"><i>hiss</i><par n="/he__prn"/></e>
 <e lm="herself"><i>hers</i><par n="/she__prn"/></e>
@@ -45,13 +39,7 @@
 <e lm="owt"><i>owt</i><par n="everyone__prn"/></e>
 <e lm="nowt"><i>nowt</i><par n="everyone__prn"/></e>
 <e lm="summat"><i>summat</i><par n="something__prn"/></e>
-
-<!-- det -->
-<!-- en-lanc_1 -->
 <e lm="tuther"><i>tuther</i><par n="other__det"/></e>
-
-<!-- adj -->
-<!-- en-lanc_1 -->
 <e lm="brosen"><i>brosen</i><par n="broad/__adj"/></e>
 <e lm="gradely"><i>gradel</i><par n="lovel/y__adj"/></e>
 <e lm="puddled"><i>puddled</i><par n="expensive__adj"/></e>
@@ -61,18 +49,9 @@
 <e lm="owd"><i>owd</i><par n="long/__adj"/></e>
 <e lm="keck"><i>keck</i><par n="expensive__adj"/></e>
 <e lm="cack-handed"><i>cack-handed</i><par n="expensive__adj"/></e>
-
-<!-- ij -->
-<!-- en-lanc_1 -->
 <e lm="nay"><i>nay</i><par n="hello__ij"/></e>
 <e lm="aye"><i>aye</i><par n="hello__ij"/></e>
-
-<!-- pr -->
-<!-- en-lanc_1 -->
 <e lm="betwixt"><i>betwixt</i><par n="at__pr"/></e>
-
-<!-- vblex -->
-<!-- en-lanc_1 -->
 <e lm="art"><i>art</i><par n="noinf__vblex"/></e>
 <e lm="make"><i>ma</i><par n="ma/ke__vblex"/></e>
 <e lm="cap"><i>cap</i><par n="step__vblex"/></e>
@@ -89,17 +68,8 @@
 <e lm="lowk"><i>lowk</i><par n="accept__vblex"/></e>
 <e lm="get"><i>g</i><par n="beg/et__vblex"/></e>
 <e lm="et"><i></i><par n="beg/et__vblex"/></e>
-
-<!-- vbmod -->
-<!-- en-lanc_1 -->
 <e lm="mun"><i>mun</i><par n="must__vbmod"/></e>
-
-<!-- adv -->
-<!-- en-lanc_1 -->
 <e lm="a deal"><i>a<b/>deal</i><par n="maybe__adv"/></e>
-
-<!-- n -->
-<!-- en-lanc_2 -->
 <e lm="tippler"><i>tippler</i><par n="house__n"/></e>
 <e lm="lady"><i>lady</i><par n="Dutch__n"/></e>
 <e lm="weasand"><i>weasand</i><par n="house__n"/></e>
@@ -144,12 +114,6 @@
 <e lm="varment"><i>varment</i><par n="house__n"/></e>
 <e lm="warlock"><i>warlock</i><par n="house__n"/></e>
 <e lm="editch"><i>editch</i><par n="access__n"/></e>
-
-<!-- prn -->
-<!-- en-lanc_2 -->
-
-<!-- adj -->
-<!-- en-lanc_2 -->
 <e lm="in the family way"><i>in<b/>the<b/>family<b/>way</i><par n="expensive__adj"/></e>
 <e lm="banging"><i>banging</i><par n="expensive__adj"/></e>
 <e lm="bawtry"><i>bawtr</i><par n="happ/y__adj"/></e>
@@ -167,26 +131,11 @@
 <e lm="spare"><i>spare</i><par n="nice/__adj"/></e>
 <e lm="strike of day"><i>strike<b/>of<b/>day</i><par n="expensive__adj"/></e>
 <e lm="editch"><i>editch</i><par n="expensive__adj"/></e>
-
-<!-- det -->
-<!-- en-lanc_2 -->
-
-<!-- cnjadv -->
-<!-- en-lanc_2 -->
 <e lm="for"><i>for</i><par n="after__cnjadv"/></e>
-
-<!-- cnjsub -->
-<!-- en-lanc_2 -->
 <e lm="'cose"><i>'cose</i><par n="that__cnjsub"/></e>
-
-<!-- pr -->
-<!-- en-lanc_2 -->
 <e lm="abaht"><i>abaht</i><par n="at__pr"/></e>
 <e lm="naar"><i>naar</i><par n="at__pr"/></e>
 <e lm="awbut"><i>awbut</i><par n="at__pr"/></e>
-
-<!-- vblex -->
-<!-- en-lanc_2 -->
 <e lm="clout"><i>clout</i><par n="accept__vblex"/></e>
 <e lm="toil"><i>toil</i><par n="accept__vblex"/></e>
 <e lm="awsin"><i>awsin</i><par n="accept__vblex"/></e>
@@ -215,17 +164,11 @@
 <e lm="slur"><i>slur</i><par n="occur__vblex"/></e>
 <e lm="wesh"><i>wesh</i><par n="accept__vblex"/></e>
 <e lm="dolly"><i>doll</i><par n="appl/y__vblex"/></e>
-
-<!-- adv -->
-<!-- en-lanc_2 -->
 <e lm="weer"><i>weer</i><par n="maybe__adv"/></e>
 <e lm="endways"><i>endways</i><par n="maybe__adv"/></e>
 <e lm="forrud"><i>forrud</i><par n="maybe__adv"/></e>
 <e lm="eaware"><i>eaware</i><par n="maybe__adv"/></e>
 <e lm="weer"><i>weer</i><par n="where__adv"/></e>
-
-<!-- n -->
-<!-- en-lanc_3 -->
 <e lm="bayly"><i>bayly</i><par n="Dutch__n"/></e>
 <e lm="benny"><i>ben</i><par n="pen/ny__n"/></e>
 <e lm="britchies"><i>britchies</i><par n="personnel__n"/></e>
@@ -242,23 +185,11 @@
 <e lm="lug"><i>lug</i><par n="house__n"/></e>
 <e lm="nesh"><i>nesh</i><par n="Dutch__n"/></e>
 <e lm="nouse"><i>nouse</i><par n="Dutch__n"/></e>
-
-<!-- prn -->
-<!-- en-lanc_3 -->
 <e lm="mysen"><i>mysen</i><par n="myself__prn"/></e>
 <e lm="us"><i></i><par n="/we__prn"/></e>
-
-<!-- pr -->
-<!-- en-lanc_3 -->
 <e lm="wi"><i>wi</i><par n="at__pr"/></e>
-
-<!-- adj -->
-<!-- en-lanc_3 -->
 <e lm="gormless"><i>gormless</i><par n="expensive__adj"/></e>
 <e lm="fain"><i>fain</i><par n="glad/__adj"/></e>
-
-<!-- vblex -->
-<!-- en-lanc_3 -->
 <e lm="clout"><i>clout</i><par n="enjoy__vblex"/></e>
 <e lm="fettle"><i>fettle</i><par n="enjoy__vblex"/></e>
 <e lm="jigger"><i>jigger</i><par n="enjoy__vblex"/></e>
@@ -266,11 +197,5 @@
 <e lm="moither"><i>moither</i><par n="enjoy__vblex"/></e>
 <e lm="wack"><i>wack</i><par n="enjoy__vblex"/></e>
 <e lm="were"><i>were</i><par n="noinf__vblex"/></e>
-
-<!-- cnjsub -->
-<!-- en-lanc_3 -->
 <e lm="until"><i>until</i><par n="that__cnjsub"/></e>
-
-<!-- adv -->
-<!-- en-lanc_3 -->
 <e lm="yon"><i>yon</i><par n="maybe__adv"/></e>

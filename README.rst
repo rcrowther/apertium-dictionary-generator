@@ -73,6 +73,7 @@ Current options are,
 
 -a : annotate the output with XML comments
 -o : output filebasename (optional, default is 'output')
+-l : output lemmas to a file, one per line. This option responds to -a and -t
 -t : `s` for mono-dictionary source, `d` for mono-dictionary destination. `bi` for bilingual 'a' for all
 
 Output filepaths are tagged with dictionary extensions, so the script can be run repeatedly on source files without adapting filepath names (change -t instead).
@@ -204,6 +205,11 @@ generates::
     <e lm="a lot"><i>a<b/>lot</i><par n="adj"/></e>   
 
 
+Output lemmas
+~~~~~~~~~~~~~
+Minimal but useful option for producing files to test against frequency counts, for word existence, etc. Reuses the '-t' option, so can limit lemma output to only one mono dictionary. Can also annotate the output (in XML), which may have a use when handling very long dictionaries.
+
+ 
 Last Note
 ~~~~~~~~~
 '.' and ':' are easy to type, but hard to read. If you would like the files to be more readable, the files and the script could be refactored. To me, this reads better::
